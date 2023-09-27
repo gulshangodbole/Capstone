@@ -135,6 +135,7 @@ import ImageScroller from "../components/ImageScroller";
                 rightIcon={<GiReceiveMoney size="25px" />}
                 colorScheme={"pink"}
                 borderRadius={"20px"}
+                variant='outline'
                 size={{ base: "md", sm: "md", md: "lg", lg: "lg", xl: "lg" }}
               >
                 Apply Now
@@ -189,7 +190,7 @@ import ImageScroller from "../components/ImageScroller";
               styles={{
                 px: "2",
                 py: "1",
-                color: "purple",
+                color: "#5a287d",
               }}
             >
               We Help You to Find The Cheapest Loan
@@ -229,6 +230,7 @@ import ImageScroller from "../components/ImageScroller";
               lg: "25px",
               xl: "30px",
             }}
+            textColor={"#5a287d"}
             index={activeStep}
             orientation="vertical"
             height="400px"
@@ -301,7 +303,7 @@ import ImageScroller from "../components/ImageScroller";
   
         {/* Part-3------ */}
         <ImageScroller/>
-        <Box m="auto" mt="150px" bgColor={"#eff7f9"} p="10px" marginTop={"-10px"}>
+        <Box m="auto" mt="150px" bgColor={"#f2e6fa"} p="30px" marginTop={"-10px"}>
           <Heading
             mb="70px"
             fontSize={{
@@ -312,7 +314,7 @@ import ImageScroller from "../components/ImageScroller";
               xl: "40px",
             }}
             data-aos="zoom-in"
-            color="black"
+            color="#5a287d"
           >
             We have Helped More Than 10,000 Users
           </Heading>
@@ -418,11 +420,11 @@ import ImageScroller from "../components/ImageScroller";
   
              
             >
-              <List spacing={3} textAlign="left" fontSize={"16px"} color="gray">
+              <List spacing={3} textAlign="left" fontSize={"16px"} color="#5a287d">
                 <ListItem>
                   <ListIcon
                     as={BsFillCheckCircleFill}
-                    color="#6528F7"
+                    color="#5a287d"
                     fontSize={"20px"}
                   />
                   Offers from several banks
@@ -430,7 +432,7 @@ import ImageScroller from "../components/ImageScroller";
                 <ListItem>
                   <ListIcon
                     as={BsFillCheckCircleFill}
-                    color="#6528F7"
+                    color="#5a287d"
                     fontSize={"20px"}
                   />
                   Free & no obligation
@@ -438,7 +440,7 @@ import ImageScroller from "../components/ImageScroller";
                 <ListItem>
                   <ListIcon
                     as={BsFillCheckCircleFill}
-                    color="#6528F7"
+                    color="#5a287d"
                     fontSize={"20px"}
                   />
                   Compare safely and securely
@@ -447,7 +449,7 @@ import ImageScroller from "../components/ImageScroller";
                 <ListItem>
                   <ListIcon
                     as={BsFillCheckCircleFill}
-                    color="#6528F7"
+                    color="#5a287d"
                     fontSize={"20px"}
                   />
                   Offer within a few hours
@@ -471,7 +473,7 @@ import ImageScroller from "../components/ImageScroller";
                 xl: "550px",
               }}
               textAlign={"left"}
-              color="blackAlpha.700"
+              color="#5a287d"
             >
               <Text>
                 Compare multiple banks with just one non-binding application. We
@@ -493,14 +495,14 @@ import ImageScroller from "../components/ImageScroller";
   
         {/* part-4 Banks ------ */}
   
-        <Box mt="150px" textAlign={"center"} bgColor={"#eff7f9"} p="20px" >
-          <Heading color="black" data-aos="zoom-in-up">
+        <Box mt="150px" textAlign={"center"} bgColor={"#f2e6fa"} p="20px" >
+          <Heading color="#5a287d" data-aos="zoom-in-up">
             Money Mentor Cooperates With These Banks
           </Heading>
   
           <Text fontSize={"22px"} mb="50px" data-aos="zoom-in-up">
             {" "}
-            <span style={{ fontSize: "25px", fontWeight: "bold" }}>
+            <span style={{ fontSize: "25px", fontWeight: "bold"}}>
               100+ Banks
             </span>{" "}
             Trust Money Mentor to Offered{" "}
@@ -632,7 +634,7 @@ import ImageScroller from "../components/ImageScroller";
         {/* Part-5 ---- */}
   
         <Box mt="150px" >
-          <Heading data-aos="zoom-in-up" color={"black"} marginBottom={"50px"}>
+          <Heading data-aos="zoom-in-up" color={"#5a287d"} marginBottom={"50px"}>
             More About Finance & Loans
           </Heading>
   
@@ -663,10 +665,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://www.nerdwallet.com/assets/blog/wp-content/uploads/2019/10/GettyImages-578269652.jpg"} alt="article_1" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"black"} size="md">
+                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
                     Credit rating as a private customer
                   </Heading>
-                  <Text color={"blackAlpha.700"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -683,10 +685,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://as1.ftcdn.net/v2/jpg/01/84/82/72/1000_F_184827281_NdcaA8bOLVaQwOBzrGbrP3kmiSJ2mtD0.jpg"} alt="article_2" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"black"} size="md">
+                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
                     Get hold of your private loans with a promissory
                   </Heading>
-                  <Text color={"blackAlpha.700"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -703,10 +705,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://media.istockphoto.com/id/153136893/photo/couple-meeting-with-financial-advisor.jpg?b=1&s=170667a&w=0&k=20&c=Vk2CkL2YUpfZM2HdrL_pAYsIqFhlqUdM5sFIx37ct8c="} alt="article_3" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"black"} size="md">
+                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
                     What is APR and what can you actually use it?
                   </Heading>
-                  <Text color={"blackAlpha.700"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -723,10 +725,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://media.istockphoto.com/id/1328126737/photo/sign-a-house-sale-agreement.jpg?s=612x612&w=0&k=20&c=Jk7YWa38JMJ5L5b3-U84m2T9_9TIsfIS30rjiGI8t3k="} alt="article_4" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"black"} size="md">
+                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
                     Superfast loans for your dream home
                   </Heading>
-                  <Text color={"blackAlpha.700"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -735,7 +737,7 @@ import ImageScroller from "../components/ImageScroller";
   
         {/* Part-6----------- */}
   
-        <Box mt="150px" bgColor={"#eff7f9"} p="30px" >
+        <Box mt="150px" bgColor={"#f2e6fa"} p="30px" >
           <Flex
             m="auto"
            
@@ -747,7 +749,7 @@ import ImageScroller from "../components/ImageScroller";
               xl: "space-evenly",
             }}
             placeItems="center"
-            bgColor={"#eff7f9"}
+            bgColor={"#f2e6fa"}
             flexDirection={{
               base: "column",
               sm: "column",
@@ -767,7 +769,7 @@ import ImageScroller from "../components/ImageScroller";
               }}
               
             >
-              <Heading textAlign={"left"} data-aos="zoom-in">
+              <Heading textAlign={"left"} data-aos="zoom-in" textColor={"#5a287d"}>
                 Our Advisors Are Ready To Help You
               </Heading>
   
@@ -837,7 +839,7 @@ import ImageScroller from "../components/ImageScroller";
               <Accordion defaultIndex={[0]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton>
+                    <AccordionButton textColor={"#5a287d"}>
                       <Box
                         as="span"
                         flex="1"
@@ -848,9 +850,9 @@ import ImageScroller from "../components/ImageScroller";
                         How much can I borrow
                       </Box>
                       <AccordionIcon />
-                    </AccordionButton>
+                    </AccordionButton >
                   </h2>
-                  <AccordionPanel>
+                  <AccordionPanel textColor={"#5a287d"}>
                     The amount you can borrow depends on various factors,
                     including your income, credit score, existing debts, and the
                     lender's criteria. It's essential to consult with a financial
@@ -863,7 +865,7 @@ import ImageScroller from "../components/ImageScroller";
               <Accordion defaultIndex={[1]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton>
+                    <AccordionButton textColor={"#5a287d"}>
                       <Box
                         as="span"
                         flex="1"
@@ -876,7 +878,7 @@ import ImageScroller from "../components/ImageScroller";
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel>
+                  <AccordionPanel textColor={"#5a287d"}>
                     <ul>
                       <li> You must be at least 18 years old</li>
                       <li> You must have permanent residence in India </li>
@@ -895,7 +897,7 @@ import ImageScroller from "../components/ImageScroller";
               <Accordion defaultIndex={[2]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton>
+                    <AccordionButton textColor={"#5a287d"}>
                       <Box
                         as="span"
                         flex="1"
@@ -908,7 +910,7 @@ import ImageScroller from "../components/ImageScroller";
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel>
+                  <AccordionPanel textColor={"#5a287d"}>
                     Reducing the cost of your loans can save you money in the long
                     run and make repayment more manageable. Here are some
                     strategies to achieve that:
@@ -926,7 +928,7 @@ import ImageScroller from "../components/ImageScroller";
               <Accordion defaultIndex={[3]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton>
+                    <AccordionButton textColor={"#5a287d"}>
                       <Box
                         as="span"
                         flex="1"
@@ -939,7 +941,7 @@ import ImageScroller from "../components/ImageScroller";
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel>
+                  <AccordionPanel textColor={"#5a287d"}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
                     ad saepe repellat assumenda nulla quibusdam maxime, reiciendis
                     aperiam? Dignissimos voluptas fugit tenetur id aliquid
@@ -951,7 +953,7 @@ import ImageScroller from "../components/ImageScroller";
               <Accordion defaultIndex={[4]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton>
+                    <AccordionButton textColor={"#5a287d"}>
                       <Box
                         as="span"
                         flex="1"
@@ -964,7 +966,7 @@ import ImageScroller from "../components/ImageScroller";
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel>
+                  <AccordionPanel textColor={"#5a287d"}>
                     The amount you can borrow depends on various factors,
                     including your income, credit score, existing debts, and the
                     lender's criteria. It's essential to consult with a financial
@@ -977,7 +979,7 @@ import ImageScroller from "../components/ImageScroller";
               <Accordion defaultIndex={[5]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton>
+                    <AccordionButton textColor={"#5a287d"}>
                       <Box
                         as="span"
                         flex="1"
@@ -990,7 +992,7 @@ import ImageScroller from "../components/ImageScroller";
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel>
+                  <AccordionPanel textColor={"#5a287d"}>
                     The amount you can borrow depends on various factors,
                     including your income, credit score, existing debts, and the
                     lender's criteria. It's essential to consult with a financial
@@ -1003,7 +1005,7 @@ import ImageScroller from "../components/ImageScroller";
               <Accordion defaultIndex={[6]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton>
+                    <AccordionButton textColor={"#5a287d"}>
                       <Box
                         as="span"
                         flex="1"
@@ -1016,7 +1018,7 @@ import ImageScroller from "../components/ImageScroller";
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel>
+                  <AccordionPanel textColor={"#5a287d"}>
                     The amount you can borrow depends on various factors,
                     including your income, credit score, existing debts, and the
                     lender's criteria. It's essential to consult with a financial
