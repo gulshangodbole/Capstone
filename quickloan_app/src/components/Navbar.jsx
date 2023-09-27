@@ -8,7 +8,7 @@ import {
  
    
   } from "@chakra-ui/react";
-import logo_jpg from "../Images/1.png"
+import logo_jpg from "../Images/Natwest_Secondary_Horizontal_RGB_NEG.svg";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { store } from '../redux/store';
@@ -17,11 +17,6 @@ import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../redux/Authentication/actionType
 
 const links = [
     { title: "Home", path: "/" },
-
-
-    { title: "Product", path: "/verification" },
-
-    { title: "Company", path: "/process" },
     { title: "Support", path: "/support" },
   ];
 
@@ -57,7 +52,7 @@ const Navbar = () => {
   return (
     <Flex
     w="100%"
-    bgColor={"#0d0618"}
+    bgColor={"#5a287d"}
     color="white"
     justify="space-around"
     fontSize={{
@@ -86,7 +81,8 @@ const Navbar = () => {
         xl: "180px",
       }}
     >
-      <Link to="/"><Image sizes='s' borderRadius={"100%"} src={logo_jpg} alt="logo" h="70px" w="90px" p="-10px" /></Link>
+      
+      <Link to="/"><Image sizes='s' src={logo_jpg} alt="logo" h="80px" w="200px" p="-10px" /></Link>
     </Box>
     <HStack
       justify={"space-evenly"}
@@ -130,23 +126,18 @@ const Navbar = () => {
             
             {isAuth ? <Link to="/login"> <Button onClick={() => dispatch({ type: LOGIN_FAILURE})}>Log Out</Button></Link> : <Link to="/signup"><Button
                 size={{ base: "sm", sm: "sm", md: "md", lg: "md", xl: "md" }}
-                colorScheme={"yellow"}
+                color={"#3c1053"}
               >
                 Sign Up
               </Button>
               </Link>
               }
-              
-            {/* */}
 
           </HStack>
     }
 
-    
     </Flex>
-   
-
-
+  
 
   )
 }
