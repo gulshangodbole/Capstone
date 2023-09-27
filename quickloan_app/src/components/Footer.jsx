@@ -2,42 +2,30 @@ import {
     Box,
     Center,
     Grid,
-    Heading,
     HStack,
-    Image,
     ListItem,
-    Spacer,
     Text,
-    UnorderedList,
+    List,
     VStack,
   } from "@chakra-ui/react";
   import React, { useEffect } from "react";
-  import logo from "../Images/1.jpg";
-  import footer_bg from "../Images/footer_bg.jpg";
   import { BsFacebook, BsTwitter, BsPinterest } from "react-icons/bs";
   import { GrLinkedinOption } from "react-icons/gr";
 
   
   const Footer = () => {
     
-  
-  
     return (
-      <Box bg={"black"} color="white" p="30px" marginTop={"0px"}>
-        <Center mb="40px">
-          <Box w="300px" >
-            <Image w={"200px"} h={"200px"} src={logo} alt="logo" />
-          </Box>
-        </Center>
+      <Box bg={"#5a287d"} color="white" p="30px" marginTop={"10px"}>
         <Grid
           templateColumns={{
-            base: "repeat(2, 1fr)",
-            sm: "repeat(2, 1fr)",
-            md: "repeat(2, 1fr)",
-            lg: "repeat(4, 1fr)",
-            xl: "repeat(4, 1fr)",
+            base: "repeat(1, 1fr)",
+            sm: "repeat(1, 1fr)",
+            md: "repeat(1, 1fr)",
+            lg: "repeat(1, 1fr)",
+            xl: "repeat(1, 1fr)",
           }}
-          gap="20px"
+          gap="700px"
   
            
           w={{
@@ -47,10 +35,30 @@ import {
             lg: "900px",
             xl: "1200px",
           }}
-          justifyContent={"center"}
+          justifyContent={"right"}
           m="auto"
         >
-          <VStack 
+
+          <VStack
+          display={{base:"block", sm:"block", md:"block", lg:"block", xl:"block"}}
+            align={"left"}
+            fontSize={"18px"}
+          >
+        
+            <List display="flex" justifyContent="space-between" mb={"20px"}>
+            <ListItem>Customer Care</ListItem>
+            <ListItem>Loans</ListItem>
+            <ListItem>Loan Calculator</ListItem>
+          </List>
+          </VStack>
+
+          
+          {/* <Box w="200px" >
+            <Image w={"200px"} h={"100px"} src={logo} alt="logo" mb="0px"/>
+          </Box> */}
+        
+        </Grid>
+          {/* <VStack 
           display={{base:"none", sm:"none", md:"block", lg:"block", xl:"block"}}
             align={"center"}
             
@@ -66,70 +74,50 @@ import {
               the industry and deliver financial services that actually work for
               you.
             </Text>
-          </VStack>
+          </VStack> */}
   
-          <VStack
+          {/* <VStack
             align={"center"}
             textAlign="left"
             fontSize={"17px"}
             m="auto"
         
           >
-            <Heading size="md" marginBottom={"30px"}>Company</Heading>
+            <Heading size="md" marginBottom={"20px"}>Company</Heading>
   
             <UnorderedList listStyleType={"none"} spacing="18px">
               <ListItem>About Us</ListItem>
-              <ListItem>Recognition</ListItem>
-              <ListItem>Executive Team</ListItem>
-              <ListItem>Careers</ListItem>
             </UnorderedList>
-          </VStack>
+          </VStack> */}
   
-          <VStack
+          {/* <VStack
             align={"center"}
             fontSize={"17px"}
            
           >
-            <Heading marginBottom={"30px"} textAlign={"left"} size="md">
+            <Heading marginBottom={"20px"} textAlign={"left"} size="md">
               Products
             </Heading>
             <UnorderedList listStyleType={"none"} spacing="18px">
               <ListItem>Business Loans | Main</ListItem>
               <ListItem>Loan Calculator</ListItem>
-              <ListItem>Refer a Friend</ListItem>
-              <ListItem>Partner Program</ListItem>
             </UnorderedList>
-          </VStack>
+          </VStack> */}
   
-          <VStack
-          display={{base:"none", sm:"none", md:"block", lg:"block", xl:"block"}}
-            align={"center"}
-            fontSize={"17px"}
-           
-          >
-            <Heading marginBottom={"30px"} textAlign={"center"} size="md">
-              Help
-            </Heading>
-            <UnorderedList listStyleType={"none"} spacing="18px">
-              <ListItem>Customer Care</ListItem>
-              <ListItem>Recognition</ListItem>
-              <ListItem>Security Center</ListItem>
-              <ListItem>Blog</ListItem>
-            </UnorderedList>
-          </VStack>
-        </Grid>
-  
-        <Center mt="50px">
+          
+  <hr></hr>
+        <Center mt="20px">
+        
           <HStack fontSize={"30px"} spacing={"30px"}>
+          
             <BsFacebook />
             <BsTwitter />
-            <BsPinterest />
             <GrLinkedinOption />
           </HStack>
         </Center>
   
         <Center pt="20px">
-          <Text>Copyright© 2023. Privecy | Term of Use</Text>
+          <Text>Copyright© 2023</Text>
         </Center>
       </Box>
     );
