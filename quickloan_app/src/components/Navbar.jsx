@@ -18,6 +18,7 @@ import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../redux/Authentication/actionType
 const links = [
     { title: "Home", path: "/" },
     { title: "Support", path: "/support" },
+    {title: "Dashboard", path:"/dashboard"}
   ];
 
 

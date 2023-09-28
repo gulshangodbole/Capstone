@@ -16,6 +16,7 @@ import { BankApplicationMain } from "../components/BankApplicationMain";
 import { Profile } from "../pages/Profile";
 import Process from "../pages/Process";
 import EditProfile from "../pages/EditProfile";
+import Dashboard from "../pages/Dashboard";
 
 
 export const MainRoutes = () => {
@@ -23,6 +24,9 @@ export const MainRoutes = () => {
     <Routes>
 
         <Route path='/' element={<Homepage/>} />
+        <Route path="/dashboard" element={<PrivateRoute>
+            <Dashboard/>
+          </PrivateRoute>} />
 
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />

@@ -79,7 +79,7 @@ function Login() {
 
   useEffect(() => {
     if (isAuth) {
-      navigate(location.state?.from ? location.state.from : "/");
+      navigate(location.state?.from ? location.state.from : "/dashboard");
     }
   }, [isAuth, location.state, navigate]);
   const [submissiondisbled, setSubmissiondisbled] = useState(false);
