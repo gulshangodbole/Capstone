@@ -13,7 +13,7 @@ export default function ProductCard(props) {
   boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;"
 }}>  
   <CardBody>
-      <Image
+     <Image
         src={image}
         alt={name}
         borderRadius='lg'

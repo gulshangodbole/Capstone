@@ -108,95 +108,7 @@ export default function Application() {
         <div className={styles["form-section"]}>
           <div className={styles.vl}></div>
           <div className={styles["form-content"]}>
-            {currentPart === 1 && (
-              <div>
                 <form>
-                  <div className={styles["form-group"]}>
-                    <label>Your Name</label>
-                    <input
-                      type="text"
-                      name="fullname"
-                      value={fullname}
-                      onChange={handleChange}
-                      placeholder="Enter your Full Name"
-                      required
-                    />
-                  </div>
-
-                  <div className={styles["form-group"]}>
-                    <label>Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={email}
-                      placeholder="Enter your e-mail"
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className={styles["form-group"]}>
-                    <label>Gender</label>
-                    <select
-                      name="gender"
-                      value={gender}
-                      onChange={handleChange}
-                      required
-                    >
-                      <option value="">Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div className={styles["form-group"]}>
-                    <label>Date of Birth</label>
-                    <input
-                      type="date"
-                      name="dob"
-                      value={dob}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className={styles["form-group"]}>
-                    <label>Mobile Number</label>
-                    <input
-                      type="tel"
-                      name="contact"
-                      value={contact}
-                      onChange={handleChange}
-                      placeholder="Enter your mobile number"
-                      required
-                    />
-                  </div>
-
-                  <div className={styles["button-container"]}>
-                    <button type="button" onClick={handleNext}>
-                      Next
-                    </button>
-                  </div>
-                </form>
-                <img src={offer} alt="" />
-              </div>
-            )}
-
-            {currentPart === 2 && (
-              <div>
-                <form>
-                  <div className={styles["form-group"]}>
-                    <label>Address</label>
-                    <input
-                      type="text"
-                      name="address"
-                      value={address}
-                      onChange={handleChange}
-                      placeholder="Enter your Address"
-                      required
-                    />
-                  </div>
 
                   <div className={styles["form-group"]}>
                     <label>Category</label>
@@ -211,21 +123,6 @@ export default function Application() {
                       <option value="Educationloan">Education loan</option>
                       <option value="Personalloan">Personal loan</option>
                       <option value="Businessloan">Business loan</option>
-                    </select>
-                  </div>
-
-                  <div className={styles["form-group"]}>
-                    <label>Employment</label>
-                    <select
-                      name="employment"
-                      value={employment}
-                      onChange={handleChange}
-                      required
-                    >
-                      <option value="">Select Employment</option>
-                      <option value="employed">Employed</option>
-                      <option value="self-employed">Self-Employed</option>
-                      <option value="student">Student</option>
                     </select>
                   </div>
 
@@ -257,9 +154,6 @@ export default function Application() {
                   </div>
 
                   <div className={styles["button-container"]}>
-                    <button type="button" onClick={handlePrev}>
-                      Previous
-                    </button>
                     <button className={creditscore === "" ? styles.disabled : ""} disabled={creditscore === ""} type="button" onClick={handleSubmit}>
                       CHECK YOUR OFFER
                     </button>
@@ -267,10 +161,8 @@ export default function Application() {
                 </form>
                 <img src={offer} alt="" />
               </div>
-            )}
           </div>
         </div>
       </div>
-    </div>
   );
 }

@@ -52,10 +52,12 @@ const [data,setData]=useState([])
                 <h5> <label >Income :  </label> {data.income}</h5>
                 <h5> <label >Town :  </label> {data.address}</h5>
                 <h5> <label >Occupation: </label> {data.employment}</h5>
-               
+                <div>
+                  <Link to={"/edit"}> <Button>Edit Profile!</Button></Link>
+                </div>
             </DIV>
             <div style={{marginLeft:"10%"}}>
-               {loans.length>0?(
+               {/* {loans.length>0?(
                 
                <div >
                 <Text fontSize={"15px"} fontWeight={"bold"}>Active Loans</Text>
@@ -72,13 +74,11 @@ const [data,setData]=useState([])
 
                 ))}
                </div>
-               ):(
-                <div>
-                    <h1 style={{fontWeight:"bold",paddingTop:"20px",paddingRight:"20px"}}>! You have not Taken any Loans</h1>
-                    <br />
-               <Link to={"/verification"}> <Button>Apply Now</Button></Link>
-                </div>
-               )}
+               ):( */}
+                {/* <div>
+               <Link to={"/edit"}> <Button>Edit Profile!</Button></Link>
+                </div> */}
+               {/* )} */}
                 
             </div>
 

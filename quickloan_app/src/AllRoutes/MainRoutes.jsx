@@ -15,7 +15,7 @@ import { Admin } from "../pages/Admin";
 import { BankApplicationMain } from "../components/BankApplicationMain";
 import { Profile } from "../pages/Profile";
 import Process from "../pages/Process";
-
+import EditProfile from "../pages/EditProfile";
 
 
 export const MainRoutes = () => {
@@ -27,15 +27,15 @@ export const MainRoutes = () => {
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
         
-        <Route path="/banks/:category" element={<Products/>} />
-
+        <Route path="/banks/:category" element={<Bank/>} />
+        <Route path="/edit" element={<PrivateRoute> <EditProfile/></PrivateRoute>} />
         <Route path="/verification" element={<PrivateRoute>
             <Application/>
           </PrivateRoute>} />
 
         <Route path="/admin" element={<Admin/>} />
 
-        <Route path="/bank/:bankname/:id" element={<Bank/>} />
+        {/* <Route path="/bank/:bankname/:id" element={<Bank/>} /> */}
 
         <Route path='/process' element={<Process />} />
 

@@ -11,27 +11,34 @@ import p4 from "../Images/p4.webp"
 import p5 from "../Images/p5.webp"
 import p6 from "../Images/p6.webp"
 import p7 from "../Images/p7.webp"
-
+import p8 from "../Images/Natwest_Secondary_Horizontal_RGB_NEG.svg";
 export default function Bank() {
   const { id } = useParams()
   const [data, setdata] = useState("")
 
-  const fetchdata = () => {
-    axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
-      .then((res) => {
-        console.log(res.data)
-        setdata(res.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+  // const fetchdata = () => {
+  //   axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
+  //     .then((res) => {
+  //       console.log(res.data)
+  //       setdata(res.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
   
-  useEffect(() => {
-    fetchdata()
-  }, [id])
+  // useEffect(() => {
+  //   fetchdata()
+  // }, [id])
 
-  const { name, image, amount, interest, category, extra } = data
+  const { name, image, amount, interest, category, extra } = {
+    name: "NatWest",
+    image: p8,
+    amount: 1,
+    interest: 14,
+    category: id, // Assign the 'id' variable here
+    extra: 1
+  };
 
   return (
     <DIV>

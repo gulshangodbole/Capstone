@@ -38,7 +38,7 @@ import {
   import "aos/dist/aos.css";
   import Aos from "aos";
   import { GiReceiveMoney } from "react-icons/gi";
-  
+  import {useSelector} from 'react-redux';
   import styled, { keyframes } from "styled-components";
   import { BsFillCheckCircleFill } from "react-icons/bs";
   import { IoIosCall } from "react-icons/io";
@@ -75,9 +75,13 @@ import ImageScroller from "../components/ImageScroller";
       index: 1,
       count: steps.length,
     });
-
+    const { id } = useSelector((store) => {
+      console.log('store:', store);
+      return { id: store.AuthReducer.currentUser.id };
+    });
   
     return (
+      
       <Box>
         
         {/* Part-1 -------------------------------------------------------------------- */}
@@ -130,17 +134,27 @@ import ImageScroller from "../components/ImageScroller";
             >
               Compare Loans From Several Banks Find The Cheapest Loan
             </Heading>
-            <Link to="/login">
-              <Button
-                rightIcon={<GiReceiveMoney size="25px" />}
-                colorScheme={"pink"}
-                borderRadius={"20px"}
-                variant='outline'
-                size={{ base: "md", sm: "md", md: "lg", lg: "lg", xl: "lg" }}
-              >
-                Apply Now
-              </Button>
-            </Link>
+            {id ? (
+        <Link to={`verification`}><Button
+        rightIcon={<GiReceiveMoney size="25px" />}
+        colorScheme={"pink"}
+        borderRadius={"20px"}
+        variant='outline'
+        size={{ base: "md", sm: "md", md: "lg", lg: "lg", xl: "lg" }}
+      >
+        Apply Now
+      </Button></Link>
+      ) : (
+        <Link to="/login"><Button
+        rightIcon={<GiReceiveMoney size="25px" />}
+        colorScheme={"pink"}
+        borderRadius={"20px"}
+        variant='outline'
+        size={{ base: "md", sm: "md", md: "lg", lg: "lg", xl: "lg" }}
+      >
+        Apply Now
+      </Button></Link>
+      )}
           </VStack>
   
           <Box
