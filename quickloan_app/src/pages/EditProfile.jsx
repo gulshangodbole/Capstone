@@ -209,8 +209,6 @@ export default function EditProfile() {
                             <img src={offer}
                                 alt=""/>
                         </div>
-
-
                     </div>
                 </div>
             </div>

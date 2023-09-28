@@ -11,12 +11,13 @@ import {
   import React, { useEffect } from "react";
   import { BsFacebook, BsTwitter, BsPinterest } from "react-icons/bs";
   import { GrLinkedinOption } from "react-icons/gr";
+  import { Link } from "react-router-dom";
 
   
   const Footer = () => {
     
     return (
-      <Box bg={"#5a287d"} color="white" p="30px" marginTop={"10px"}>
+      <Box bg={"#5a287d"} color="white" p="30px" marginTop={"0px"}>
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
@@ -46,7 +47,7 @@ import {
           >
         
             <List display="flex" justifyContent="space-between" mb={"20px"}>
-            <ListItem>Customer Care</ListItem>
+            <Link to='/support'><ListItem>Customer Care</ListItem></Link>
             <ListItem>Loans</ListItem>
             <ListItem>Loan Calculator</ListItem>
           </List>

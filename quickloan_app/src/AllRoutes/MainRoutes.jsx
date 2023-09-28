@@ -7,7 +7,7 @@ import { Support } from "../components/Support";
 import Application from "../pages/Application";
 import  Login  from "../pages/Login";
 import { SignUp } from "../pages/SignUp";
-
+import Calculator from "../pages/Calculator"
 import { PrivateRoute } from "./PrivateRoute";
 import { BankApplication } from "../pages/BankApplication";
 import Bank from "../pages/Bank";
@@ -38,6 +38,8 @@ export const MainRoutes = () => {
           </PrivateRoute>} />
 
         <Route path="/admin" element={<Admin/>} />
+        <Route path='/support' element={<Support/>}/>
+        <Route path='/calculator' element={<Calculator/>}/>
 
         {/* <Route path="/bank/:bankname/:id" element={<Bank/>} /> */}
 

@@ -62,7 +62,7 @@ export default function Dashboard() {
           <div className='B-section-part'>
             <img src={p4} alt="" />
             <h3>{name}{category}</h3>
-            <h3>Customer Care</h3>
+            <Link to='/support'> <h3>Customer Care</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p5} alt="" />
@@ -77,7 +77,7 @@ export default function Dashboard() {
           <div className='B-section-part'>
             <img src={p7} alt="" />
             <h3>{name}{category} </h3>
-            <h3>Calculator Online</h3>
+            <Link to='/calculator'><h3>Calculator Online</h3></Link>
           </div>
         </div>
       </div>
