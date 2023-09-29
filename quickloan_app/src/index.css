@@ -14,5 +14,29 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: "Archivoblack";
+  src: local('Archivoblack'),
+      url('./fonts/ArchivoBlack-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Archivobold";
+  src: local('Archivobold'),
+      url('./fonts/Archivo-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Archivobold";
+  src: local('Archivobold'),
+      url('./fonts/Archivo-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "RNHouseSans";
+  src: local('RNHouseSans'),
+      url('./fonts/RNHouseSans-Regular.ttf') format('truetype');
+}
+
 
 /* temp*/

@@ -8,10 +8,8 @@ import {
     Button,
     Card,
     CardBody,
-   
     Flex,
     Grid,
-    GridItem,
     Heading,
     Highlight,
     HStack,
@@ -19,6 +17,7 @@ import {
     List,
     ListIcon,
     ListItem,
+    Spacer,
     Stack,
     Step,
     StepDescription,
@@ -29,10 +28,18 @@ import {
     StepSeparator,
     StepStatus,
     StepTitle,
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    TableContainer,
     Text,
     useSteps,
     VStack,
   } from "@chakra-ui/react";
+  import { InfoIcon } from "@chakra-ui/icons";
   import React, { useEffect } from "react";
   import purplebg from "../Images/purplebg.jpg";
   import "aos/dist/aos.css";
@@ -45,6 +52,7 @@ import {
   import { MdOutlineEmail } from "react-icons/md";
   import { Link } from "react-router-dom";
   import "react-alice-carousel/lib/alice-carousel.css";
+  import banner from "../Images/loan_banner.png"
   import dena_bank from "../Images/dena_bank.jpg";
   import federal_bank from "../Images/federal_bank.png";
   import hdfc from "../Images/hdfc.jpg";
@@ -55,15 +63,14 @@ import {
   import indusind from "../Images/indusind.png";
   import karnataka_bank from "../Images/karnataka_bank.jpg";
   import kotak from "../Images/kotak.png";
-import ImageScroller from "../components/ImageScroller";
- 
-  
-  
+  import ImageScroller from "../components/ImageScroller";
+  import { Provider, Carousel, LeftButton, RightButton } from "chakra-ui-carousel";
+
   
   const steps = [
-    { title: "Apply free of charge & without obligation", description: " " },
-    { title: "Compare The Offer You Choose on Platformond", description: "" },
-    { title: "Choose The Best Offer That You Need", description: "" },
+    { title: "Find the best repayment plan using loan calculator", description: " " },
+    { title: "Apply for loan with a few steps", description: "" },
+    { title: "Pay as per your convenience", description: "" },
   ];
   
   const Homepage = () => {
@@ -79,6 +86,30 @@ import ImageScroller from "../components/ImageScroller";
       console.log('store:', store);
       return { id: store.AuthReducer.currentUser.id };
     });
+
+    const elements = [
+      {
+        name: "Car Loan",
+        img: ""
+      },
+      {
+        name: "Home Improvement Loan",
+        img: ""
+      },
+      {
+        name: "Debt Consolidation Loan",
+        img: ""
+      },
+      {
+        name: "Wedding Loan",
+        img: ""
+      },
+      {
+        name: "Holiday Loan",
+        img: ""
+      }
+    ];
+
   
     return (
       
@@ -88,7 +119,7 @@ import ImageScroller from "../components/ImageScroller";
         <Flex
           p="20px"
           bgImage={purplebg}
-          h={"600px"}
+          h={"500px"}
           align={"center"}
           m="auto"
           justify="space-around"
@@ -107,14 +138,13 @@ import ImageScroller from "../components/ImageScroller";
             w={{
               base: "300px",
               sm: "300px",
-              md: "600px",
-              lg: "600px",
-              xl: "600px",
+              md: "800px",
+              lg: "800px",
+              xl: "800px",
             }}
             textAlign={"justify"}
             spacing="30px"
           >
-           
             <Heading
               textAlign={{
                 base: "center",
@@ -124,15 +154,17 @@ import ImageScroller from "../components/ImageScroller";
                 xl: "left",
               }}
               fontSize={{
-                base: "25px",
-                sm: "25px",
-                md: "30px",
-                lg: "40px",
-                xl: "50px",
+                base: "21px",
+                sm: "21px",
+                md: "26px",
+                lg: "36px",
+                xl: "46px",
               }}
+              letterSpacing={"1px"}
+              fontFamily={"Archivoblack, sans-serif"}
               color={"white"}
             >
-              Discover the Best Loan Deals: Unlock the Lowest Interest Rates Today!
+              Apply in a flash now for a 5 star rated loan
             </Heading>
             {id ? (
         <Link to={`verification`}><Button
@@ -162,17 +194,50 @@ import ImageScroller from "../components/ImageScroller";
               base: "300px",
               sm: "300px",
               md: "500px",
-              lg: "600px",
-              xl: "600px",
+              lg: "500px",
+              xl: "500px",
             }}
             data-aos="fade-left"
           >
             <FloatingImage  src={"https://images.assettype.com/fortuneindia%2F2022-06%2F1fa744fc-adb4-48fd-a40e-54e45a7edc8b%2FGettyImages_955530262.jpg?rect=0,66,2129,1198&w=1250&q=60"} />
           </Box>
-         
+
         </Flex>
-        {/* part-2 ---------------- */}
-       
+
+        {/* part-2 -------------------- */}
+        <Box m="auto" mt="150px" bgColor={"#5a287d"} p="30px" marginTop={"-10px"}>
+          <Heading
+            mb="20px"
+            fontSize={{
+              base: "30px",
+              sm: "30px",
+              md: "35px",
+              lg: "35px",
+              xl: "40px",
+            }}
+            fontFamily={"RNHouseSans, sans-serif"}
+            fontWeight={"500"}
+            color="#fff"
+          >Representative 7.1% APR</Heading>
+          <Text noOfLines={[1, 2, 3]} color="#fff" mx="50px" fontFamily={"RNHouseSans, sans-serif"}>
+            This rate is available on loans between £7,500 and £14,950. Other loan amounts are 
+            available at alternative rates.  Your rate depends on your personal circumstances, 
+            loan amount and term and may differ from this Representative APR
+          </Text>
+        </Box>
+        
+        <Box m="auto" mt="150px" bgColor={"#f2f2f8"} p="30px" marginTop={"-10px"}>
+        <Flex px={"320px"}>
+          <InfoIcon boxSize={7}/>
+          <Spacer />
+          <Text pt={"7px"} fontFamily={"RNHouseSans, sans-serif"} fontSize={"16px"}>To apply, you must be 18+ and a UK resident with a NatWest current account 
+            (held for 3+ months).</Text>
+        </Flex>
+
+        </Box>
+        
+
+        {/* part-3 ---------------- */}
         <VStack
           w={{
             base: "300px",
@@ -185,7 +250,7 @@ import ImageScroller from "../components/ImageScroller";
           mt={"50px"}
           
         >
-          <Heading data-aos="zoom-in-up" size="md" color={"orange"}>
+          <Heading fontFamily={"RNHouseSans"} data-aos="zoom-in-up" size="md" color={"orange"}>
             How It Works
           </Heading>
           <Heading
@@ -197,17 +262,19 @@ import ImageScroller from "../components/ImageScroller";
               lg: "40px",
               xl: "40px",
             }}
+            fontFamily={"Archivobold, sans-serif"}
             color="black"
           >
             <Highlight
-              query={["The", "Cheapest"]}
+              query={["Effortless", "Seamless"]}
               styles={{
                 px: "2",
                 py: "1",
                 color: "#5a287d",
               }}
+              
             >
-              We Help You to Find The Cheapest Loan
+              Apply for Effortless and Seamless Loan
             </Highlight>
           </Heading>
         </VStack>
@@ -244,6 +311,7 @@ import ImageScroller from "../components/ImageScroller";
               lg: "25px",
               xl: "30px",
             }}
+            fontFamily={"RNHouseSans, sans-serif"}
             textColor={"#5a287d"}
             index={activeStep}
             orientation="vertical"
@@ -308,29 +376,28 @@ import ImageScroller from "../components/ImageScroller";
               src={
                 "https://i.pinimg.com/originals/e8/11/05/e811058549f7de3ab1b87d8ce59d94e2.gif"
               }
-             
               alt="skeleton"
             />
           </Box>
-         
         </Flex>
   
         {/* Part-3------ */}
         <ImageScroller/>
-        <Box m="auto" mt="150px" bgColor={"#f2e6fa"} p="30px" marginTop={"-10px"}>
+        <Box m="auto" mt="150px" bgColor={"#f2e6fa"} p="30px" marginTop={"10px"}>
           <Heading
             mb="70px"
             fontSize={{
-              base: "30px",
-              sm: "30px",
-              md: "35px",
-              lg: "35px",
-              xl: "40px",
+              base: "35px",
+              sm: "35px",
+              md: "40px",
+              lg: "40px",
+              xl: "50px",
             }}
+            fontFamily={"Archivobold"}
             data-aos="zoom-in"
             color="#5a287d"
           >
-            We have Helped More Than 10,000 Users
+            Why get a loan from us?
           </Heading>
           {/* image-1---------*/}
           <Box
@@ -356,7 +423,7 @@ import ImageScroller from "../components/ImageScroller";
             <Image
               borderRadius={"20px"}
               w="100%"
-              src={"https://d1.awsstatic.com/industry-images-customer-references/GHF_AWS_case%20study-02.079ff0ab2728e91fc351eb6df1ea0836427de429.png"}
+              src={banner}
               alt="Happy family"
             />
           </Box>
@@ -392,7 +459,8 @@ import ImageScroller from "../components/ImageScroller";
           </Box>
           <HStack
             data-aos="zoom-in"
-            p="10px"
+            pt="30px"
+            px="10px"
             m="auto"
             gap={{ base: "20px", sm: "20px", md: "40px", lg: "20px", xl: "20px" }}
             justifyContent={{
@@ -431,47 +499,38 @@ import ImageScroller from "../components/ImageScroller";
                 lg: "row",
                 xl: "row",
               }}
-  
-             
             >
-              <List spacing={3} textAlign="left" fontSize={"16px"} color="#5a287d">
-                <ListItem>
+              <List spacing={3} textAlign="left" fontSize={"20px"} color="#5a287d">
+                <ListItem fontSize={"30px"} fontFamily={"Archivobold"}>
                   <ListIcon
                     as={BsFillCheckCircleFill}
                     color="#5a287d"
-                    fontSize={"20px"}
+                    fontSize={"30px"}
                   />
-                  Offers from several banks
+                  Get a free quote
                 </ListItem>
-                <ListItem>
+                <ListItem fontSize={"30px"} fontFamily={"Archivobold"}>
                   <ListIcon
                     as={BsFillCheckCircleFill}
                     color="#5a287d"
-                    fontSize={"20px"}
+                    fontSize={"30px"}
                   />
-                  Free & no obligation
-                </ListItem>
-                <ListItem>
-                  <ListIcon
-                    as={BsFillCheckCircleFill}
-                    color="#5a287d"
-                    fontSize={"20px"}
-                  />
-                  Compare safely and securely
+                  Apply in 10 minutes
                 </ListItem>
                 
-                <ListItem>
+                <ListItem fontSize={"30px"} fontFamily={"Archivobold"}>
                   <ListIcon
                     as={BsFillCheckCircleFill}
                     color="#5a287d"
-                    fontSize={"20px"}
+                    fontSize={"30px"}
                   />
-                  Offer within a few hours
+                  Highly rated
                 </ListItem>
               </List>
             </Box>
   
             <Box
+              pt={"20px"}
               fontSize={{
                 base: "15px",
                 sm: "15px",
@@ -479,6 +538,7 @@ import ImageScroller from "../components/ImageScroller";
                 lg: "17px",
                 xl: "17px",
               }}
+              fontFamily={"RNHouseSans, sans-serif"}
               w={{
                 base: "300px",
                 sm: "300px",
@@ -490,36 +550,82 @@ import ImageScroller from "../components/ImageScroller";
               color="#5a287d"
             >
               <Text>
-                Compare multiple banks with just one non-binding application. We
-                save you the hassle of checking the price at each bank.
+                Check what you could borrow and your rate before you apply - without affecting
+                your credit card score.
               </Text>
               <br />
               <Text>
-                It takes 2 min. To fill out the application, you immediately get
-                quotes from banks and can choose the best quote.
+                It takes minutes to apply online. It's also easy, as we fill out your info
+                where we can.
               </Text>
               <br />
               <Text>
-                We save you not only time, but in many cases also many thousands
-                of kroner.
+                Both Moneyfacts and Defaqto gave our loans five star - the best rating in 2021, 2022
+                and 2023.
               </Text>
             </Box>
           </HStack>
         </Box>
+
+        <Box mx="auto" mt="150px" mb="60px" p="30px" marginTop={"10px"}>
+          <Heading
+            mb="30px"
+            fontSize={{
+              base: "35px",
+              sm: "35px",
+              md: "40px",
+              lg: "40px",
+              xl: "50px",
+            }}
+            fontFamily={"Archivobold"}
+            data-aos="zoom-in"
+            color="#5a287d"
+          >
+            How long could you borrow for?
+          </Heading>
+          <Text mb="40px" fontFamily={"RNHouseSans"} data-aos="zoom-in">You could pay back your loan over one to 10 years - 
+            it depends how much you're borrowing and what you're borrowing for.</Text>
+          <TableContainer px="200px" data-aos="zoom-in">
+            <Table >
+              <Thead>
+                <Tr>
+                  <Th borderBottomWidth={"1px"} borderColor={"#00000"}><Text fontFamily={"RNHouseSans"} fontSize={"18px"}>Loan amount</Text></Th>
+                  <Th borderBottomWidth={"1px"} borderColor={"#00000"}><Text fontFamily={"RNHouseSans"} fontSize={"18px"}>Time to pay back</Text></Th>
+                </Tr>
+                
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td border={"none"}><Text fontFamily={"RNHouseSans"}>£1,000 - £7,450</Text></Td>
+                  <Td border={"none"}><Text fontFamily={"RNHouseSans"}>1 to 5 years</Text></Td>
+                </Tr>
+                <Tr>
+                  <Td border={"none"}><Text fontFamily={"RNHouseSans"}>£7,500 - £50,000</Text></Td>
+                  <Td border={"none"}><Text fontFamily={"RNHouseSans"}>1 to 8 years</Text></Td>
+                </Tr>
+                <Tr>
+                  <Td borderBottomWidth={"1px"} borderColor={"#00000"}><Text fontFamily={"RNHouseSans"}>£7,500 - £50,000 for home improvements</Text></Td>
+                  <Td borderBottomWidth={"1px"} borderColor={"#00000"}><Text fontFamily={"RNHouseSans"}>1 to 10 years</Text></Td>
+                </Tr>
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </Box>
+
   
         {/* part-4 Banks ------ */}
   
-        <Box mt="150px" textAlign={"center"} bgColor={"#f2e6fa"} p="20px" >
-          <Heading color="#5a287d" data-aos="zoom-in-up">
-            Money Mentor Cooperates With These Banks
+        <Box mt="150px" textAlign={"center"} bgColor={"#fff"} p="20px" >
+          <Heading color="#5a287d" data-aos="zoom-in-up" fontFamily={"Archivobold"}>
+            Our Testimony
           </Heading>
   
-          <Text fontSize={"22px"} mb="50px" data-aos="zoom-in-up">
+          <Text fontFamily={"RNHouseSans"} fontSize={"22px"} mb="50px" data-aos="zoom-in-up">
             {" "}
             <span style={{ fontSize: "25px", fontWeight: "bold"}}>
-              100+ Banks
+              10000+ Customers
             </span>{" "}
-            Trust Money Mentor to Offered{" "}
+            Trust Us to Provide{" "}
             <span style={{ fontSize: "25px", fontWeight: "bold" }}>
               Best Loans
             </span>
@@ -540,115 +646,129 @@ import ImageScroller from "../components/ImageScroller";
             textAlign={"center"}
             justifyItems="center"
           >
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={karnataka_bank}
-                role="presentation"
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+              <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
-              ,
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"Natwest made getting a loan surprisingly simple and fast."</Text>
+              
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={kotak}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-                objectFit={"cover"}
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"I found the best loan rates and terms with ease on Natwest"</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={indusind}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"Natwest's responsive customer support made all the difference."</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={indian_bank}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"Getting approved for a loan was a breeze thanks to Natwest"</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={idbi}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"Natwest delivered the funds I needed when I needed them."</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={ICICI}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"The transparency on Natwest gave me confidence in my choice."</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={hsbc}
-                role="presentation"
+            <Text></Text>
+            <Box  w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"I highly recommend Natwest for a hassle-free loan experience."</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={hdfc}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"Natwest provided me with flexible loan options that fit my needs."</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={federal_bank}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"Thanks to Natwest, I had my loan approved in record time."</Text>
             </Box>
-            ,
-            <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
-              <Image
-                src={dena_bank}
-                role="presentation"
+            <Text></Text>
+            <Box w="250px" h="150px" bgColor="#f2e6fa" borderRadius="20px" data-aos="zoom-in-up">
+            <Text
+                p={"20px"}
                 w="100%"
-                borderRadius="20px"
+                textAlign={"jsutify"}
                 data-aos="zoom-in-up"
-              />
+                fontFamily={"Archivoblack"}
+                color={"#5a287d"}
+              >"Natwest's user-friendly interface made the process stress-free."</Text>
             </Box>
-            ,
+            <Text></Text>
           </Grid>
         </Box>
   
         {/* Part-5 ---- */}
   
         <Box mt="150px" >
-          <Heading data-aos="zoom-in-up" color={"#5a287d"} marginBottom={"50px"}>
+          <Heading 
+            data-aos="zoom-in-up" 
+            color={"#5a287d"} 
+            marginBottom={"50px"} 
+            fontSize={"55px"}
+            fontFamily={"Archivobold"}>
             More About Finance & Loans
           </Heading>
   
@@ -679,10 +799,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://www.nerdwallet.com/assets/blog/wp-content/uploads/2019/10/GettyImages-578269652.jpg"} alt="article_1" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
+                  <Heading mt={"15px"} textAlign={"left"} color={"#5a287d"} size="md" fontFamily={"RNHouseSans"}>
                     Credit rating as a private customer
                   </Heading>
-                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"} ontFamily={"RNHouseSans"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -699,10 +819,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://as1.ftcdn.net/v2/jpg/01/84/82/72/1000_F_184827281_NdcaA8bOLVaQwOBzrGbrP3kmiSJ2mtD0.jpg"} alt="article_2" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
+                  <Heading mt={"15px"} textAlign={"left"} color={"#5a287d"} size="md" fontFamily={"RNHouseSans"}>
                     Get hold of your private loans with a promissory
                   </Heading>
-                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"} ontFamily={"RNHouseSans"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -719,10 +839,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://media.istockphoto.com/id/153136893/photo/couple-meeting-with-financial-advisor.jpg?b=1&s=170667a&w=0&k=20&c=Vk2CkL2YUpfZM2HdrL_pAYsIqFhlqUdM5sFIx37ct8c="} alt="article_3" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
+                  <Heading mt={"15px"} textAlign={"left"} color={"#5a287d"} size="md" fontFamily={"RNHouseSans"}>
                     What is APR and what can you actually use it?
                   </Heading>
-                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"} ontFamily={"RNHouseSans"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -739,10 +859,10 @@ import ImageScroller from "../components/ImageScroller";
               <CardBody align="center">
                 <Image src={"https://media.istockphoto.com/id/1328126737/photo/sign-a-house-sale-agreement.jpg?s=612x612&w=0&k=20&c=Jk7YWa38JMJ5L5b3-U84m2T9_9TIsfIS30rjiGI8t3k="} alt="article_4" borderRadius="lg" />
                 <Stack textAlign={"left"}>
-                  <Heading textAlign={"left"} color={"#5a287d"} size="md">
+                  <Heading mt={"15px"} textAlign={"left"} color={"#5a287d"} size="md" fontFamily={"RNHouseSans"}>
                     Superfast loans for your dream home
                   </Heading>
-                  <Text color={"#5a287d"}>📆 July 24, 2023</Text>
+                  <Text color={"#5a287d"} ontFamily={"RNHouseSans"}>📆 July 24, 2023</Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -754,7 +874,6 @@ import ImageScroller from "../components/ImageScroller";
         <Box mt="150px" bgColor={"#f2e6fa"} p="30px" >
           <Flex
             m="auto"
-           
             justifyContent={{
               base: "center",
               sm: "center",
@@ -831,7 +950,7 @@ import ImageScroller from "../components/ImageScroller";
                   borderRadius="15px"
                   color="purple"
                 >
-                  Info@moneymentor.com
+                  customer.care@natwest.com
                 </Button>
               </HStack>
             </Box>
@@ -950,16 +1069,13 @@ import ImageScroller from "../components/ImageScroller";
                         fontWeight={"bold"}
                         fontSize="18px"
                       >
-                        What does it cost to use Banca?
+                        What does it cost to use the Natwest platform?
                       </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
                   <AccordionPanel textColor={"#5a287d"}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                    ad saepe repellat assumenda nulla quibusdam maxime, reiciendis
-                    aperiam? Dignissimos voluptas fugit tenetur id aliquid
-                    eligendi amet dolorum ex repellendus ducimus?
+                    The platform is absolutely free to use with no extra charges.
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>

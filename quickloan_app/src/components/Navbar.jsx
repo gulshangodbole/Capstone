@@ -63,6 +63,7 @@ const Navbar = () => {
       lg: "20px",
       xl: "20px",
     }}
+    fontFamily={"RNHouseSans"}
     alignItems="center"
     py={0}
     px={0}

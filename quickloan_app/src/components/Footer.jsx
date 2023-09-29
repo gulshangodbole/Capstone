@@ -27,8 +27,7 @@ import {
             xl: "repeat(1, 1fr)",
           }}
           gap="700px"
-  
-           
+
           w={{
             base: "30px",
             sm: "300px",
@@ -44,6 +43,7 @@ import {
           display={{base:"block", sm:"block", md:"block", lg:"block", xl:"block"}}
             align={"left"}
             fontSize={"18px"}
+            fontFamily={"RNHouseSans"}
           >
         
             <List display="flex" justifyContent="space-between" mb={"20px"}>
