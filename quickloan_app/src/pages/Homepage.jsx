@@ -132,7 +132,7 @@ import ImageScroller from "../components/ImageScroller";
               }}
               color={"white"}
             >
-              Compare Loans From Several Banks Find The Cheapest Loan
+              Discover the Best Loan Deals: Unlock the Lowest Interest Rates Today!
             </Heading>
             {id ? (
         <Link to={`verification`}><Button

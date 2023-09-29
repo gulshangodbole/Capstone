@@ -36,8 +36,7 @@ export function SignUp() {
   const { user } = useSelector((store) => store.AuthReducer)
   const { errorMessage } = useSelector((store) => store.AuthReducer)
   const [formvalue, setFormvalue] = useState({
-    firstname: "",
-    lastname: "",
+    fullname: "",
     email: "",
     password: "",
     loans: []
@@ -50,7 +49,7 @@ export function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!formvalue.firstname || !formvalue.lastname || !formvalue.email || !formvalue.password) {
+    if (!formvalue.fullname || !formvalue.email || !formvalue.password) {
       return toast({
         title: 'Register Failed!',
         description: "Please fill all the inputs",
@@ -98,7 +97,7 @@ export function SignUp() {
         setTimeout(() => {
           navigate("/login")
         }, 3000)
-        setFormvalue({ firstname: "", lastname: "", email: "", password: "" })
+        setFormvalue({ fullname: "", email: "", password: "" })
         return
       } else {
         return toast({
@@ -162,23 +161,23 @@ export function SignUp() {
                 <Stack spacing={4}>
 
                   <Box>
-                    <FormControl id="firstName" >
+                    <FormControl id="fullname" >
                       <FormLabel>Enter
-                        Name</FormLabel>
+                        Full Name</FormLabel>
                       <Input
                         borderRight={"none"}
                         borderTop={"none"}
                         focusBorderColor='none'
-                        placeholder={'Enter your firstname'}
+                        placeholder={'Enter your fullname'}
                         // bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
                         _placeholder={{ opacity: 1, color: '#a0a0a0' }}
                         _focus={{
                           bg: 'whiteAlpha.300',
                           borderColor: "#FFB300"
-                        }} type="text" value={formvalue.firstname} onChange={(e) => setFormvalue((prev) => ({ ...prev, firstname: e.target.value }))} />
+                        }} type="text" value={formvalue.fullname} onChange={(e) => setFormvalue((prev) => ({ ...prev, fullname: e.target.value }))} />
                     </FormControl>
                   </Box>
-                  <Box>
+                  {/* <Box>
                     <FormControl id="lastname" >
                       <FormLabel>Enter lastname</FormLabel>
                       <Input
@@ -193,7 +192,7 @@ export function SignUp() {
                           borderColor: "#FFB300"
                         }} type="text" value={formvalue.lastname} onChange={(e) => setFormvalue((prev) => ({ ...prev, lastname: e.target.value }))} />
                     </FormControl>
-                  </Box>
+                  </Box> */}
                   <FormControl id="email" >
                     <FormLabel>Email address</FormLabel>
                     <Input

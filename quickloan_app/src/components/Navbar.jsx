@@ -26,9 +26,9 @@ const Navbar = () => {
    const dispatch = useDispatch()
     const {currentUser } = useSelector((store) => store.AuthReducer);
     const { isAuth } = useSelector((store) => store.AuthReducer);
-    console.log(store)
-     console.log(isAuth)
-    //  console.log(currentUser.firstname);
+    // console.log(store)
+    //  console.log(isAuth)
+    console.log(currentUser.fullname);
     const [shouldElevate, setShouldElevate] = useState(false);
     const navigate=useNavigate()
 
@@ -121,7 +121,7 @@ const Navbar = () => {
             }}
           >
              
-            {isAuth ? <h1 style={{ cursor: 'default' }} onFocus={(e) => e.target.style.cursor = "pointer"} onClick={()=>{navigate('/profile')}}>{currentUser.firstname}</h1> : <Link to="/login">Login</Link>}
+            {isAuth ? <h1 style={{ cursor: 'default' }} onFocus={(e) => e.target.style.cursor = "pointer"} onClick={()=>{navigate('/profile')}}>{currentUser.fullname}</h1> : <Link to="/login">Login</Link>}
          
          
             

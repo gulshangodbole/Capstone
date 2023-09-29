@@ -44,12 +44,11 @@ const [data,setData]=useState([])
             </div>
             <DIV >
             {/* style={{marginLeft:"10%",paddingBottom:"10px"}} */}
-                <h3> <label >Name :  </label> {data.firstname || data.fullname} {data.lastname}</h3>
+                <h3> <label >Name :  </label> {data.fullname}</h3>
                 <h5> <label >Birth :  </label> {data.dob}</h5>
                 <h5> <label >Phone :  </label> {data.contact}</h5>
                 <h5> <label >Email :  </label> {data.email}</h5>
                 <h5> <label >Gender :  </label> {data.gender}</h5>
-                <h5> <label >Income :  </label> {data.income}</h5>
                 <h5> <label >Town :  </label> {data.address}</h5>
                 <h5> <label >Occupation: </label> {data.employment}</h5>
                 <div>
