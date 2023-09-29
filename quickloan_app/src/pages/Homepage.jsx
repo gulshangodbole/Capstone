@@ -53,18 +53,8 @@ import {
   import { Link } from "react-router-dom";
   import "react-alice-carousel/lib/alice-carousel.css";
   import banner from "../Images/loan_banner.png"
-  import dena_bank from "../Images/dena_bank.jpg";
-  import federal_bank from "../Images/federal_bank.png";
-  import hdfc from "../Images/hdfc.jpg";
-  import hsbc from "../Images/hsbc.png";
-  import ICICI from "../Images/ICICI.jpg";
-  import idbi from "../Images/idbi.jpg";
-  import indian_bank from "../Images/indian_bank.jpg";
-  import indusind from "../Images/indusind.png";
-  import karnataka_bank from "../Images/karnataka_bank.jpg";
-  import kotak from "../Images/kotak.png";
   import ImageScroller from "../components/ImageScroller";
-  import { Provider, Carousel, LeftButton, RightButton } from "chakra-ui-carousel";
+
 
   
   const steps = [
@@ -86,29 +76,6 @@ import {
       console.log('store:', store);
       return { id: store.AuthReducer.currentUser.id };
     });
-
-    const elements = [
-      {
-        name: "Car Loan",
-        img: ""
-      },
-      {
-        name: "Home Improvement Loan",
-        img: ""
-      },
-      {
-        name: "Debt Consolidation Loan",
-        img: ""
-      },
-      {
-        name: "Wedding Loan",
-        img: ""
-      },
-      {
-        name: "Holiday Loan",
-        img: ""
-      }
-    ];
 
   
     return (
