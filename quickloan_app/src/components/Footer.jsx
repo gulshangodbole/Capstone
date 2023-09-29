@@ -48,8 +48,8 @@ import {
         
             <List display="flex" justifyContent="space-between" mb={"20px"}>
             <Link to='/support'><ListItem>Customer Care</ListItem></Link>
-            <ListItem>Loans</ListItem>
-            <ListItem>Loan Calculator</ListItem>
+            <Link to ='/dashboard'><ListItem>Loans</ListItem></Link>
+            <Link to='/calculator'><ListItem>Loan Calculator</ListItem></Link>
           </List>
           </VStack>
 
