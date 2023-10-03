@@ -50,7 +50,13 @@ const [data,setData]=useState([])
                 <h5> <label >Email :  </label> {data.email}</h5>
                 <h5> <label >Gender :  </label> {data.gender}</h5>
                 <h5> <label >Town :  </label> {data.address}</h5>
-                <h5> <label >Occupation: </label> {data.employment}</h5>
+                <h5> <label >Employer: </label> {data.employment}</h5>
+                <h5> <label >Years of Employment :  </label> {data.empYears}</h5>
+                <h5> <label >Monthly Income :  </label> {data.income}</h5>
+                <h5> <label >Savings :  </label> {data.Savings}</h5>
+                <h5> <label >Monthly Expense :  </label> {data.expense}</h5>
+                <h5> <label >Credit Score :  </label> {data.creditscore}</h5>
+                <h5> <label >Assets: </label> {data.assets}</h5>
                 <div>
                   <Link to={"/edit"}> <Button>Edit Profile!</Button></Link>
                 </div>

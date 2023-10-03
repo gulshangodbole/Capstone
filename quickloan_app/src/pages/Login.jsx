@@ -49,7 +49,7 @@ function Login() {
         description: "Please fill all the fields.",
         status: "error",
         position: "top",
-        duration: 3000,
+       // duration: 3000,
         isClosable: true,
       });
     } else {
@@ -60,7 +60,7 @@ function Login() {
             description: "User LoggedIn Successful",
             status: "success",
             position: "top",
-            duration: 4000,
+           // duration: 4000,
             isClosable: true,
           });
         } else {
@@ -69,7 +69,7 @@ function Login() {
             description: "Incorrect details",
             status: "error",
             position: "top",
-            duration: 4000,
+          //  duration: 4000,
             isClosable: true,
           });
         }
@@ -127,8 +127,8 @@ function Login() {
               }}
             >
               <Stack align={"center"}>
-                <Heading color={"red"} fontSize={"4xl"} textAlign={"center"}>
-                  Login
+                <Heading color={"black"} fontSize={"4xl"} textAlign={"center"}>
+                  LOGIN
                 </Heading>
               </Stack>
               <Box
@@ -212,7 +212,7 @@ function Login() {
                         color: "#FFB300",
                       }}
                     >
-                      Login
+                      LOGIN
                     </Button>
                   </Stack>
                   <Stack pt={6}>

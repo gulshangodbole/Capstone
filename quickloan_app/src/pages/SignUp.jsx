@@ -147,8 +147,8 @@ export function SignUp() {
             bg={useColorModeValue('gray.50', 'gray.800')}>
             <Stack borderRadius={"none"} className="animate__animated animate__pulse" w={{ base: "90%", sm: "90%", md: "80%", lg: "50%", xl: "40%", "2xl": "40%" }} >
               <Stack align={'center'}>
-                <Heading color={"red"} fontSize={'4xl'} textAlign={'center'}>
-                  Sign up
+                <Heading color={"black"} fontSize={'4xl'} textAlign={'center'}>
+                  SIGN UP
                 </Heading>
 
               </Stack>
@@ -247,7 +247,7 @@ export function SignUp() {
                         border: "1px solid #FFB300 ",
                         color: "#FFB300"
                       }}>
-                      Sign up
+                      SIGN UP
                     </Button>
                   </Stack>
                   <Stack pt={6}>
