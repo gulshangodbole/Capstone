@@ -43,7 +43,7 @@ export const LoanSpecificationsStep = ({ alert, userInfo, handleChange, handleSu
                     </FormControl>
 
                     <HStack display={"flex"} justifyContent={"space-around"}>
-                        <Button variant={'outline'} onClick={onPrevious} colorScheme='blue' >Prev</Button>
+                        <Button variant={'outline'} onClick={onPrevious} colorScheme='purple' >Prev</Button>
                         <Button disabled={alert == true} variant={'solid'} onClick={handleSubmit} colorScheme='green' >Submit</Button>
                     </HStack>
                 </Box>

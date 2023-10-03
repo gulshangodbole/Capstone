@@ -17,6 +17,7 @@ import { Profile } from "../pages/Profile";
 import Process from "../pages/Process";
 import EditProfile from "../pages/EditProfile";
 import Dashboard from "../pages/Dashboard";
+import AdminSupport from "../pages/AdminSupport";
 
 export const MainRoutes = () => {
   return (
@@ -34,7 +35,7 @@ export const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
 
-      <Route path="/banks/:category" element={<Bank />} />
+      <Route path="/banks" element={<Bank />} />
       <Route
         path="/edit"
         element={
@@ -54,6 +55,7 @@ export const MainRoutes = () => {
       />
 
       <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/support" element={<AdminSupport />} />
       <Route path="/support" element={<Support />} />
       <Route path="/calculator" element={<Calculator />} />
 
@@ -71,10 +73,10 @@ export const MainRoutes = () => {
       />
 
       <Route
-        path="/bankApplication/:id"
+        path="/bankApplication"
         element={
           <PrivateRoute>
-            <BankApplicationMain />
+            <BankApplication />
           </PrivateRoute>
         }
       />

@@ -3,6 +3,7 @@ import thunk from "redux-thunk"
 import {reducer as ProductReducer} from "./ProductRedux/reducer"
 import {reducer as AuthReducer} from "./Authentication/reducer"
 import {adminReducer} from "./AdminRedux/adminReducer"
+import supportReducer from "./SupportRedux/reducer"
 import { reducer as bankApplicationReducer } from "./BankApplication/reducer";
-const rootreducer = combineReducers({ProductReducer,AuthReducer,adminReducer,bankApplicationReducer})
+const rootreducer = combineReducers({ProductReducer,AuthReducer,adminReducer,bankApplicationReducer,supportReducer})
 export const store =legacy_createStore(rootreducer,applyMiddleware(thunk))

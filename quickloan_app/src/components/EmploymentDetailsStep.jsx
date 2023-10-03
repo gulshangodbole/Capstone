@@ -28,8 +28,8 @@ export const EmploymentDetailsStep = ({ userInfo, handleChange, onNext, onPrevio
                 </FormControl>
 
                 <HStack display={"flex"} justifyContent={"space-around"}>
-                    <Button variant={'outline'} onClick={onPrevious} colorScheme='blue' >Prev</Button>
-                    <Button variant={'outline'} onClick={onNext} colorScheme='blue' >Next</Button>
+                    <Button variant={'outline'} onClick={onPrevious} colorScheme='purple' >Prev</Button>
+                    <Button variant={'outline'} onClick={onNext} colorScheme='purple' >Next</Button>
                 </HStack>
             </Box>
         </Center >

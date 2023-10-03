@@ -2,45 +2,50 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from 'react-redux';
+import { submitForm } from "../redux/SupportRedux/action";
 import {
   Box, Heading, Input, Textarea, Button, Text, Icon, Flex, Stack
   } from '@chakra-ui/react';
   import { FaEnvelope, FaUser, FaMobile } from 'react-icons/fa';
   import { motion } from 'framer-motion';
+
+  
 export const Support = () => {
-    
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    contact:'',
-    message: '',
-  });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isContactValid = (contact) => {
-    return /^\d{10}$/.test(contact);
-  };
+  const formData = useSelector((store) => store.supportReducer);
+  const [formvalue, setFormvalue] = useState({
+    name: "",
+    email: "",
+    contact:"",
+    message: "",
+    status: "Open"
+  });
+    
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      if (!isContactValid(formData.contact)) {
+      if (formvalue.contact.length != 10) {
         alert('Please enter a valid 10-digit contact number.');
         return;
       }
-      const response = await axios.post('<api/endpoint>', formData);
-  
-      if (response.status === 200) {
+      const response = await dispatch(submitForm(formvalue));
+      console.log(response.status)
+      if (response.status === "Open") {
         console.log('Form submitted successfully');
-        window.alert("Submitted your concern!");
-        navigate(`/dashboard`);
+        //window.alert("Submitted your concern!");
         Swal.fire({
           position: 'center',
           icon: 'success',
           title: 'Your query has reached us! We\'ll get back to you as soon as we can',
           showConfirmButton: false,
-          timer: 1500
+          timer: 2500
       })
+      navigate(`/dashboard`);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -87,8 +92,8 @@ export const Support = () => {
                     _focus={{ bg: 'gray.200', border: 'none' }}
                     py={4}
                     required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    value={formvalue.name}
+                    onChange={(e) => setFormvalue((prev) => ({ ...prev, name: e.target.value }))}
                   />
                 </Flex>
                 <Flex align="center">
@@ -103,8 +108,8 @@ export const Support = () => {
                     _focus={{ bg: 'gray.200', border: 'none' }}
                     py={4}
                     required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    value={formvalue.email}
+                    onChange={(e) => setFormvalue((prev) => ({ ...prev, email: e.target.value }))}
                   />
                 </Flex>
                 <Flex align="center">
@@ -119,8 +124,8 @@ export const Support = () => {
                     _focus={{ bg: 'gray.200', border: 'none' }}
                     py={4}
                     required
-                    value={formData.contact}
-                    onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                    value={formvalue.contact}
+                    onChange={(e) => setFormvalue((prev) => ({ ...prev, contact: e.target.value }))}
                   />
                 </Flex>
                 <Textarea
@@ -131,8 +136,8 @@ export const Support = () => {
                   _focus={{ bg: 'gray.200', border: 'none' }}
                   py={4}
                   required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  value={formvalue.message}
+                  onChange={(e) => setFormvalue((prev) => ({ ...prev, message: e.target.value }))}
                 />
                 <Button
                   colorScheme="purple"
