@@ -28,7 +28,7 @@ export const PersonalInfoStep = ({ userInfo, handleChange, onNext }) => {
                     <Input type='text' placeholder='Address' name={"address"} value={userInfo.address} onChange={handleChange} />
                 </FormControl>
                 <Center>
-                    <Button variant={'outline'} onClick={onNext} colorScheme='blue' >Next</Button>
+                    <Button variant={'outline'} onClick={onNext} colorScheme='purple' >Next</Button>
                 </Center>
             </Box>
         </Center >

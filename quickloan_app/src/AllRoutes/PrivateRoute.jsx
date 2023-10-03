@@ -9,11 +9,11 @@ export const PrivateRoute = ({ children }) => {
 
   return (
     <>
-      {isAuth ? (
+      {isAuth ? 
         children
-      ) : (
+      : 
         <Navigate to="/login" state={loaction.pathname} replace={true} />
-      )}
+      }
     </>
   );
 };

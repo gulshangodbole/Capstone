@@ -36,7 +36,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
               }}
 
             />
-            <Button variant={"outline"} colorScheme={"blue"} ml={"10px"}
+            <Button variant={"outline"} colorScheme={"purple"} ml={"10px"}
               onClick={() => handleFileNameChange('identificationProof', '')}
             >Edit</Button>
           </Box>
@@ -55,7 +55,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
                 handleFileNameChange('incomeProof', e.target.files[0]?.name || '');
               }}
             />
-            <Button variant={"outline"} colorScheme={"blue"} ml={"10px"}
+            <Button variant={"outline"} colorScheme={"purple"} ml={"10px"}
               onClick={() => handleFileNameChange('incomeProof', '')}
             >Edit</Button>
           </Box>
@@ -74,7 +74,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
                 handleFileNameChange('addressProof', e.target.files[0]?.name || '');
               }}
             />
-            <Button variant={"outline"} colorScheme={"blue"} ml={"10px"}
+            <Button variant={"outline"} colorScheme={"purple"} ml={"10px"}
               onClick={() => handleFileNameChange('addressProof', '')}>Edit</Button>
           </Box>
         </FormControl>
@@ -118,8 +118,8 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
         </OrderedList>
 
         <HStack display={"flex"} justifyContent={"space-around"}>
-          <Button variant={'outline'} onClick={onPrevious} colorScheme='blue' >Prev</Button>
-          <Button variant={'outline'} onClick={onNext} colorScheme='blue' >Next</Button>
+          <Button variant={'outline'} onClick={onPrevious} colorScheme='purple' >Prev</Button>
+          <Button variant={'outline'} onClick={onNext} colorScheme='purple' >Next</Button>
         </HStack>
 
       </Box >

@@ -31,8 +31,8 @@ export const FinancialInfoStep = ({ userInfo, handleChange, onNext, onPrevious }
             <Text color={"red"} ml={"20px"} mb={"20px"} >*note:  fill NA if not applicable</Text>
 
             <HStack display={"flex"} justifyContent={"space-around"}>
-                <Button variant={'outline'} onClick={onPrevious} colorScheme='blue' >Prev</Button>
-                <Button variant={'outline'} onClick={onNext} colorScheme='blue' >Next</Button>
+                <Button variant={'outline'} onClick={onPrevious} colorScheme='purple' >Prev</Button>
+                <Button variant={'outline'} onClick={onNext} colorScheme='purple' >Next</Button>
             </HStack>
         </Box>
 

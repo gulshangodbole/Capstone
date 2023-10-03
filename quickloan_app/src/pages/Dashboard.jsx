@@ -45,14 +45,20 @@ export default function Dashboard() {
       <div className='bottom'>
         <h2>Quick Links To Handle Your {category}</h2>
         <div className='bottom-section'>
+        <div className='B-section-part'>
+            <img src={p1} alt="" />
+            <h3>{name}{category}</h3>
+            <Link to='/banks'><h3>Apply for a Loan</h3></Link>
+          </div>
           <div className='B-section-part'>
             <img src={p1} alt="" />
-            <h3>{name}{category}<h3>Interest Rate</h3></h3>
+            <h3>{name}{category}</h3>
+            <h3>Interest Rate</h3>
           </div>
           <div className='B-section-part'>
             <img src={p2} alt="" />
             <h3>{name}{category}</h3>
-            <h3>Eligibility</h3>
+            <Link to='/verification'><h3>Eligibility</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p3} alt="" />

@@ -44,14 +44,14 @@ function Calculator() {
       <Center
         minH="100vh"
         bgGradient="radial(at center, #993399, #3f1d67)"
-        px={[4, 6, 8]} // Responsive padding
+        px={[4, 6, 8]} 
       >
         <Box
           p={6}
           borderRadius="md"
           shadow="md"
           bg="gray.100"
-          w={["100%", "70%"]} // Responsive width
+          w={["100%", "70%"]} 
         >
           <Heading mb={4} textAlign="center" color="#5a287d">
             EMI Calculator

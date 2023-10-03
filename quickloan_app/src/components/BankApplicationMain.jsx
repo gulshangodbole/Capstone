@@ -24,29 +24,29 @@ export const BankApplicationMain = () => {
     const dispatch = useDispatch();
     const toast = useToast();
     const location = useLocation();
-    const {id}=useParams();
+    //const {id}=useParams();
     // const id = new URLSearchParams(location.search).get('id');
     const [alert, setAlert] = useState()
 
-    const[bankData,setBankData]=useState({});
+    //const[bankData,setBankData]=useState({});
 
     useEffect(() => {
         // dispatch(getBankData(id))
         dispatch(getLoanData(currentUser.id))
         dispatch(getCurrentUser(currentUser.id))
-        getBankData(id)
+        //getBankData(id)
     }, [])
 
 
-    function getBankData(id){
-        axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
-        .then((res)=>{
-            setBankData(res.data)
-        })
-        .catch((err)=>{
-            console.log('err:', err)
-        })
-    }
+    // function getBankData(id){
+    //     axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
+    //     .then((res)=>{
+    //         setBankData(res.data)
+    //     })
+    //     .catch((err)=>{
+    //         console.log('err:', err)
+    //     })
+    // }
    
 
     const currentUserbyId = useSelector(store => store.bankApplicationReducer.currentUserbyId);
@@ -73,12 +73,12 @@ export const BankApplicationMain = () => {
         identificationProof: '',
         incomeProof: '',
         addressProof: '',
-        loanType: bankData.category,
+        //loanType: bankData.category,
         loanAmount: '',
         loanTerm: '',
         loanPurpose: '',
-        bankname: bankData.name,
-        bankImg: bankData.image ,
+        //bankname: bankData.name,
+       // bankImg: bankData.image ,
         status: 'pending'
     };
 
@@ -86,7 +86,7 @@ export const BankApplicationMain = () => {
         { title: 'First', description: 'Personal Information' },
         { title: 'Second', description: 'Employment Details' },
         { title: 'Third', description: 'Financial Information' },
-        { title: 'Forth', description: 'Supporting Documents' },
+        { title: 'Fourth', description: 'Supporting Documents' },
         { title: 'Fifth', description: 'Loan Specifications' },
     ]
     const [activeStep, setActiveStep] = useState(0);
@@ -154,7 +154,7 @@ export const BankApplicationMain = () => {
                     showConfirmButton: false,
                     timer: 5000,
                 })
-                navigate("/profile")
+                navigate("/dashboard")
 
             })
         }
@@ -167,9 +167,9 @@ export const BankApplicationMain = () => {
         <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }} mb={"50px"}>
 
             <Box w={{ base: "200px", sm: "200px", md: "300px", lg: "300px", lg: "300px", xl: "300px" }}>
-                <Box mb="20px" >
+                {/* <Box mb="20px" >
                     <img src={bankData.image} alt={bankData.name} />
-                </Box>
+                </Box> */}
 
                 <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" colorScheme='green' >
                     {steps.map((step, index) => (
@@ -210,7 +210,8 @@ export const BankApplicationMain = () => {
                         />
                     ) :
                         activeStep === 2 ? (
-                            <FinancialInfoStep userInfo={userInfo} handleChange={handleChange}
+                            <FinancialInfoStep userInfo={userInfo} 
+                                handleChange={handleChange}
                                 onNext={handleNextStep} onPrevious={handlePreviousStep}
                             />
                         ) :
@@ -234,9 +235,6 @@ export const BankApplicationMain = () => {
 
             </Box>
         </Box >
-
-
-
     )
 }
 

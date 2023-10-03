@@ -26,9 +26,9 @@ const Navbar = () => {
    const dispatch = useDispatch()
     const {currentUser } = useSelector((store) => store.AuthReducer);
     const { isAuth } = useSelector((store) => store.AuthReducer);
-    // console.log(store)
-    //  console.log(isAuth)
-    console.log(currentUser.fullname);
+    console.log(store)
+     console.log(isAuth)
+    console.log(currentUser);
     const [shouldElevate, setShouldElevate] = useState(false);
     const navigate=useNavigate()
 

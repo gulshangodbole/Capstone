@@ -12,8 +12,8 @@ import p5 from "../Images/p5.webp"
 import p6 from "../Images/p6.webp"
 import p7 from "../Images/p7.webp"
 import p8 from "../Images/Natwest_Secondary_Horizontal_RGB_NEG.svg";
+import Dashboard from './Dashboard'
 export default function Bank() {
-  const { id } = useParams()
   const [data, setdata] = useState("")
 
   // const fetchdata = () => {
@@ -36,7 +36,7 @@ export default function Bank() {
     image: p8,
     amount: 1,
     interest: 14,
-    category: id, // Assign the 'id' variable here
+    category: "loans", 
     extra: 1
   };
 
@@ -75,7 +75,7 @@ export default function Bank() {
               </div>
             </div>
             <div className='sectionC'>
-            <Link to={`/bankApplication/${id}`}>
+            <Link to={`/bankApplication`}>
             <button>Apply</button>
               </Link>  
             </div>
@@ -106,7 +106,7 @@ export default function Bank() {
                   <Td><li>Income Proof(Latest 3 salary slips).</li></Td>
                 </Tr>
                 <Tr>
-                  <Td><li>{name} Important Links click here</li></Td>
+                  <Td><li>{name} Important Links click below</li></Td>
                   <Td></Td>
                   <Td><li>Last 6 months'bank statement.</li></Td>
                 </Tr>
@@ -124,47 +124,7 @@ export default function Bank() {
             </Table>
           </TableContainer>
         </div>
-     
-
-      <div className='bottom'>
-        <h2>Quick Links To Handle Your {category}</h2>
-        <div className='bottom-section'>
-          <div className='B-section-part'>
-            <img src={p1} alt="" />
-            <h3>{name}{category}<h3>Interest Rate</h3></h3>
-          </div>
-          <div className='B-section-part'>
-            <img src={p2} alt="" />
-            <h3>{name}{category}</h3>
-            <h3>Eligibility</h3>
-          </div>
-          <div className='B-section-part'>
-            <img src={p3} alt="" />
-            <h3>{name}{category}</h3>
-            <h3>Status Check</h3>
-          </div>
-          <div className='B-section-part'>
-            <img src={p4} alt="" />
-            <h3>{name}{category}</h3>
-            <h3>Customer Care</h3>
-          </div>
-          <div className='B-section-part'>
-            <img src={p5} alt="" />
-            <h3>{name}{category} </h3>
-            <h3>Rejection</h3>
-          </div>
-          <div className='B-section-part'>
-            <img src={p6} alt="" />
-            <h3>{name}{category}</h3>
-            <h3>Missed</h3>
-          </div>
-          <div className='B-section-part'>
-            <img src={p7} alt="" />
-            <h3>{name}{category} </h3>
-            <h3>Calculator Online</h3>
-          </div>
-        </div>
-      </div>
+      <Dashboard/>
     </DIV>
   )
 }

@@ -17,20 +17,13 @@ export default function Application() {
   // console.log("======", id);
 
   const initalFormData={
-    fullname: "",
-    email: "",
-    address: "",
-    contact: "",
-    gender: "",
-    dob: "",
-    employment: "",
     income: "",
     creditscore: "",
     category: "",
+    eligibility: ""
   }
   const [formData, setFormData] = useState(initalFormData);
 
-  const [currentPart, setCurrentPart] = useState(1);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -39,14 +32,6 @@ export default function Application() {
       return {...prev,[name]:
         type==="tel" ? +value: type==="number"? Number(value) : value}
   });
-  };
-
-  const handleNext = () => {
-    setCurrentPart(currentPart + 1);
-  };
-
-  const handlePrev = () => {
-    setCurrentPart(currentPart - 1);
   };
 
   const handleSubmitFormData = async (e) => {
@@ -66,8 +51,7 @@ export default function Application() {
         timer: 1500
       })
 
-
-      navigate(`/banks/${formData.category}`);
+      navigate(`/dashboard`);
 
       // Reset form data
       setFormData(initalFormData);
@@ -80,8 +64,10 @@ export default function Application() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.creditscore >= 650) {
+      formData.eligibility="Eligible"
       handleSubmitFormData();      
     } else {
+      formData.eligibility="Not Eligible"
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
