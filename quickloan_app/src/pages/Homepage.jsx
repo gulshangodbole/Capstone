@@ -194,7 +194,7 @@ import {
         </Box>
         
         <Box m="auto" mt="150px" bgColor={"#f2f2f8"} p="30px" marginTop={"-10px"}>
-        <Flex px={"320px"}>
+          <Flex px={"320px"}>
             <InfoIcon boxSize={7}/>
             <Spacer />
             <Text pt={"7px"} data-aos="zoom-in" fontFamily={"RNHouseSans, sans-serif"} fontSize={"16px"}>To apply, you must be 18+ and a UK resident with a NatWest current account 
