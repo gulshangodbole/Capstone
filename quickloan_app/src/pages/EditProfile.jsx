@@ -105,22 +105,15 @@ export default function EditProfile() {
  console.log(formData);
  console.log(email); 
  return (
-    <div>
+    <div style={{display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '100vh',
+    bgGradient:"radial(at center,  #993399, #3f1d67)"}}>
       <div className={styles.container}>
-        <div className={styles["image-section"]}>
-          <div className={styles["image-container"]}>
-            <div id={styles["offer2"]}>
-              <img src={offer2} alt="" />
-            </div>
-            <img
-              src="https://img.freepik.com/premium-photo/portrait-happy-indian-asian-young-family-while-sitting-sofa-lying-floor-sitting-against-wall_466689-7294.jpg?size=626&ext=jpg&ga=GA1.1.107694881.1686996804&semt=ais"
-              alt="Image"
-            />
-          </div>
-        </div>
-
         <div className={styles["form-section"]}>
-          <div className={styles.vl}></div>
+          {/* <div className={styles.vl}></div> */}
           <div className={styles["form-content"]}>
             <div>
               <form>

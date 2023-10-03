@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { color, useToast } from '@chakra-ui/react'
-import login_bg from '../Images/login_bg.jpg'
+import login_bg from '../Images/purplebg.jpg'
 import {
   Flex,
   Box,

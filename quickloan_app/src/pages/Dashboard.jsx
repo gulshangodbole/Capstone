@@ -12,6 +12,7 @@ import p5 from "../Images/p5.webp"
 import p6 from "../Images/p6.webp"
 import p7 from "../Images/p7.webp"
 import p8 from "../Images/Natwest_Secondary_Horizontal_RGB_NEG.svg";
+import p9 from "../Images/Screenshot_2023-10-03_114248-removebg-preview.png"
 export default function Dashboard() {
   const { id } = useParams()
   const [data, setdata] = useState("")
@@ -45,45 +46,45 @@ export default function Dashboard() {
       <div className='bottom'>
         <h2>Quick Links To Handle Your {category}</h2>
         <div className='bottom-section'>
-        <div className='B-section-part'>
-            <img src={p1} alt="" />
-            <h3>{name}{category}</h3>
-            <Link to='/banks'><h3>Apply for a Loan</h3></Link>
-          </div>
+        
           <div className='B-section-part'>
             <img src={p1} alt="" />
-            <h3>{name}{category}</h3>
-            <h3>Interest Rate</h3>
+            <h3>{category}<h3>{name} Interest Rate</h3></h3>
           </div>
           <div className='B-section-part'>
             <img src={p2} alt="" />
-            <h3>{name}{category}</h3>
-            <Link to='/verification'><h3>Eligibility</h3></Link>
+            <h3>{category}</h3>
+            <Link to='/verification'><h3>{name} Eligibility</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p3} alt="" />
-            <h3>{name}{category}</h3>
-            <h3>Status Check</h3>
+            <h3>{category}</h3>
+            <h3>Your Loan</h3>
           </div>
           <div className='B-section-part'>
             <img src={p4} alt="" />
-            <h3>{name}{category}</h3>
-            <Link to='/support'> <h3>Customer Care</h3></Link>
+            <h3>{category}</h3>
+            <Link to='/support'> <h3>{name} Customer Care</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p5} alt="" />
-            <h3>{name}{category} </h3>
-            <h3>Rejection</h3>
+            <h3>{category} </h3>
+            <h3>{name} Rejection</h3>
+          </div>
+          <div className='B-section-part1'>
+            <img src={p9} alt="" />
+            <h3>Pay EMI</h3>
+            <h3>{category} </h3>
           </div>
           <div className='B-section-part'>
             <img src={p6} alt="" />
-            <h3>{name}{category}</h3>
-            <h3>Missed</h3>
+            <h3>{category}</h3>
+            <h3>{name} Missed</h3>
           </div>
           <div className='B-section-part'>
             <img src={p7} alt="" />
-            <h3>{name}{category} </h3>
-            <Link to='/calculator'><h3>Calculator Online</h3></Link>
+            <h3>{category} </h3>
+            <Link to='/calculator'><h3>{name} Calculator Online</h3></Link>
           </div>
         </div>
       </div>
@@ -182,6 +183,23 @@ const DIV = styled.div`
       margin: auto;
       padding: 10px;
       padding-top: 30px;
+    }
+
+    font-size: 18px;
+
+    h3:hover{
+      text-decoration:underline;
+      cursor: pointer;
+    }
+  }
+  .B-section-part1 {
+    background-color: #ffffff;
+    border-radius: 10px;
+    
+    img {
+      margin: auto;
+      padding: 0px;
+      padding-top: 0px;
     }
 
     font-size: 18px;

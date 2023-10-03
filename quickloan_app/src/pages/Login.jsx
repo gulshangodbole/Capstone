@@ -22,7 +22,7 @@ import {
 import { ArrowForwardIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/Authentication/action"
-import login_bg from "../Images/login_bg.jpg"
+import login_bg from "../Images/purplebg.jpg"
 
 function Login() {
   const navigate = useNavigate();
