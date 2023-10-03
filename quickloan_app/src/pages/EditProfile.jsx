@@ -25,6 +25,12 @@ export default function EditProfile() {
     gender: "",
     dob: "",
     employment: "",
+    empYears: "",
+    income: "",
+    savings: "",
+    expense: "",
+    score: "",
+    assets: ""
   };
   const [formData, setFormData] = useState(initalFormData);
 
@@ -101,7 +107,7 @@ export default function EditProfile() {
     getDetails()
  },[])
 
- const { fullname, email, gender, dob, contact, address, employment } = formData;
+ const { fullname, email, gender, dob, contact, address, employment, empYears, income, expense, savings, score, assets } = formData;
  console.log(formData);
  console.log(email); 
  return (
@@ -210,6 +216,78 @@ export default function EditProfile() {
                     <option value="self-employed">Self-Employed</option>
                     <option value="student">Student</option>
                   </select>
+                </div>
+
+                <div className={styles["form-group"]}>
+                  <label>Years of Employment</label>
+                  <input
+                    type="text"
+                    name="empYears"
+                    value={empYears}
+                    onChange={handleChange}
+                    placeholder="Enter your Years of Employment"
+                    required
+                  />
+                </div>
+
+                <div className={styles["form-group"]}>
+                  <label>Monthly Income</label>
+                  <input
+                    type="text"
+                    name="Income"
+                    value={income}
+                    onChange={handleChange}
+                    placeholder="Enter your Income"
+                    required
+                  />
+                </div>
+
+                <div className={styles["form-group"]}>
+                  <label>Monthly Expense</label>
+                  <input
+                    type="text"
+                    name="expense"
+                    value={expense}
+                    onChange={handleChange}
+                    placeholder="Enter your Expense"
+                    required
+                  />
+                </div>
+                
+                <div className={styles["form-group"]}>
+                  <label>Monthly Savings</label>
+                  <input
+                    type="text"
+                    name="Savings"
+                    value={savings}
+                    onChange={handleChange}
+                    placeholder="Enter your Montly Savings"
+                    required
+                  />
+                </div>
+                
+                <div className={styles["form-group"]}>
+                  <label>Credit Score</label>
+                  <input
+                    type="text"
+                    name="score"
+                    value={score}
+                    onChange={handleChange}
+                    placeholder="Enter your Credit Score"
+                    required
+                  />
+                </div>
+
+                <div className={styles["form-group"]}>
+                  <label>Assets</label>
+                  <input
+                    type="text"
+                    name="assets"
+                    value={assets}
+                    onChange={handleChange}
+                    placeholder="Enter your Assets"
+                    required
+                  />
                 </div>
                 <div className={styles["button-container"]}>
                   <button type="button" onClick={handleSubmit}>
