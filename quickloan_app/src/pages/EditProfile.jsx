@@ -29,7 +29,7 @@ export default function EditProfile() {
     income: "",
     savings: "",
     expense: "",
-    score: "",
+    //creditscore: "",
     assets: ""
   };
   const [formData, setFormData] = useState(initalFormData);
@@ -107,7 +107,7 @@ export default function EditProfile() {
     getDetails()
  },[])
 
- const { fullname, email, gender, dob, contact, address, employment, empYears, income, expense, savings, score, assets } = formData;
+ const { fullname, email, gender, dob, contact, address, employment, empYears, income, expense, savings, assets } = formData;
  console.log(formData);
  console.log(email); 
  return (
@@ -266,7 +266,7 @@ export default function EditProfile() {
                   />
                 </div>
                 
-                <div className={styles["form-group"]}>
+                {/* <div className={styles["form-group"]}>
                   <label>Credit Score</label>
                   <input
                     type="text"
@@ -276,7 +276,7 @@ export default function EditProfile() {
                     placeholder="Enter your Credit Score"
                     required
                   />
-                </div>
+                </div> */}
 
                 <div className={styles["form-group"]}>
                   <label>Assets</label>
