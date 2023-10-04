@@ -26,9 +26,9 @@ export default function EditProfile() {
     dob: "",
     employment: "",
     empYears: "",
-    income: "",
-    savings: "",
-    expense: "",
+    // income: "",
+    // savings: "",
+    // expense: "",
     //creditscore: "",
     assets: ""
   };
@@ -223,7 +223,7 @@ export default function EditProfile() {
                   />
                 </div>
 
-                <div className={styles["form-group"]}>
+                {/* <div className={styles["form-group"]}>
                   <label>Monthly Income</label>
                   <input
                     type="text"
@@ -257,7 +257,7 @@ export default function EditProfile() {
                     placeholder="Enter your Montly Savings"
                     required
                   />
-                </div>
+                </div> */}
                 
                 {/* <div className={styles["form-group"]}>
                   <label>Credit Score</label>
