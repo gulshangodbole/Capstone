@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.example.loanapplication.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,74 +18,67 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Map;
+import java.util.HashMap;
+
+
 @Service
-public class UserService{
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-
     public UserService() {
     }
 
-
-    public List < User > getAllUsers()  {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-
-    public Object login(User user) {
-
+    public Map<String, Object> login(User user) {
         Map<String, Object> object = new HashMap<>();
         User user1 = userRepository.findById(user.getUserID()).orElse(null);
         User admin = userRepository.getReferenceById("K123456");
         Pattern pattern = Pattern.compile("[a-z]\\d\\d\\d\\d\\d\\d", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(user.getUserID());
-        if(matcher.matches())
-        {
+
+        if (matcher.matches()) {
             if (user1 == null) {
                 object.put("authStatus", false);
                 object.put("role", null);
                 return object;
             }
 
-            if(StringUtils.equalsIgnoreCase(user.getUserID(), "K123456")){
-                if(StringUtils.equals(user.getPassword(),admin.getPassword()))
-                {
+            if (StringUtils.equalsIgnoreCase(user.getUserID(), "K123456")) {
+                if (StringUtils.equals(user.getPassword(), admin.getPassword())) {
                     object.put("authStatus", true);
                     object.put("role", "admin");
-                }
-                else
-                {
+                    object.put("name", admin.getName());
+                    object.put("email", admin.getEmail());
+                } else {
                     object.put("authStatus", false);
                     object.put("role", "admin");
                 }
-
-            }
-            else{
-                if(StringUtils.equals(user1.getPassword(),user.getPassword()))
-                {
+            } else {
+                if (StringUtils.equals(user1.getPassword(), user.getPassword())) {
                     object.put("authStatus", true);
                     object.put("role", "user");
-                }
-                else
-                {
+                    object.put("name", user1.getName());
+                    object.put("email", user1.getEmail());
+                } else {
                     object.put("authStatus", false);
                     object.put("role", "user");
                 }
-
             }
             return object;
-
-        }
-        else
-        {
-            return "Invalid ID";
+        } else {
+            object.put("authStatus", false);
+            object.put("role", null);
+            return object;
         }
     }
 
-
-    public Object register(User user) {
+    public Map<String, Object> register(User user) {
         Pattern pattern = Pattern.compile("[a-z]\\d\\d\\d\\d\\d\\d", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(user.getUserID());
         Map<String, Object> object = new HashMap<>();
@@ -94,30 +87,25 @@ public class UserService{
             if (user1 == null) {
                 object.put("availStatus", true);
                 userRepository.save(user);
+                object.put("name", user.getName());
+                object.put("email", user.getEmail());
                 return object;
-            }
-            else{
+            } else {
                 object.put("availStatus", false);
                 return object;
             }
-        }
-        else{
-            return "Invalid ID";
+        } else {
+            object.put("availStatus", false);
+            return object;
         }
     }
 
-    public Map<String,String> deleteEmp(String id) throws ResourceNotFoundException
-    {
+    public Map<String, String> deleteEmp(String id) throws ResourceNotFoundException {
         Map<String, String> object = new HashMap<>();
-
         User e = userRepository.findById(id).orElse(null);
-        if(e == null)
-        {
+        if (e == null) {
             throw new ResourceNotFoundException("User with the given ID does not exist");
-
-        }
-        else
-        {
+        } else {
             userRepository.deleteById(id);
             object.put("statusCode", "200");
             object.put("message", "Employee deleted successfully");
@@ -125,9 +113,3 @@ public class UserService{
         return object;
     }
 }
-
-
-=======
-package com.example.loanapplication.services;public class UserService {
-}
->>>>>>> 4e9aea9deee529b884c8955991c94c72a5e66204

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.example.loanapplication.controllers;
 
 import com.example.loanapplication.models.Support;
@@ -42,9 +42,8 @@ public class UserController {
     private UserService userService;
 
 
-
     @GetMapping("/users")
-    public List < User > getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -56,18 +55,13 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseBody
-    public Object register(@Valid @RequestBody User user)
-    {
+    public Object register(@Valid @RequestBody User user) {
         return userService.register(user);
     }
 
     @DeleteMapping("/user/{id}")
-    public Map<String,String> deleteEmp(@PathVariable String id) throws ResourceNotFoundException
-    {
+    public Map<String, String> deleteEmp(@PathVariable String id) throws ResourceNotFoundException {
         return userService.deleteEmp(id);
     }
 
-=======
-package com.example.loanapplication.controllers;public class UserController {
->>>>>>> 4e9aea9deee529b884c8955991c94c72a5e66204
 }
