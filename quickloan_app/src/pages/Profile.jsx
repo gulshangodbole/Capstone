@@ -1,30 +1,27 @@
 import { Button } from "@chakra-ui/react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { useEffect,useState } from "react"
 import { Box } from "@chakra-ui/react"
 import { Text } from "@chakra-ui/react"
 import axios from "axios"
 import { styled } from "styled-components"
+import { updateProfile, getUserDetails } from "../redux/UserRedux/action";
+
 export const Profile=()=>{
 const [loans,setLoans]=useState([])
-const [data,setData]=useState([])
-  const data2=useSelector((store)=>
-  store.AuthReducer.currentUser
-  )
+const [data,setData]=useState({})
 
-   const fetchLoans=()=>{
-    axios
-    .get(`https://sour-snowy-purpose.glitch.me/users/${data2.id}`)
-    .then((res)=>{
-    setLoans(res.data.loans)
-    setData(res.data)
-    })
-   }
- useEffect(()=>{
-  fetchLoans()
- },[])
-   
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((store) => store.AuthReducer.currentUser);
+
+  useEffect(() => {
+      console.log("current user", currentUser)
+    // Fetch user details when the component mounts
+      setData(currentUser);
+      console.log("data", data)
+  }, [currentUser]);
     
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
 
@@ -45,7 +42,7 @@ const [data,setData]=useState([])
             <DIV >
             {/* style={{marginLeft:"10%",paddingBottom:"10px"}} */}
                 <h3> <label >Name :  </label> {data.fullname}</h3>
-                <h5> <label >Birth :  </label> {data.dob}</h5>
+                <h5> <label >Date of Birth :  </label> {data.dob}</h5>
                 <h5> <label >Phone :  </label> {data.contact}</h5>
                 <h5> <label >Email :  </label> {data.email}</h5>
                 <h5> <label >Gender :  </label> {data.gender}</h5>

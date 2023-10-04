@@ -4,22 +4,25 @@ import offer from "../Images/offer2.jpg";
 import offer2 from "../Images/quick_loan.png"
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { partialUpdateProfile, getUserDetails } from "../redux/UserRedux/action";
 
 export default function Application() {
-  const { id } = useSelector((store) => {
-    console.log('store:', store)
-    return {
-      id: store.AuthReducer.currentUser.id,
-    }
-  })
+  // const { id } = useSelector((store) => {
+  //   console.log('store:', store)
+  //   return {
+  //     id: store.AuthReducer.currentUser.id,
+  //   }
+  // })
   // console.log("======", id);
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((store) => store.AuthReducer.currentUser);
 
   const initalFormData={
     income: "",
     creditscore: "",
-    category: "",
     eligibility: ""
   }
   const [formData, setFormData] = useState(initalFormData);
@@ -35,14 +38,12 @@ export default function Application() {
   };
 
   const handleSubmitFormData = async (e) => {
-
+    console.log(currentUser.userID,typeof formData.creditscore, typeof formData.income)
     try {
       // Make a PATCH request using axios
-      const response = await axios.patch(
-        `https://sour-snowy-purpose.glitch.me/users/${id}`,  
-        formData
-      );
-      console.log(response.data);
+     
+      const response =  await dispatch(partialUpdateProfile(currentUser.userID, formData.creditscore, formData.income));
+      console.log("handle submit",response.data);
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -65,9 +66,11 @@ export default function Application() {
     e.preventDefault();
     if (formData.creditscore >= 650) {
       formData.eligibility="Eligible"
+      console.log("Eligibility:", formData.eligibility);
       handleSubmitFormData();      
     } else {
       formData.eligibility="Not Eligible"
+      console.log("Eligibility:", formData.eligibility);
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -111,17 +114,13 @@ export default function Application() {
 
                   <div className={styles["form-group"]}>
                     <label>Income</label>
-                    <select
+                    <input
                       name="income"
                       value={income}
+                      type="number"
                       onChange={handleChange}
                       required
-                    >
-                      <option value="">Select Income</option>
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                    </select>
+                    />
                   </div>
 
                   <div className={styles["form-group"]}>

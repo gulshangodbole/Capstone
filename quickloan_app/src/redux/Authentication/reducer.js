@@ -1,4 +1,5 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from "./actionType"
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS,  } from "./actionType"
+import { UPDATE_PROFILE_SUCCESS } from '../UserRedux/actiontypes';
 
 const initialState = {
   isLoading: false,
@@ -63,6 +64,11 @@ export const reducer = (state = initialState, { type, payload }) => {
         isAuth: false
       }
     }
+    case UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        currentUser: payload, 
+      }
 
     default: {
       return state

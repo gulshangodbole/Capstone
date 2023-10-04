@@ -14,16 +14,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example.loanapplication.entities.User;
 import com.example.loanapplication.exceptions.ResourceNotFoundException;
@@ -32,7 +22,7 @@ import com.example.loanapplication.services.UserService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 @CrossOrigin(origins = "http://localhost:3000")
 
 public class UserController {
@@ -42,29 +32,22 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public Object login(@Valid @RequestBody User user) {
-        return userService.login(user);
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
-    @PostMapping("/register")
-    @ResponseBody
-    public Object register(@Valid @RequestBody User user) {
-        return userService.register(user);
+    @DeleteMapping("/{id}")
+    public Map<String, String> deleteEmp(@PathVariable Long id) throws ResourceNotFoundException {
+        return userService.deleteUser(id);
     }
 
-    @DeleteMapping("/user/{id}")
-    public Map<String, String> deleteEmp(@PathVariable String id) throws ResourceNotFoundException {
-        return userService.deleteEmp(id);
-    }
-
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserProfile(@PathVariable Long id) {
         try {
             User user = userService.getUserById(id);
@@ -74,7 +57,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<User> updateUserProfile(@PathVariable Long id, @Valid @RequestBody User updatedUser) {
         try {
             User user = userService.updateUserProfile(id, updatedUser);
@@ -84,4 +67,25 @@ public class UserController {
         }
     }
 
+    @PatchMapping("/{userId}")
+    public ResponseEntity<User> updateUserCreditScoreAndIncome(
+            @PathVariable Long userId,
+            @RequestParam int creditscore,
+            @RequestParam long income) {
+                
+
+        User updatedUser = userService.updateUserCreditScoreAndIncome(userId, creditscore,income);
+        System.out.println(updatedUser);
+
+        if (updatedUser != null) {
+            if (creditscore >= 650) {
+                updatedUser.setEligibility("Eligible");
+            } else {
+                updatedUser.setEligibility("Not Eligible");
+            }
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

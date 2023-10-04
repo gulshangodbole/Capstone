@@ -1,68 +1,69 @@
 import React, { useState } from "react";
 import styles from "../CSS/Form.module.css";
 import offer from "../Images/offer2.jpg";
-import offer2 from "../Images/quick_loan.png";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { useEffect } from "react"
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { updateProfile, getUserDetails } from "../redux/UserRedux/action";
+
 
 export default function EditProfile() {
-    const data2=useSelector((store)=>
-        store.AuthReducer.currentUser
-    )
-  const { id } = useSelector((store) => {
-    console.log("store:", store);
-    return { id: store.AuthReducer.currentUser.id };
-  });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((store) => store.AuthReducer.currentUser);
+
+  // const data2 = useSelector((store) => store.AuthReducer.currentUser);
+  // const { id } = useSelector((store) => {
+  //   console.log("store:", store);
+  //   return { id: store.AuthReducer.currentUser.id };
+  // });
 
   const initalFormData = {
-    fullname: "",
-    email: "",
-    address: "",
-    contact: "",
-    gender: "",
-    dob: "",
-    employment: "",
-    empYears: "",
+    fullname: currentUser.fullname || "",
+    email: currentUser.email || "",
+    address: currentUser.address || "",
+    contact: currentUser.contact || "",
+    gender: currentUser.gender || "",
+    dob: currentUser.dob || "",
+    employment: currentUser.employment || "",
+    empYears: currentUser.empYears || "",
     // income: "",
     // savings: "",
     // expense: "",
     //creditscore: "",
-    assets: ""
+    assets: currentUser.assets || "",
+    password: "",
   };
   const [formData, setFormData] = useState(initalFormData);
 
   const [currentPart, setCurrentPart] = useState(1);
-  const navigate = useNavigate();
+  
 
   const handleChange = (e) => {
     const { value, name, type } = e.target;
-    setFormData((prev) => {
-      return {
-        ...prev,
-        [name]:
-          type === "tel" ? +value : type === "number" ? Number(value) : value,
-      };
-    });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === "tel" ? +value : type === "number" ? Number(value) : value,
+    }));
   };
 
-  const handleNext = () => {
-    setCurrentPart(currentPart + 1);
-  };
+  // const handleNext = () => {
+  //   setCurrentPart(currentPart + 1);
+  // };
 
-  const handlePrev = () => {
-    setCurrentPart(currentPart - 1);
-  };
+  // const handlePrev = () => {
+  //   setCurrentPart(currentPart - 1);
+  // };
 
   const handleSubmitFormData = async (e) => {
+    if (!formData.password) {
+      formData.password = currentUser.password;
+    }
     try {
       // Make a PATCH request using axios
-      const response = await axios.patch(
-        `https://sour-snowy-purpose.glitch.me/users/${id}`,
-        formData
-      );
+      const response =  await dispatch(updateProfile(currentUser.userID, formData));
       console.log(response.data);
       Swal.fire({
         position: "center",
@@ -96,18 +97,12 @@ export default function EditProfile() {
 //     employment: '',
 //   });
 
-  const getDetails=()=>{
-    axios
-    .get(`https://sour-snowy-purpose.glitch.me/users/${data2.id}`)
-    .then((res)=>{
-    setFormData(res.data)
-    })
-   }
- useEffect(()=>{
-    getDetails()
- },[])
+useEffect(() => {
+  // Fetch user details when the component mounts
+  dispatch(getUserDetails(currentUser.userID));
+}, [dispatch, currentUser.userID]);
 
- const { fullname, email, gender, dob, contact, address, employment, empYears, income, expense, savings, assets } = formData;
+ const { fullname, email, gender, dob, contact, address, employment, empYears, income, expense, savings, assets, password } = formData;
  console.log(formData);
  console.log(email); 
  return (
@@ -282,6 +277,19 @@ export default function EditProfile() {
                     required
                   />
                 </div>
+
+                <div className={styles["form-group"]}>
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={handleChange}
+                    placeholder="Change password"
+                    required
+                  />
+                </div>
+
                 <div className={styles["button-container"]}>
                   <button type="button" onClick={handleSubmit}>
                     Submit
