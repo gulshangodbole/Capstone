@@ -11,7 +11,7 @@ interface ILoanService {
 
     Loan getLoanById(int id);
 
-    Loan getLoanByCustId(int custId);
+    List<Loan> getLoanByCustId(int custId);
 
     Loan updateLoanStatus(int id, String status);
 

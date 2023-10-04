@@ -27,8 +27,8 @@ public class LoanServiceImpl implements ILoanService{
     }
 
     @Override
-    public Loan getLoanByCustId(int custId) {
-        return loanRepository.findByCustId(custId);
+    public List<Loan> getLoanByCustId(int custId) {
+        return loanRepository.findAllByCustId(custId);
     }
 
     @Override

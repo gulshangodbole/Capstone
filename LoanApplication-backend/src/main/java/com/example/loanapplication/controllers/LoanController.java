@@ -22,9 +22,9 @@ public class LoanController {
         return new ResponseEntity<>(loanList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Loan> getLoanByCustId(@PathVariable int id) {
-        Loan loan = loanService.getLoanByCustId(id);
+    @GetMapping("/{custId}")
+    public ResponseEntity<List<Loan>> getLoanByCustId(@PathVariable int custId) {
+        List<Loan> loan = loanService.getLoanByCustId(custId);
         if (loan != null) {
             return new ResponseEntity<>(loan, HttpStatus.OK);
         } else {
@@ -42,8 +42,8 @@ public class LoanController {
         }
     }
 
-    @GetMapping("/{id}/loan/{loanID}")
-    public ResponseEntity<Loan> getLoanById(@PathVariable int id, @PathVariable int loanID) {
+    @GetMapping("/{custId}/loan/{loanID}")
+    public ResponseEntity<Loan> getLoanById(@PathVariable int custId, @PathVariable int loanID) {
         Loan loan = loanService.getLoanById(loanID);
         if (loan != null) {
             return new ResponseEntity<>(loan, HttpStatus.OK);
@@ -59,9 +59,9 @@ public class LoanController {
         return new ResponseEntity<>(createdLoan, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}/status/{status}")
-    public ResponseEntity<Loan> updateSupportStatus(@PathVariable int id, @PathVariable String status) {
-        Loan updatedLoan = loanService.updateLoanStatus(id, status);
+    @PutMapping("/{custId}/status/{status}")
+    public ResponseEntity<Loan> updateSupportStatus(@PathVariable int custId, @PathVariable String status) {
+        Loan updatedLoan = loanService.updateLoanStatus(custId, status);
         return new ResponseEntity<>(updatedLoan, HttpStatus.OK);
     }
 }
