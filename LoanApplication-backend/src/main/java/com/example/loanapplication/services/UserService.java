@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.example.loanapplication.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,3 +127,7 @@ public class UserService{
 }
 
 
+=======
+package com.example.loanapplication.services;public class UserService {
+}
+>>>>>>> 4e9aea9deee529b884c8955991c94c72a5e66204

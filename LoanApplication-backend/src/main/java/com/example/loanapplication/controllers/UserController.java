@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.example.loanapplication.controllers;
 
 import com.example.loanapplication.models.Support;
@@ -66,4 +67,7 @@ public class UserController {
         return userService.deleteEmp(id);
     }
 
+=======
+package com.example.loanapplication.controllers;public class UserController {
+>>>>>>> 4e9aea9deee529b884c8955991c94c72a5e66204
 }
