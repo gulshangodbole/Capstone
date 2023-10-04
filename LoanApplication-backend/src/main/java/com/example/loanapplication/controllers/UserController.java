@@ -32,7 +32,7 @@ import com.example.loanapplication.services.UserService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/support")
+@RequestMapping("/api/user")
 @CrossOrigin(origins = "http://localhost:3000")
 
 public class UserController {
@@ -62,6 +62,26 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public Map<String, String> deleteEmp(@PathVariable String id) throws ResourceNotFoundException {
         return userService.deleteEmp(id);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> getUserProfile(@PathVariable Long id) {
+        try {
+            User user = userService.getUserById(id);
+            return ResponseEntity.ok(user);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/user/{id}")
+    public ResponseEntity<User> updateUserProfile(@PathVariable Long id, @Valid @RequestBody User updatedUser) {
+        try {
+            User user = userService.updateUserProfile(id, updatedUser);
+            return ResponseEntity.ok(user);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

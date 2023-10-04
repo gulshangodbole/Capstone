@@ -112,4 +112,32 @@ public class UserService {
         }
         return object;
     }
+
+    public User getUserById(Long id) throws ResourceNotFoundException {
+        Optional<User> userOptional = userRepository.findById(String.valueOf(id));
+        if (userOptional.isPresent()) {
+            return userOptional.get();
+        } else {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
+    }
+
+    public User updateUserProfile(Long id, User updatedUser) throws ResourceNotFoundException {
+        Optional<User> userOptional = userRepository.findById(String.valueOf(id));
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // Update user profile fields
+            user.setName(updatedUser.getName());
+            user.setEmail(updatedUser.getEmail());
+            user.setPassword(updatedUser.getPassword());
+            user.setUserID(updatedUser.getUserID());
+            // Add other fields as needed
+
+            // Save the updated user profile
+            return userRepository.save(user);
+        } else {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
+    }
 }
