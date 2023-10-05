@@ -18,6 +18,7 @@ import Process from "../pages/Process";
 import EditProfile from "../pages/EditProfile";
 import Dashboard from "../pages/Dashboard";
 import AdminSupport from "../pages/AdminSupport";
+import Payment from "../pages/Payment";
 
 export const MainRoutes = () => {
   return (
@@ -80,6 +81,14 @@ export const MainRoutes = () => {
           </PrivateRoute>
         }
       />
+
+      <Route 
+        path="/payment"
+        element={
+          <Payment />
+        }
+      />
+
     </Routes>
   );
 };

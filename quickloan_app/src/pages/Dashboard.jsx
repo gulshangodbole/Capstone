@@ -12,7 +12,7 @@ import p5 from "../Images/p5.webp"
 import p6 from "../Images/p6.webp"
 import p7 from "../Images/p7.webp"
 import p8 from "../Images/Natwest_Secondary_Horizontal_RGB_NEG.svg";
-import p9 from "../Images/Screenshot_2023-10-03_114248-removebg-preview.png"
+import p9 from "../Images/banknotes.png"
 export default function Dashboard() {
   const { id } = useParams()
   const [data, setdata] = useState("")
@@ -71,10 +71,11 @@ export default function Dashboard() {
             <h3>{category} </h3>
             <h3>{name} Rejection</h3>
           </div>
-          <div className='B-section-part1'>
-            <img src={p9} alt="" />
-            <h3>Pay EMI</h3>
+          <div className='B-section-part'>
+            <img src={p9}  alt="" />
             <h3>{category} </h3>
+            <Link to='/payment'><h3>{name} Pay Loan</h3></Link>
+
           </div>
           <div className='B-section-part'>
             <img src={p6} alt="" />
