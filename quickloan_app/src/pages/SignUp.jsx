@@ -103,7 +103,7 @@ export function SignUp() {
         return toast({
           title: 'Failed',
           description: 'User Registered Failed',
-          status: 'error',
+          status: 'success',
           position: 'top',
           duration: 4000,
           isClosable: true,
