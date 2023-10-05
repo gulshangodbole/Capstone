@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUserProfile(@PathVariable Long id) {
+    public ResponseEntity<User> getUserProfile(@PathVariable String id) {
         try {
             User user = userService.getUserById(id);
             return ResponseEntity.ok(user);
@@ -75,7 +75,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUserProfile(@PathVariable Long id, @Valid @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUserProfile(@PathVariable String id, @Valid @RequestBody User updatedUser) {
         try {
             User user = userService.updateUserProfile(id, updatedUser);
             return ResponseEntity.ok(user);

@@ -113,7 +113,7 @@ public class UserService {
         return object;
     }
 
-    public User getUserById(Long id) throws ResourceNotFoundException {
+    public User getUserById(String id) throws ResourceNotFoundException {
         Optional<User> userOptional = userRepository.findById(String.valueOf(id));
         if (userOptional.isPresent()) {
             return userOptional.get();
@@ -122,7 +122,7 @@ public class UserService {
         }
     }
 
-    public User updateUserProfile(Long id, User updatedUser) throws ResourceNotFoundException {
+    public User updateUserProfile(String id, User updatedUser) throws ResourceNotFoundException {
         Optional<User> userOptional = userRepository.findById(String.valueOf(id));
         if (userOptional.isPresent()) {
             User user = userOptional.get();
