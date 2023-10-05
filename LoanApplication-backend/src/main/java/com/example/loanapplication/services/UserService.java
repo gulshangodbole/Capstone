@@ -2,7 +2,9 @@
 package com.example.loanapplication.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.loanapplication.repositories.UserRepository;
 
@@ -18,9 +20,6 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Map;
-import java.util.HashMap;
-
 
 @Service
 public class UserService {
@@ -28,79 +27,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserService() {
-    }
-
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public Map<String, Object> login(User user) {
-        Map<String, Object> object = new HashMap<>();
-        User user1 = userRepository.findById(user.getUserID()).orElse(null);
-        User admin = userRepository.getReferenceById("K123456");
-        Pattern pattern = Pattern.compile("[a-z]\\d\\d\\d\\d\\d\\d", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(user.getUserID());
-
-        if (matcher.matches()) {
-            if (user1 == null) {
-                object.put("authStatus", false);
-                object.put("role", null);
-                return object;
-            }
-
-            if (StringUtils.equalsIgnoreCase(user.getUserID(), "K123456")) {
-                if (StringUtils.equals(user.getPassword(), admin.getPassword())) {
-                    object.put("authStatus", true);
-                    object.put("role", "admin");
-                    object.put("name", admin.getName());
-                    object.put("email", admin.getEmail());
-                } else {
-                    object.put("authStatus", false);
-                    object.put("role", "admin");
-                }
-            } else {
-                if (StringUtils.equals(user1.getPassword(), user.getPassword())) {
-                    object.put("authStatus", true);
-                    object.put("role", "user");
-                    object.put("name", user1.getName());
-                    object.put("email", user1.getEmail());
-                } else {
-                    object.put("authStatus", false);
-                    object.put("role", "user");
-                }
-            }
-            return object;
-        } else {
-            object.put("authStatus", false);
-            object.put("role", null);
-            return object;
-        }
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
-    public Map<String, Object> register(User user) {
-        Pattern pattern = Pattern.compile("[a-z]\\d\\d\\d\\d\\d\\d", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(user.getUserID());
-        Map<String, Object> object = new HashMap<>();
-        if (matcher.matches()) {
-            User user1 = userRepository.findById(user.getUserID()).orElse(null);
-            if (user1 == null) {
-                object.put("availStatus", true);
-                userRepository.save(user);
-                object.put("name", user.getName());
-                object.put("email", user.getEmail());
-                return object;
-            } else {
-                object.put("availStatus", false);
-                return object;
-            }
-        } else {
-            object.put("availStatus", false);
-            return object;
-        }
-    }
-
-    public Map<String, String> deleteEmp(String id) throws ResourceNotFoundException {
+    public Map<String, String> deleteUser(Long id) throws ResourceNotFoundException {
         Map<String, String> object = new HashMap<>();
         User e = userRepository.findById(id).orElse(null);
         if (e == null) {
@@ -108,13 +43,18 @@ public class UserService {
         } else {
             userRepository.deleteById(id);
             object.put("statusCode", "200");
-            object.put("message", "Employee deleted successfully");
+            object.put("message", "User deleted successfully");
         }
         return object;
     }
 
+<<<<<<< HEAD
     public User getUserById(String id) throws ResourceNotFoundException {
         Optional<User> userOptional = userRepository.findById(String.valueOf(id));
+=======
+    public User getUserById(Long id) throws ResourceNotFoundException {
+        Optional<User> userOptional = userRepository.findById(id);
+>>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
         if (userOptional.isPresent()) {
             return userOptional.get();
         } else {
@@ -122,16 +62,31 @@ public class UserService {
         }
     }
 
+<<<<<<< HEAD
     public User updateUserProfile(String id, User updatedUser) throws ResourceNotFoundException {
         Optional<User> userOptional = userRepository.findById(String.valueOf(id));
+=======
+    public User updateUserProfile(Long id, User updatedUser) throws ResourceNotFoundException {
+        Optional<User> userOptional = userRepository.findById(id);
+>>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
         if (userOptional.isPresent()) {
             User user = userOptional.get();
 
             // Update user profile fields
-            user.setName(updatedUser.getName());
+            user.setFullname(updatedUser.getFullname());
             user.setEmail(updatedUser.getEmail());
             user.setPassword(updatedUser.getPassword());
-            user.setUserID(updatedUser.getUserID());
+            //user.setUserID(updatedUser.getUserID());
+            user.setAddress(updatedUser.getAddress());
+            user.setContact(updatedUser.getContact());
+            user.setGender(updatedUser.getGender());
+            user.setDob(updatedUser.getDob());
+            user.setEmployment(updatedUser.getEmployment());
+            user.setEmpYears(updatedUser.getEmpYears());
+            user.setAssets(updatedUser.getAssets());
+            user.setPassword(updatedUser.getPassword());
+            // user.setIncome(updatedUser.getIncome());
+            // user.setCreditscore(updatedUser.getCreditscore());
             // Add other fields as needed
 
             // Save the updated user profile
@@ -140,4 +95,88 @@ public class UserService {
             throw new ResourceNotFoundException("User not found with id: " + id);
         }
     }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+
+    public User updateUserCreditScoreAndIncome(Long userId, int creditscore, long income) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        if (user != null) {
+            user.setCreditscore(creditscore);
+            user.setIncome(income);
+            // Update other fields if needed
+
+            return userRepository.save(user);
+        }
+
+        return user;
+    }
+
+      // public Map<String, Object> login(User user) {
+    //     Map<String, Object> object = new HashMap<>();
+    //     User user1 = userRepository.findById(user.getUserID()).orElse(null);
+    //     User admin = userRepository.findById(123456L).get();
+    //     Pattern pattern = Pattern.compile("\\d", Pattern.CASE_INSENSITIVE);
+    //     Matcher matcher = pattern.matcher((String.valueOf(user.getUserID())));
+
+    //     if (matcher.matches()) {
+    //         if (user1 == null) {
+    //             object.put("authStatus", false);
+    //             object.put("role", null);
+    //             return object;
+    //         }
+
+    //         if (user.getUserID() == 123456) {
+    //             if (StringUtils.equals(user.getPassword(), admin.getPassword())) {
+    //                 object.put("authStatus", true);
+    //                 object.put("role", "admin");
+    //                 object.put("name", admin.getName());
+    //                 object.put("email", admin.getEmail());
+    //             } else {
+    //                 object.put("authStatus", false);
+    //                 object.put("role", "admin");
+    //             }
+    //         } else {
+    //             if (StringUtils.equals(user1.getPassword(), user.getPassword())) {
+    //                 object.put("authStatus", true);
+    //                 object.put("role", "user");
+    //                 object.put("name", user1.getName());
+    //                 object.put("email", user1.getEmail());
+    //             } else {
+    //                 object.put("authStatus", false);
+    //                 object.put("role", "user");
+    //             }
+    //         }
+    //         return object;
+    //     } else {
+    //         object.put("authStatus", false);
+    //         object.put("role", null);
+    //         return object;
+    //     }
+    // }
+
+    // public Map<String, Object> register(User user) {
+    //     Pattern pattern = Pattern.compile("\\d", Pattern.CASE_INSENSITIVE);
+    //     Matcher matcher = pattern.matcher(String.valueOf(user.getUserID()));
+    //     Map<String, Object> object = new HashMap<>();
+    //     if (matcher.matches()) {
+    //         User user1 = userRepository.findById(user.getUserID()).orElse(null);
+    //         if (user1 == null) {
+    //             object.put("availStatus", true);
+    //             userRepository.save(user);
+    //             object.put("name", user.getName());
+    //             object.put("email", user.getEmail());
+    //             return object;
+    //         } else {
+    //             object.put("availStatus", false);
+    //             return object;
+    //         }
+    //     } else {
+    //         object.put("availStatus", false);
+    //         return object;
+    //     }
+    // }
 }

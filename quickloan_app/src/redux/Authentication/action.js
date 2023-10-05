@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from './actionType';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS,  } from './actionType';
 
 
 export const checkEmailExists = (email) => async () => {
@@ -28,7 +28,11 @@ export const signup = (formData) => async (dispatch) => {
 
     dispatch({ type: SIGNUP_REQUEST });
 
+<<<<<<< HEAD
     return axios.post('http://localhost:8081/api/user', formData).then((res) => {
+=======
+    return axios.post('http://localhost:8081/api/users', formData).then((res) => {
+>>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
         dispatch({ type: SIGNUP_SUCCESS, payload: res.data })
         return res.data
     }).catch((err) => {
@@ -44,7 +48,11 @@ export const login = (loginData) => async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST});
   
     try {
+<<<<<<< HEAD
       const res = await axios.get(`http://localhost:8081/api/user`);
+=======
+      const res = await axios.get(`http://localhost:8081/api/users`);
+>>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
   
       const user = res.data.find((el) => el.email === loginData.email && el.password === loginData.password);
   
