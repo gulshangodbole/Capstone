@@ -39,8 +39,7 @@ export function SignUp() {
   const [formvalue, setFormvalue] = useState({
     fullname: "",
     email: "",
-    password: "",
-    loans: []
+    password: ""
   })
 
   const [submissiondisbled, setSubmissiondisbled] = useState(false)
@@ -87,10 +86,9 @@ export function SignUp() {
       fullname: formvalue.fullname,
       email: formvalue.email,
       password: bcrypt.hashSync(formvalue.password, '$2a$10$CwTycUXWue0Thq9StjUM0u'),
-      loans: []
     }
     dispatch(signup(hashFormValue)).then((res) => {
-      console.log(res)
+      console.log("RESPONSE", res)
       if (res === 1) {
         toast({
           title: 'Success',

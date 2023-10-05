@@ -1,9 +1,17 @@
 import axios from 'axios';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from './actionType';
+import {
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  SIGNUP_FAILURE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+} from './actionType';
 
-// Action Creator to check if a user with the same email already exists
-export const checkEmailExists = async (email) => {
+export const checkEmailExists = (email) => async(dispatch) =>{
+  
   try {
+    
     const res = await axios.get(`http://localhost:8081/api/users`);
     return res.data.some((user) => user.email === email);
   } catch (error) {
@@ -13,50 +21,42 @@ export const checkEmailExists = async (email) => {
 };
 
 export const signup = (formData) => async (dispatch) => {
+  
   const emailExists = await dispatch(checkEmailExists(formData.email));
-  console.log("Email" ,emailExists);
+  console.log("inside signup action")
   if (emailExists) {
     dispatch({ type: SIGNUP_FAILURE, payload: 'User already exists with this email.' });
-    return 0;
+    return -1; // Indicate signup failure
   }
 
   dispatch({ type: SIGNUP_REQUEST });
-    dispatch({ type: SIGNUP_REQUEST });
-    return axios.post('http://localhost:8081/api/users', formData).then((res) => {
-        dispatch({ type: SIGNUP_SUCCESS, payload: res.data })
-        return 1
-    }).catch((err) => {
+  console.log("inside signup action")
+  try {
+    const res = await axios.post('http://localhost:8081/api/users', formData);
+    dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+    return 1; // Indicate signup success
+  } catch (error) {
+    dispatch({ type: SIGNUP_FAILURE });
+    return -1; // Indicate signup failure
+  }
+};
 
-    dispatch({ type: SIGNUP_FAILURE })
-    return -1;
-    })
-
-}
 export const login = (loginData) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
 
   try {
     const res = await axios.get(`http://localhost:8081/api/users`);
     const user = res.data.find((el) => el.email === loginData.email && el.password === loginData.password);
-    dispatch({ type: LOGIN_REQUEST});
-  
-    try {
-      const res = await axios.get(`http://localhost:8081/api/users`);
-      const user = res.data.find((el) => el.email === loginData.email && el.password === loginData.password);
-      if (user) {
-        dispatch({ type: LOGIN_SUCCESS, payload: user });
-        console.log("User found:", user);
-        return true;
-      } else {
-        dispatch({ type: LOGIN_FAILURE });
-        console.log("User failed:", user);
-        return false;
-      }
-    } catch (error) {
+
+    if (user) {
+      dispatch({ type: LOGIN_SUCCESS, payload: user });
+      return true; // Indicate login success
+    } else {
       dispatch({ type: LOGIN_FAILURE });
-      return false;
+      return false; // Indicate login failure
     }
   } catch (error) {
     dispatch({ type: LOGIN_FAILURE });
+    return false; // Indicate login failure
   }
 };
