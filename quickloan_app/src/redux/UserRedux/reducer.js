@@ -7,6 +7,9 @@ import {
   PARTIAL_UPDATE_PROFILE_REQUEST,
   PARTIAL_UPDATE_PROFILE_SUCCESS,
   PARTIAL_UPDATE_PROFILE_FAILURE,
+  EXPENSE_UPDATE_PROFILE_REQUEST,
+  EXPENSE_UPDATE_PROFILE_SUCCESS,
+  EXPENSE_UPDATE_PROFILE_FAILURE,
 } from './actiontypes';
 
 const initialState = {
@@ -34,6 +37,18 @@ const profileReducer = (state = initialState, action) => {
         };
       case PARTIAL_UPDATE_PROFILE_FAILURE:
         return { ...state, loading: false, error: 'Failed to update profile' }
+
+        case EXPENSE_UPDATE_PROFILE_REQUEST:
+          return { ...state, loading: true, error: null };
+        case EXPENSE_UPDATE_PROFILE_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            updatedUser: { ...state.updatedUser, ...action.payload },
+            error: null,
+          };
+        case EXPENSE_UPDATE_PROFILE_FAILURE:
+          return { ...state, loading: false, error: 'Failed to update profile' }
     default:
       return state;
   }

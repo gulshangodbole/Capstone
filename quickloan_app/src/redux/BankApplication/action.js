@@ -1,67 +1,104 @@
 import axios from "axios"
-import { ALL_USER_ERROR, ALL_USER_REQUEST, ALL_USER_SUCCESS, BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, CURRENT_USER_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_ERROR, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from "./actionTypes"
+import { FETCH_ALL_LOANS_SUCCESS,
+    FETCH_LOAN_BY_CUST_ID_SUCCESS,
+    FETCH_LOAN_BY_STATUS_SUCCESS,
+    FETCH_LOAN_BY_ID_SUCCESS,
+    CREATE_LOAN_SUCCESS,
+    UPDATE_LOAN_STATUS_SUCCESS,
+    NOT_FOUND_ERROR, } from "./actionTypes"
 
-export const handleLoanDataSubmit = (id, loans, userInfo) => (dispatch) => {
-    dispatch({ type: LOAN_DATA_REQUEST })
-  return axios.patch(`https://sour-snowy-purpose.glitch.me/users/${id}`, { loans: [...loans, userInfo] })
-        .then((res) => {
-            dispatch({ type: LOAN_DATA_SUCCESS, payload: res.data.loans })
-            console.log(res.data.loans)
-        })
-        .catch((err) => {
-            dispatch({ type: LOAN_DATA_ERROR })
-        })
-}
+    const BASE_URL = 'http://localhost:8081/api/loan'; 
 
-export const getLoanData = (id) => (dispatch) => {
-
-    dispatch({ type: GET_LOAN_DATA_REQUEST })
-     axios.get(`https://sour-snowy-purpose.glitch.me/users/${id}`)
-        .then((res) => {
-            dispatch({ type: GET_LOAN_DATA_SUCCESS, payload: res.data.loans })
-            console.log("here", res.data.loans)
-        })
-        .catch((err) => {
-            dispatch({ type: GET_LOAN_DATA_ERROR })
-        })
-}
-
-
-export const getAllUsers = () => async (dispatch) => {
-
-    dispatch({ type: ALL_USER_REQUEST })
-    return axios.get(`https://sour-snowy-purpose.glitch.me/users`).then((res) => {
-        // console.log(res)
-        dispatch({ type: ALL_USER_SUCCESS, payload: res.data })
-
-    }).catch((err) => {
-        dispatch({ type: ALL_USER_ERROR })
-    })
-}
-
-export const getCurrentUser = (id) =>(dispatch) => {
-
-    dispatch({ type: ALL_USER_REQUEST })
-     axios.get(`https://sour-snowy-purpose.glitch.me/users/${id}`).then((res) => {
-
-        // const user = res.data.find((el) => el.id === id);
-        // if (user) {
-        dispatch({ type: CURRENT_USER_SUCCESS, payload: res.data });
-        console.log("User found:", res.data)
-
-    }).catch((err) => {
-        dispatch({ type: ALL_USER_ERROR })
-    })
-}
-
-export const getBankData = (id) => (dispatch) => {
-
-    dispatch({ type: BANK_DATA_REQUEST })
-     axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`).then((res) => {
-        console.log("Bank by id", res.data)
-        dispatch({ type: BANK_DATA_SUCCESS, payload: res.data })
-
-    }).catch((err) => {
-        dispatch({ type: BANK_DATA_ERROR })
-    })
-}
+export const fetchAllLoansSuccess = (loans) => ({
+    type: FETCH_ALL_LOANS_SUCCESS,
+    loans,
+  });
+  
+  export const fetchLoanByCustIdSuccess = (loans) => ({
+    type: FETCH_LOAN_BY_CUST_ID_SUCCESS,
+    loans,
+  });
+  
+  export const fetchLoanByStatusSuccess = (loan) => ({
+    type: FETCH_LOAN_BY_STATUS_SUCCESS,
+    loan,
+  });
+  
+  export const fetchLoanByIdSuccess = (loan) => ({
+    type: FETCH_LOAN_BY_ID_SUCCESS,
+    loan,
+  });
+  
+  export const createLoanSuccess = (loan) => ({
+    type: CREATE_LOAN_SUCCESS,
+    loan,
+  });
+  
+  export const updateLoanStatusSuccess = (loan) => ({
+    type: UPDATE_LOAN_STATUS_SUCCESS,
+    loan,
+  });
+  
+  export const notFoundError = () => ({
+    type: NOT_FOUND_ERROR,
+  });
+  
+  export const fetchAllLoans = () => async (dispatch) => {
+    try {
+      const response = await axios.get(BASE_URL);
+      const data = response.data;
+      dispatch(fetchAllLoansSuccess(data));
+    } catch (error) {
+      dispatch(notFoundError());
+    }
+  };
+  
+  export const fetchLoanByCustId = (custId) => async (dispatch) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/${custId}`);
+      const data = response.data;
+      dispatch(fetchLoanByCustIdSuccess(data));
+    } catch (error) {
+      dispatch(notFoundError());
+    }
+  };
+  
+  export const fetchLoanByStatus = (status) => async (dispatch) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/status/${status}`);
+      const data = response.data;
+      dispatch(fetchLoanByStatusSuccess(data));
+    } catch (error) {
+      dispatch(notFoundError());
+    }
+  };
+  
+  export const fetchLoanById = (custId, loanID) => async (dispatch) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/${custId}/loan/${loanID}`);
+      const data = response.data;
+      dispatch(fetchLoanByIdSuccess(data));
+    } catch (error) {
+      dispatch(notFoundError());
+    }
+  };
+  
+  export const createLoan = (loan) => async (dispatch) => {
+    try {
+      const response = await axios.post(BASE_URL, loan);
+      const createdLoan = response.data;
+      dispatch(createLoanSuccess(createdLoan));
+    } catch (error) {
+      dispatch(notFoundError());
+    }
+  };
+  
+  export const updateLoanStatus = (custId, status) => async (dispatch) => {
+    try {
+      const response = await axios.put(`${BASE_URL}/${custId}/status/${status}`);
+      const updatedLoan = response.data;
+      dispatch(updateLoanStatusSuccess(updatedLoan));
+    } catch (error) {
+      dispatch(notFoundError());
+    }
+  };

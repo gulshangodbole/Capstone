@@ -47,3 +47,17 @@ export const partialUpdateProfile = (id, creditscore, income) => async (dispatch
     throw error;
   }
 };
+
+export const expenseUpdateProfile = (id, expense, savings) => async (dispatch) => {
+  dispatch({ type: PARTIAL_UPDATE_PROFILE_REQUEST });
+
+  try {
+    const res = await axios.patch(`http://localhost:8081/api/users/${id}/updateexpense?expense=${expense}&savings=${savings}`);
+
+    dispatch({ type: PARTIAL_UPDATE_PROFILE_SUCCESS, payload: res.data });
+    return res.data;
+  } catch (error) {
+    dispatch({ type: PARTIAL_UPDATE_PROFILE_FAILURE });
+    throw error;
+  }
+};

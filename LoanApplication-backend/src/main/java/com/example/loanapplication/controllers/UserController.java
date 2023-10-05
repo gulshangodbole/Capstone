@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +81,22 @@ public class UserController {
             } else {
                 updatedUser.setEligibility("Not Eligible");
             }
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @PatchMapping("{userId}/updateexpense")
+    public ResponseEntity<User> updateUserExpenseSavings(
+            @PathVariable Long userId,
+            @RequestParam long expense,
+            @RequestParam long savings) {
+
+
+        User updatedUser = userService.updateUserExpenseSavings(userId,expense,savings);
+        System.out.println(updatedUser);
+
+        if (updatedUser != null) {
             return ResponseEntity.ok(updatedUser);
         } else {
             return ResponseEntity.notFound().build();

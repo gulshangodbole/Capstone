@@ -14,6 +14,7 @@ public class Loan {
     private int loanAmount;
     private int loanTerm;
     private String loanPurpose;
+    private String loanType;
     @Column(columnDefinition = "varchar(255) default 'Pending'")
     private String status;
     private int dueAmount;
@@ -57,6 +58,14 @@ public class Loan {
 
     public void setLoanPurpose(String loanPurpose) {
         this.loanPurpose = loanPurpose;
+    }
+
+    public String getLoanType() {
+        return loanType;
+    }
+
+    public void setLoanType(String loanType) {
+        this.loanType = loanType;
     }
 
     public String getStatus() {

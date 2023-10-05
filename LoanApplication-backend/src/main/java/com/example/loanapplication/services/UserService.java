@@ -104,6 +104,19 @@ public class UserService implements  IUserService{
         return user;
     }
 
+     public User updateUserExpenseSavings(Long userId, long expense, long savings) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        if (user != null) {
+            user.setExpense(expense);
+            user.setSavings(savings);
+            // Update other fields if needed
+
+            return userRepository.save(user);
+        }
+        return user;
+    }
+
     // public Map<String, Object> login(User user) {
     //     Map<String, Object> object = new HashMap<>();
     //     User user1 = userRepository.findById(user.getUserID()).orElse(null);

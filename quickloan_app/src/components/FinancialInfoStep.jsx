@@ -18,10 +18,10 @@ export const FinancialInfoStep = ({ userInfo, handleChange, onNext, onPrevious }
                 <Input type='number' placeholder='Savings/Investments' name={"savingsInvestments"} value={userInfo.savingsInvestments} onChange={handleChange} />
             </FormControl>
 
-            <FormControl isRequired m={"20px"}>
+            {/* <FormControl isRequired m={"20px"}>
                 <FormLabel>Outstanding Loans/Credit Card Debt</FormLabel>
                 <Input type='text' placeholder='Outstanding Loans/Credit Card Debt' name={"outstandingLoansDebt"} value={userInfo.outstandingLoansDebt} onChange={handleChange} />
-            </FormControl>
+            </FormControl> */}
 
             <FormControl isRequired m={"20px"}>
                 <FormLabel>Assets(if applicable)</FormLabel>

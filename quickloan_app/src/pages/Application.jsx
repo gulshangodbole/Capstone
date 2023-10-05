@@ -52,7 +52,7 @@ export default function Application() {
         timer: 1500
       })
 
-      navigate(`/dashboard`);
+      navigate(`/banks`);
 
       // Reset form data
       setFormData(initalFormData);

@@ -7,7 +7,8 @@ import { EmploymentDetailsStep } from './EmploymentDetailsStep';
 import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinancialInfoStep } from './FinancialInfoStep';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers, getBankData, getCurrentUser, getLoanData, handleLoanDataSubmit } from '../redux/BankApplication/action';
+import {createLoan} from '../redux/BankApplication/action';
+import { expenseUpdateProfile, getUserDetails } from "../redux/UserRedux/action";
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -15,7 +16,7 @@ import axios from 'axios';
 
 export const BankApplicationMain = () => {
 
-    const currentUser = useSelector(store => store.AuthReducer.currentUser);
+    const currentUser = useSelector((store) => store.AuthReducer.currentUser);
     console.log('currentUser:', currentUser)
 
     const loans = useSelector(store => store.bankApplicationReducer.loans);
@@ -24,62 +25,36 @@ export const BankApplicationMain = () => {
     const dispatch = useDispatch();
     const toast = useToast();
     const location = useLocation();
-    //const {id}=useParams();
-    // const id = new URLSearchParams(location.search).get('id');
     const [alert, setAlert] = useState()
 
-    //const[bankData,setBankData]=useState({});
-
     useEffect(() => {
-        // dispatch(getBankData(id))
-        dispatch(getLoanData(currentUser.id))
-        dispatch(getCurrentUser(currentUser.id))
-        //getBankData(id)
-    }, [])
+        //dispatch(getLoanData(currentUser.userID))
+        dispatch(getUserDetails(currentUser.userID))
+    }, [dispatch, currentUser.userID])
 
-
-    // function getBankData(id){
-    //     axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
-    //     .then((res)=>{
-    //         setBankData(res.data)
-    //     })
-    //     .catch((err)=>{
-    //         console.log('err:', err)
-    //     })
-    // }
-   
-
-    const currentUserbyId = useSelector(store => store.bankApplicationReducer.currentUserbyId);
-    // const bankData = useSelector(store =>{
-    //     console.log('bankData:', store.bankApplicationReducer.bankData)
-    //     return store.bankApplicationReducer.bankData
-    // });
-    console.log("currentUserbyId", currentUserbyId);
 
     const initialUserInfo = {
-        id: `${Math.floor(Math.random() * (100 - 1 + 1)) + 1}`,
-        fullname: currentUserbyId?.fullname || currentUser.firstname || "",
-        contact: currentUserbyId?.contact || currentUser?.contact || '',
-        email: currentUserbyId?.email || currentUser?.email || '',
-        address: currentUserbyId?.address || currentUser?.address || '',
-        employer: '',
-        jobTitle: '',
-        yearsOfEmployment: '',
-        monthlyIncome: '',
+        id: currentUser.userID,
+        fullname: currentUser.fullname || "",
+        contact:  currentUser?.contact || '',
+        email:  currentUser?.email || '',
+        address: currentUser?.address || '',
+        employer: currentUser?.employer || '',
+        jobTitle: currentUser?.jobtitle || '',
+        yearsOfEmployment: currentUser?.empYears || '',
+        monthlyIncome: currentUser?.income || '',
         monthlyExpenses: '',
         savingsInvestments: '',
-        outstandingLoansDebt: '',
-        assets: '',
+        assets: currentUser?.assets || '',
         identificationProof: '',
         incomeProof: '',
         addressProof: '',
-        //loanType: bankData.category,
         loanAmount: '',
         loanTerm: '',
         loanPurpose: '',
-        //bankname: bankData.name,
-       // bankImg: bankData.image ,
-        status: 'pending'
+        loanType: '',
+        status: 'pending',
+       
     };
 
     const steps = [
@@ -120,11 +95,22 @@ export const BankApplicationMain = () => {
         }
     };
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!userInfo.employer || !userInfo.jobTitle || !userInfo.yearsOfEmployment || !userInfo.monthlyIncome || !userInfo.monthlyExpenses || !userInfo.savingsInvestments || !userInfo.outstandingLoansDebt || !userInfo.assets || !userInfo.loanType || !userInfo.loanAmount || !userInfo.loanTerm || !userInfo.loanPurpose) {
+        const newLoan = {
+            custId: currentUser.userID,
+            loanAmount: userInfo.loanAmount,
+            loanType: userInfo.loanType,
+            loanPurpose: userInfo.loanPurpose,
+            loanTerm: userInfo.loanTerm,
+            status: 'pending',
+            dueAmount: userInfo.loanAmount, 
+            date: new Date().toISOString(), 
+          };
+        console.log("loan", newLoan)
+            console.log("loans", loans)
+            console.log("userInfo", userInfo)
+        if (!userInfo.employer || !userInfo.jobTitle || !userInfo.yearsOfEmployment || !userInfo.monthlyIncome || !userInfo.monthlyExpenses || !userInfo.savingsInvestments || !userInfo.assets || !userInfo.loanType || !userInfo.loanAmount || !userInfo.loanTerm || !userInfo.loanPurpose) {
             return toast({
                 title: 'Submission Failed!',
                 description: "Please fill all form details before submiting. ",
@@ -135,18 +121,10 @@ export const BankApplicationMain = () => {
             })
         }
         else {
-            dispatch(handleLoanDataSubmit(currentUser.id,loans, userInfo)).then(() => {
+            dispatch(expenseUpdateProfile(currentUser.userID, userInfo.monthlyExpenses, userInfo.savingsInvestments));
+            dispatch(createLoan(newLoan)).then(() => {
                 console.log("UserInformation",userInfo)
                 setUserInfo(initialUserInfo)
-                
-                // toast({
-                //     title: 'Success',
-                //     description: 'Application Request Successful',
-                //     status: 'success',
-                //     position: 'top',
-                //     duration: 4000,
-                //     isClosable: true,
-                // })
                 Swal.fire({
                     position: 'center',
                     icon: 'success',

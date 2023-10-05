@@ -74,7 +74,7 @@ import {
     });
     const { id } = useSelector((store) => {
       console.log('store:', store);
-      return { id: store.AuthReducer.currentUser.id };
+      return { id: store.AuthReducer.currentUser.userID };
     });
 
   

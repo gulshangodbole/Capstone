@@ -1,114 +1,50 @@
-import React from 'react'
-// import { BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from './actionTypes'
-import { ALL_USER_ERROR, ALL_USER_REQUEST, ALL_USER_SUCCESS, BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, CURRENT_USER_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_ERROR, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from './actionTypes'
+// Reducer.js
 
-
-const initialState = {
-    isError: false,
-    isLoading: false,
+import {
+    FETCH_ALL_LOANS_SUCCESS,
+    FETCH_LOAN_BY_CUST_ID_SUCCESS,
+    FETCH_LOAN_BY_STATUS_SUCCESS,
+    FETCH_LOAN_BY_ID_SUCCESS,
+    CREATE_LOAN_SUCCESS,
+    UPDATE_LOAN_STATUS_SUCCESS,
+    NOT_FOUND_ERROR,
+  } from './actionTypes';
+  
+  const initialState = {
     loans: [],
-    allUsersError: false,
-    allUsersLoading: false,
-    allUsers: [],
-    bankData: {},
-    currentUserbyId: {}
-}
-
-export const reducer = (state = initialState, { type, payload }) => {
-
-    switch (type) {
-        case LOAN_DATA_REQUEST: {
-            return {
-                ...state,
-                isLoading: true,
-            }
-        }
-        case LOAN_DATA_SUCCESS: {
-            return {
-                ...state,
-                isLoading: false,
-                loans: payload
-            }
-        }
-        case LOAN_DATA_ERROR: {
-            return {
-                ...state,
-                isLoading: false,
-                isError: true
-            }
-        }
-
-        case GET_LOAN_DATA_REQUEST: {
-            return {
-                ...state,
-                isLoading: true,
-            }
-        }
-        case GET_LOAN_DATA_SUCCESS: {
-            return {
-                ...state,
-                isLoading: false,
-                loans: payload
-            }
-        }
-        case GET_LOAN_DATA_ERROR: {
-            return {
-                ...state,
-                isLoading: false,
-                isError: true
-            }
-        }
-
-        case BANK_DATA_REQUEST: {
-            return {
-                ...state,
-                isLoading: true,
-            }
-        }
-        case BANK_DATA_SUCCESS: {
-            return {
-                ...state,
-                isLoading: false,
-                bankData: payload
-            }
-        }
-        case BANK_DATA_ERROR: {
-            return {
-                ...state,
-                isLoading: false,
-                isError: true
-            }
-        }
-        case ALL_USER_REQUEST: {
-            return {
-                ...state,
-                allUsersLoading: true,
-            }
-        }
-        case ALL_USER_SUCCESS: {
-            return {
-                ...state,
-                allUsersLoading: false,
-                allUsers: payload
-            }
-        }
-        case ALL_USER_ERROR: {
-            return {
-                ...state,
-                allUsersLoading: false,
-                allUsersError: true
-            }
-        }
-        case CURRENT_USER_SUCCESS: {
-            return {
-                ...state,
-                allUsersLoading: false,
-                currentUserbyId: payload
-            }
-        }
-        default: {
-            return state
-        }
+    loan: null,
+    notFound: false,
+  };
+  
+  const bankApplicationReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case FETCH_ALL_LOANS_SUCCESS:
+      case FETCH_LOAN_BY_CUST_ID_SUCCESS:
+        return {
+          ...state,
+          loans: action.loans,
+          loan: null,
+          notFound: false,
+        };
+      case FETCH_LOAN_BY_STATUS_SUCCESS:
+      case FETCH_LOAN_BY_ID_SUCCESS:
+      case CREATE_LOAN_SUCCESS:
+      case UPDATE_LOAN_STATUS_SUCCESS:
+        return {
+          ...state,
+          loan: action.loan,
+          notFound: false,
+        };
+      case NOT_FOUND_ERROR:
+        return {
+          ...state,
+          loan: null,
+          notFound: true,
+        };
+      default:
+        return state;
     }
-
-}
+  };
+  
+  export default bankApplicationReducer;
+  
