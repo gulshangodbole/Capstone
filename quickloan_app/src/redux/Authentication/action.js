@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS,  } from './actionType';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from './actionType';
 
-
-export const checkEmailExists = (email) => async () => {
+// Action Creator to check if a user with the same email already exists
+export const checkEmailExists = async (email) => {
   try {
     const res = await axios.get(`http://localhost:8081/api/users`);
     return res.data.some((user) => user.email === email);
@@ -13,19 +12,15 @@ export const checkEmailExists = (email) => async () => {
   }
 };
 
-
 export const signup = (formData) => async (dispatch) => {
-
-
   const emailExists = await dispatch(checkEmailExists(formData.email));
   console.log("Email" ,emailExists);
   if (emailExists) {
-    // If email already exists, dispatch a failure action
     dispatch({ type: SIGNUP_FAILURE, payload: 'User already exists with this email.' });
     return 0;
   }
 
-
+  dispatch({ type: SIGNUP_REQUEST });
     dispatch({ type: SIGNUP_REQUEST });
     return axios.post('http://localhost:8081/api/users', formData).then((res) => {
         dispatch({ type: SIGNUP_SUCCESS, payload: res.data })
@@ -38,8 +33,11 @@ export const signup = (formData) => async (dispatch) => {
 
 }
 export const login = (loginData) => async (dispatch) => {
+  dispatch({ type: LOGIN_REQUEST });
 
-
+  try {
+    const res = await axios.get(`http://localhost:8081/api/users`);
+    const user = res.data.find((el) => el.email === loginData.email && el.password === loginData.password);
     dispatch({ type: LOGIN_REQUEST});
   
     try {
@@ -56,6 +54,9 @@ export const login = (loginData) => async (dispatch) => {
       }
     } catch (error) {
       dispatch({ type: LOGIN_FAILURE });
+      return false;
     }
-  };
-  
+  } catch (error) {
+    dispatch({ type: LOGIN_FAILURE });
+  }
+};
