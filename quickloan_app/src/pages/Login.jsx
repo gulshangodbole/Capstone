@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import bcrypt from 'bcryptjs';
 // import blackbgEar from "../Assets/black.jpg";
 // import "animate.css";
 import { Center, border, color, useToast } from "@chakra-ui/react";
@@ -53,7 +54,12 @@ function Login() {
         isClosable: true,
       });
     } else {
-      dispatch(login(logindata)).then((res) => {
+      const hashFormValue = {
+        email: logindata.email,
+        password: bcrypt.hashSync(logindata.password, '$2a$10$CwTycUXWue0Thq9StjUM0u'),
+        loans: []
+      }
+      dispatch(login(hashFormValue)).then((res) => {
         if (res) {
           toast({
             title: "Success",

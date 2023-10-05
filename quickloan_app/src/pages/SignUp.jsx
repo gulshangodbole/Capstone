@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import bcrypt from 'bcryptjs'
 import { color, useToast } from '@chakra-ui/react'
 import login_bg from '../Images/purplebg.jpg'
 import {
@@ -82,10 +83,15 @@ export function SignUp() {
       })
     }
 
-
-    dispatch(signup(formvalue)).then((res) => {
+    const hashFormValue = {
+      fullname: formvalue.fullname,
+      email: formvalue.email,
+      password: bcrypt.hashSync(formvalue.password, '$2a$10$CwTycUXWue0Thq9StjUM0u'),
+      loans: []
+    }
+    dispatch(signup(hashFormValue)).then((res) => {
       console.log(res)
-      if (res) {
+      if (res === 1) {
         toast({
           title: 'Success',
           description: 'User Registered Successful',
@@ -99,11 +105,21 @@ export function SignUp() {
         }, 3000)
         setFormvalue({ fullname: "", email: "", password: "" })
         return
-      } else {
+      } else if(res === -1) {
         return toast({
           title: 'Failed',
           description: 'User Registered Failed',
-          status: 'success',
+          status: 'error',
+          position: 'top',
+          duration: 4000,
+          isClosable: true,
+        })
+      }
+      else {
+        return toast({
+          title: 'Failed',
+          description: 'User Already Exists',
+          status: 'error',
           position: 'top',
           duration: 4000,
           isClosable: true,

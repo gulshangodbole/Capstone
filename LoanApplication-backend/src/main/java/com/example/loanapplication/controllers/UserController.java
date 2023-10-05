@@ -1,4 +1,3 @@
-
 package com.example.loanapplication.controllers;
 
 import com.example.loanapplication.models.Support;
@@ -47,18 +46,8 @@ public class UserController {
         return userService.deleteUser(id);
     }
 
-<<<<<<< HEAD
-    @DeleteMapping("/user/{id}")
-    public Map<String, String> deleteEmp(@PathVariable String id) throws ResourceNotFoundException {
-        return userService.deleteEmp(id);
-    }
-
-    @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUserProfile(@PathVariable String id) {
-=======
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserProfile(@PathVariable Long id) {
->>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
         try {
             User user = userService.getUserById(id);
             return ResponseEntity.ok(user);
@@ -67,13 +56,8 @@ public class UserController {
         }
     }
 
-<<<<<<< HEAD
-    @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUserProfile(@PathVariable String id, @Valid @RequestBody User updatedUser) {
-=======
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUserProfile(@PathVariable Long id, @Valid @RequestBody User updatedUser) {
->>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
         try {
             User user = userService.updateUserProfile(id, updatedUser);
             return ResponseEntity.ok(user);
@@ -87,7 +71,7 @@ public class UserController {
             @PathVariable Long userId,
             @RequestParam int creditscore,
             @RequestParam long income) {
-                
+
 
         User updatedUser = userService.updateUserCreditScoreAndIncome(userId, creditscore,income);
         System.out.println(updatedUser);

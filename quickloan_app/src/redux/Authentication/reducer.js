@@ -64,6 +64,8 @@ export const reducer = (state = initialState, { type, payload }) => {
         isAuth: false
       }
     }
+
+    
     case UPDATE_PROFILE_SUCCESS:
       return {
         ...state,

@@ -1,4 +1,3 @@
-
 package com.example.loanapplication.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 
 
 @Service
-public class UserService {
+public class UserService implements  IUserService{
 
     @Autowired
     private UserRepository userRepository;
@@ -48,13 +47,8 @@ public class UserService {
         return object;
     }
 
-<<<<<<< HEAD
-    public User getUserById(String id) throws ResourceNotFoundException {
-        Optional<User> userOptional = userRepository.findById(String.valueOf(id));
-=======
     public User getUserById(Long id) throws ResourceNotFoundException {
         Optional<User> userOptional = userRepository.findById(id);
->>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
         if (userOptional.isPresent()) {
             return userOptional.get();
         } else {
@@ -62,13 +56,8 @@ public class UserService {
         }
     }
 
-<<<<<<< HEAD
-    public User updateUserProfile(String id, User updatedUser) throws ResourceNotFoundException {
-        Optional<User> userOptional = userRepository.findById(String.valueOf(id));
-=======
     public User updateUserProfile(Long id, User updatedUser) throws ResourceNotFoundException {
         Optional<User> userOptional = userRepository.findById(id);
->>>>>>> e7f146d6fa8962e6f48244e785f111c4f3616228
         if (userOptional.isPresent()) {
             User user = userOptional.get();
 
@@ -115,7 +104,7 @@ public class UserService {
         return user;
     }
 
-      // public Map<String, Object> login(User user) {
+    // public Map<String, Object> login(User user) {
     //     Map<String, Object> object = new HashMap<>();
     //     User user1 = userRepository.findById(user.getUserID()).orElse(null);
     //     User admin = userRepository.findById(123456L).get();
