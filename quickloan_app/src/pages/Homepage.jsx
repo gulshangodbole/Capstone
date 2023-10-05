@@ -361,14 +361,13 @@ import {
               xl: "50px",
             }}
             fontFamily={"Archivobold"}
-            data-aos="zoom-in"
+            data-aos="zoom-in-up"
             color="#5a287d"
           >
             Why get a loan from us?
           </Heading>
           {/* image-1---------*/}
           <Box
-            data-aos="zoom-in"
             m="auto"
             w={{
               base: "500px",
@@ -389,6 +388,7 @@ import {
           >
             <Image
               borderRadius={"20px"}
+              data-aos="fade-left"
               w="100%"
               src={banner}
               alt="Happy family"
@@ -448,6 +448,7 @@ import {
           >
             <Box
               padding="30px"
+              data-aos="zoom-in-up"
               borderRadius={"10px"}
               boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
               backgroundColor={"white"}
