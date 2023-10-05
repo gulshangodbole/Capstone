@@ -74,7 +74,7 @@ import {
     });
     const { id } = useSelector((store) => {
       console.log('store:', store);
-      return { id: store.AuthReducer.currentUser.id };
+      return { id: store.AuthReducer.currentUser.userID };
     });
 
   
@@ -134,7 +134,7 @@ import {
               Apply in a flash now for a 5 star rated loan
             </Heading>
             {id ? (
-        <Link to={`verification`}><Button
+        <Link to="/verification"><Button
         rightIcon={<GiReceiveMoney size="25px" />}
         colorScheme={"pink"}
         borderRadius={"20px"}
