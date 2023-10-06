@@ -59,9 +59,9 @@ public class LoanController {
         return new ResponseEntity<>(createdLoan, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{custId}/status/{status}")
-    public ResponseEntity<Loan> updateSupportStatus(@PathVariable int custId, @PathVariable String status) {
-        Loan updatedLoan = loanService.updateLoanStatus(custId, status);
+    @PutMapping("/{id}/{status}")
+    public ResponseEntity<Loan> updateSupportStatus(@PathVariable int id, @PathVariable String status) {
+        Loan updatedLoan = loanService.updateLoanStatus(id, status);
         return new ResponseEntity<>(updatedLoan, HttpStatus.OK);
     }
 }
