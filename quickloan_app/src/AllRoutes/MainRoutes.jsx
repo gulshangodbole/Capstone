@@ -19,6 +19,7 @@ import EditProfile from "../pages/EditProfile";
 import Dashboard from "../pages/Dashboard";
 import AdminSupport from "../pages/AdminSupport";
 import Payment from "../pages/Payment";
+import Loan from "../pages/Loans";
 
 export const MainRoutes = () => {
   return (
@@ -32,7 +33,14 @@ export const MainRoutes = () => {
           </PrivateRoute>
         }
       />
-
+      <Route
+  path="/loan"
+  element={
+    <PrivateRoute>
+      <Loan />
+    </PrivateRoute>
+  }
+/>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
 

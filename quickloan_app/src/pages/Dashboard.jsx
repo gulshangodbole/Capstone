@@ -59,7 +59,7 @@ export default function Dashboard() {
           <div className='B-section-part'>
             <img src={p3} alt="" />
             <h3>{category}</h3>
-            <h3>Your Loan</h3>
+            <Link to={`/loan`}><h3>Your Loan</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p4} alt="" />
