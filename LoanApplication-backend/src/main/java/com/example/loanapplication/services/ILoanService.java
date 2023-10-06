@@ -15,5 +15,5 @@ interface ILoanService {
 
     Loan updateLoanStatus(int id, String status);
 
-    Loan getLoanByStatus(String status);
+    List<Loan> getLoanByStatus(String status);
 }

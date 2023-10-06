@@ -32,3 +32,18 @@ export const fetchLoans = (id) => {
       });
   };
 };
+
+export const fetchPendingLoans = () => {
+  return (dispatch) => {
+    dispatch(fetchLoansRequest());
+   axios
+      .get(`http://localhost:8081/api/loan/status/pending`)
+      .then((response) => {
+        console.log(response.data);
+        dispatch(fetchLoansSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(fetchLoansFailure(error.message));
+      });
+  };
+};

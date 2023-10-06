@@ -20,6 +20,7 @@ import Dashboard from "../pages/Dashboard";
 import AdminSupport from "../pages/AdminSupport";
 import Payment from "../pages/Payment";
 import Loan from "../pages/Loans";
+import AdminDashboard from "../pages/AdminDashboard";
 
 export const MainRoutes = () => {
   return (
@@ -31,6 +32,12 @@ export const MainRoutes = () => {
           <PrivateRoute>
             <Dashboard />
           </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/dashboard"
+        element={
+            <AdminDashboard />
         }
       />
       <Route

@@ -28,7 +28,7 @@ export const Admin = () => {
   useEffect(() => {
     dispatch(getUsersAction);
     setLoan(loans);
-    setLoanData(false);
+    
     console.log(users);
   }, [loans]);
 
@@ -42,7 +42,7 @@ export const Admin = () => {
 
   const handleLoans = async (id) => {
     await dispatch(fetchLoans(id));
-
+    setLoanData(false);
     setPid(id);
   };
 

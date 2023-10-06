@@ -33,10 +33,10 @@ public class LoanController {
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<Loan> getLoanByStatus(@PathVariable String status) {
-        Loan loan = loanService.getLoanByStatus(status);
-        if (loan != null) {
-            return new ResponseEntity<>(loan, HttpStatus.OK);
+    public ResponseEntity<List<Loan>> getLoanByStatus(@PathVariable String status) {
+        List<Loan> loans = loanService.getLoanByStatus(status);
+        if (loans != null) {
+            return new ResponseEntity<>(loans, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

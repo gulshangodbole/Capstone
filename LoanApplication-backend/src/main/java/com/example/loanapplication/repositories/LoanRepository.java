@@ -10,5 +10,5 @@ import java.util.List;
 public interface LoanRepository extends JpaRepository<Loan, Integer> {
     List<Loan> findAllByCustId(int custId);
 
-    Loan findByStatus(String status);
+    List<Loan> findAllByStatus(String status);
 }

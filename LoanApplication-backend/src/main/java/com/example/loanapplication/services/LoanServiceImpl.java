@@ -32,8 +32,8 @@ public class LoanServiceImpl implements ILoanService{
     }
 
     @Override
-    public Loan getLoanByStatus(String status) {
-        return loanRepository.findByStatus(status);
+    public List<Loan> getLoanByStatus(String status) {
+        return loanRepository.findAllByStatus(status);
     }
 
     @Override

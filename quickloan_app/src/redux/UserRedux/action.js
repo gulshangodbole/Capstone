@@ -34,6 +34,16 @@ export const getUserDetails = (userId) => async (dispatch) => {
   }
 };
 
+export const getAllUserDetails = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`http://localhost:8081/api/users`);
+    console.log("action response",res.data)
+    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({ type: UPDATE_PROFILE_FAILURE, payload: error });
+  }
+};
+
 export const partialUpdateProfile = (id, creditscore, income) => async (dispatch) => {
   dispatch({ type: PARTIAL_UPDATE_PROFILE_REQUEST });
 
