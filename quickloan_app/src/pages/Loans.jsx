@@ -14,25 +14,16 @@ import {
 import { useParams } from "react-router-dom"; // Assuming you are using React Router
 import axios from "axios";
 import Swal from "sweetalert2";
+import { fetchLoans } from '../redux/LoanRedux/action';
 
 const Loan = () => {
-  const [loans, setLoans] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { currentUser } = useSelector((store) => store.AuthReducer);
-
-  useEffect(async () => {
-    const id = currentUser.userID; // Assign the value directly
-
-    try {
-      const response = await axios.get(`http://localhost:8081/api/loan/${id}`);
-      setLoans(response.data);
-      console.log("Loans", loans);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  }, []);
+  const dispatch = useDispatch();
+  const { loans, loading, error } = useSelector((state) => state.loansReducer);
+  useEffect(() => {
+    dispatch(fetchLoans(currentUser.userID));
+  }, [dispatch, currentUser.userID]);
+      
 
   return (
     <Box mb={8}>

@@ -6,5 +6,6 @@ import {adminReducer} from "./AdminRedux/adminReducer"
 import supportReducer from "./SupportRedux/reducer"
 import profileReducer from "./UserRedux/reducer"
 import bankApplicationReducer from "./BankApplication/reducer"
-const rootreducer = combineReducers({ProductReducer,AuthReducer,adminReducer,bankApplicationReducer,supportReducer, profileReducer})
+import loansReducer from "./LoanRedux/reduxer"
+const rootreducer = combineReducers({ProductReducer,AuthReducer,adminReducer,bankApplicationReducer,supportReducer, profileReducer, loansReducer})
 export const store =legacy_createStore(rootreducer,applyMiddleware(thunk))
