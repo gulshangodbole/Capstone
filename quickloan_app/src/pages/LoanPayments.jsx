@@ -28,7 +28,7 @@ export default function LoanPayments() {
     const [loanId, setLoanId] = useState('');
 
     const {state} = useLocation();
-    const { payment, isLoading, error } = useSelector((state) => state.paymentReducer);
+    const { payment, payments, isLoading, error } = useSelector((state) => state.paymentReducer);
 
     useEffect(() => {
         if(state !== null){
@@ -38,9 +38,7 @@ export default function LoanPayments() {
 
     useEffect(() => {
         dispatch(fetchPayments(loanId));
-        console.log(loanId);
-        console.log(payment);
-    }, [dispatch])
+    }, [dispatch, loanId])
     
 
 
@@ -60,7 +58,7 @@ export default function LoanPayments() {
                 as="form">
                     {isLoading ? (
         <p>Loading...</p>
-      ) : payment == null || payment.length == 0 ? (
+      ) : payments == null || payments.length == 0 ? (
         <h2>No Payments</h2>
       ) : (
         <Table variant="striped" colorScheme="purple">
@@ -74,7 +72,7 @@ export default function LoanPayments() {
             </Tr>
           </Thead>
           <Tbody>
-            {payment
+            {payments
               .sort((a, b) => new Date(b.date) - new Date(a.date))
               .map((p) => (
                 <Tr key={p.paymentId}>
