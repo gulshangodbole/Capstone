@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
     Stat,
@@ -9,11 +9,9 @@ import {
     FormControl,
     GridItem,
     FormLabel,
-    Slider,
-    SliderMark,
-    SliderTrack,
-    SliderFilledTrack,
-    SliderThumb
+    FormErrorMessage,
+    FormHelperText,
+    Input
 } from '@chakra-ui/react'
 
 
@@ -27,10 +25,10 @@ function StatsCard(props) {
             border={'none'}
             bgColor={"#CBC3E3"}
             rounded={'lg'}>
-            <StatLabel color={"#710193"} fontWeight={'medium'} isTruncated>
+            <StatLabel color={"#710193"} fontFamily={"Archivobold"} fontWeight={'medium'} isTruncated>
                 {title}
             </StatLabel>
-            <StatNumber color={"#311432"} fontSize={'2xl'} fontWeight={'medium'}>
+            <StatNumber color={"#311432"} fontFamily={"RNHouseSans"} fontSize={'2xl'} fontWeight={'medium'}>
                 {stat}
             </StatNumber>
         </Stat>
@@ -38,19 +36,30 @@ function StatsCard(props) {
 }
 
 
-const LoanDetails = ({ loanId, loanAmount, loanTerm, dueAmount, setPayAmount }) => {
+const LoanDetails = ({ loanId, loanAmount, loanTerm, dueAmount, payAmount, setPayAmount, errorMessage, setErrorMessage }) => {
 
-    const [sliderValue, setSliderValue] = useState(0);
 
-    const labelStyles = {
-        mt: '2',
-        ml: '-2.5',
-        fontSize: 'sm',
+    const handleAmountChange = (e) => {
+        const amount = parseFloat(e.target.value);
+        setPayAmount(amount)
+
+        // Check if the payment amount exceeds $25,000
+        if (amount > dueAmount) {
+            setErrorMessage('Payment amount cannot exceed Due Amount');
+        } 
+        
+        else if (amount < 100){
+            setErrorMessage('Minimum payment amount should be 100');
+        }
+
+        else {
+            setErrorMessage('');
+        }
     }
 
     return (
         <>
-            <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
+            <Heading w="100%" textAlign={'center'} fontFamily={"Archivoblack"} fontWeight="normal" mb="2%">
                 Loan Details
             </Heading>
 
@@ -60,8 +69,8 @@ const LoanDetails = ({ loanId, loanAmount, loanTerm, dueAmount, setPayAmount }) 
                 border={'none'}
                 bgColor={"#CBC3E3"}
                 rounded={'lg'}>
-                <StatLabel color={"#710193"} fontSize={'lg'} fontWeight={'medium'} isTruncated>Loan ID</StatLabel>
-                <StatNumber color={"#311432"} fontSize={'4xl'} letterSpacing={"7px"} fontWeight={'medium'}>{loanId}</StatNumber>
+                <StatLabel color={"#710193"} fontFamily={"Archivobold"} fontSize={'lg'} fontWeight={'medium'} isTruncated>Loan ID</StatLabel>
+                <StatNumber color={"#311432"} fontFamily={"RNHouseSans"} fontSize={'4xl'} letterSpacing={"7px"} fontWeight={'medium'}>{loanId}</StatNumber>
             </Stat>
 
             <SimpleGrid mt="2%" columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
@@ -70,47 +79,25 @@ const LoanDetails = ({ loanId, loanAmount, loanTerm, dueAmount, setPayAmount }) 
                 <StatsCard title={'Due Amount'} stat={dueAmount} />
             </SimpleGrid>
 
-            <FormControl px={"20px"} as={GridItem} colSpan={[6, 3]}>
 
-                <FormLabel
-                    htmlFor="pay-amount"
+            <FormControl isRequired isInvalid={!!errorMessage} as={GridItem} colSpan={[6, 3]}>
+                <FormLabel htmlFor="pay-amount"
+                    fontFamily={"Archivobold"}
                     fontSize={"lg"}
                     mt="10%"
-                    mb="5%"
-                    pl="45px"
+                    mb="2%"
+                    pl="3rem"
                 >
-                    Amount to Pay
+                    Amount to pay
                 </FormLabel>
-
-                <Slider
-                    id="slider"
-                    defaultValue={0}
-                    colorScheme='purple'
-                    size={"lg"}
-                    onChange={(val) => setSliderValue(val)}
-                    onChangeEnd={(val) => setPayAmount(val * dueAmount * 0.01)}
-                >
-                    <SliderMark value={0} {...labelStyles}>
-                        0
-                    </SliderMark>
-                    <SliderMark value={100} {...labelStyles}>
-                        {dueAmount}
-                    </SliderMark>
-                    <SliderMark
-                        value={sliderValue}
-                        textAlign='center'
-                        mt='-10'
-                        ml='-5'
-                        w='12'
-                    >
-                        {sliderValue * dueAmount * 0.01}
-                    </SliderMark>
-                    <SliderTrack>
-                        <SliderFilledTrack />
-                    </SliderTrack>
-                    <SliderThumb boxSize={5} />
-                </Slider>
-
+                <Input id="loan-id"
+                    type="number"
+                    fontFamily={"RNHouseSans"}
+                    required
+                    value={payAmount}
+                    onChange={(e) => handleAmountChange(e)}
+                />
+                <FormErrorMessage pl="3rem">{errorMessage}</FormErrorMessage>
             </FormControl>
 
 

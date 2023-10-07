@@ -5,6 +5,7 @@ import com.example.loanapplication.repositories.LoanRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,22 @@ public class LoanServiceImpl implements ILoanService{
     @Override
     public List<Loan> getLoanByStatus(String status) {
         return loanRepository.findAllByStatus(status);
+    }
+
+    @Override
+    @Transactional
+    public Loan updateDueAmount(int id, int dueAmount) {
+        Optional<Loan> optionalLoan = loanRepository.findById(id);
+
+        if(optionalLoan.isPresent()){
+            Loan loan = optionalLoan.get();
+            loan.setDueAmount(dueAmount);
+            return loanRepository.save(loan);
+        }
+        else{
+            throw new EntityNotFoundException("Loan request with ID " + id + " not found");
+        }
+
     }
 
     @Override

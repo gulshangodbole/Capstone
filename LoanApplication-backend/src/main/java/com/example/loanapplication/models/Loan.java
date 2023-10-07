@@ -80,7 +80,7 @@ public class Loan {
         return dueAmount;
     }
 
-    public void setDueAmount(int dueAmount) {
+        public void setDueAmount(int dueAmount) {
         this.dueAmount = dueAmount;
     }
 

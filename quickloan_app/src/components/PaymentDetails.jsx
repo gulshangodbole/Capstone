@@ -28,12 +28,12 @@ const PaymentDetails = ({ formData, setFormData }) => {
         else {
             setFormData({ ...formData, [name]: value });
         }
-        console.log(formData.cvv.length)
+        
     };
 
     return (
         <>
-            <Heading mb="5%" w="100%" textAlign={'center'} fontWeight="normal">
+            <Heading mb="5%" w="100%" textAlign={'center'} fontFamily={"Archivoblack"} fontWeight="normal">
                 Payment Method
             </Heading>
             <SimpleGrid columns={1} spacing={6}>
@@ -43,6 +43,7 @@ const PaymentDetails = ({ formData, setFormData }) => {
                             type="text"
                             id="cardNumber"
                             name="cardNumber"
+                            fontFamily={"RNHouseSans"}
                             value={formData.cardNumber}
                             onChange={handleInputChange}
                             placeholder="Card Number"
@@ -54,6 +55,7 @@ const PaymentDetails = ({ formData, setFormData }) => {
                             type="text"
                             id="cardName"
                             name="cardName"
+                            fontFamily={"RNHouseSans"}
                             value={formData.cardName}
                             onChange={handleInputChange}
                             placeholder="Name On Card"
@@ -69,7 +71,9 @@ const PaymentDetails = ({ formData, setFormData }) => {
                             value={formData.expiryMonth}
                             onChange={handleInputChange}
                             pl={"1.5rem"}
+                            fontFamily={"RNHouseSans"}
                             placeholder="Select Expiry Month"
+                            bgColor= "#f4f4f4"
                             required
                         >
                             <option value="01">01</option>
@@ -91,8 +95,10 @@ const PaymentDetails = ({ formData, setFormData }) => {
                         <Select
                             id="expiryYear"
                             name="expiryYear"
+                            fontFamily={"RNHouseSans"}
                             value={formData.expiryYear}
                             onChange={handleInputChange}
+                            bgColor= "#f4f4f4"
                             placeholder="Select Expiry Year"
                             required
                         >
@@ -116,6 +122,7 @@ const PaymentDetails = ({ formData, setFormData }) => {
                             id="cvv"
                             name="cvv"
                             value={formData.cvv}
+                            fontFamily={"RNHouseSans"}
                             onChange={handleInputChange}
                             placeholder="CVV"
                             required

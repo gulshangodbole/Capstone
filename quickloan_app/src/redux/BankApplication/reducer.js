@@ -28,6 +28,11 @@ import {
         };
       case FETCH_LOAN_BY_STATUS_SUCCESS:
       case FETCH_LOAN_BY_ID_SUCCESS:
+        return{
+          ...state,
+          loan: action.loan,
+          notFound: false,
+        }
       case CREATE_LOAN_SUCCESS:
       case UPDATE_LOAN_STATUS_SUCCESS:
         return {

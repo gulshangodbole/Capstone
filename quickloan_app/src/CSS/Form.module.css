@@ -160,14 +160,14 @@ input[type='number'] {
   /* height: 40px; */
 }
 input::placeholder {
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
+  font-family: 'RNHouseSans', sans-serif;
+  font-size: 17px;
   font-weight: 500;
   color: #333;
 }
 
 select::placeholder{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'RNHouseSans', sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: #333;

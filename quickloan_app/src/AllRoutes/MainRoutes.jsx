@@ -100,7 +100,9 @@ export const MainRoutes = () => {
       <Route 
         path="/payment"
         element={
-          <Payment />
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
         }
       />
 

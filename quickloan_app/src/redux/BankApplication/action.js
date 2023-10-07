@@ -9,7 +9,7 @@ import { FETCH_ALL_LOANS_SUCCESS,
 
     const BASE_URL = 'http://localhost:8081/api/loan'; 
 
-export const fetchAllLoansSuccess = (loans) => ({
+  export const fetchAllLoansSuccess = (loans) => ({
     type: FETCH_ALL_LOANS_SUCCESS,
     loans,
   });
