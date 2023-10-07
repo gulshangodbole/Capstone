@@ -71,7 +71,7 @@ export const Admin = () => {
       loans: loan.map((loan) => {
         if (loan.id === id) {
           const ans = loanStatuses.find((status) => status.id === id).status;
-          fetch(`http://localhost:8081/api/loan/${id}/${ans}`, {
+          fetch(`http://localhost:8081/api/loan/${id}/status?status=${ans}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

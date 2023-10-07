@@ -10,8 +10,9 @@ import {
   TableCaption,
   Select,
   Box,
+  Button,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom"; // Assuming you are using React Router
+import { useNavigate, useParams } from "react-router-dom"; // Assuming you are using React Router
 import axios from "axios";
 import Swal from "sweetalert2";
 import { fetchLoans } from '../redux/LoanRedux/action';
@@ -24,6 +25,7 @@ const Loan = () => {
     dispatch(fetchLoans(currentUser.userID));
   }, [dispatch, currentUser.userID]);
       
+  const navigate = useNavigate();
 
   return (
     <Box mb={8}>
@@ -33,7 +35,7 @@ const Loan = () => {
         <h2>No Loans</h2>
       ) : (
         <Table variant="striped" colorScheme="purple">
-          <TableCaption placement="top">Loan Details</TableCaption>
+          <TableCaption fontFamily={"Archivoblack"} fontSize={"35px"} placement="top">Loan Details</TableCaption>
           <Thead>
             <Tr>
               <Th>Loan ID</Th>
@@ -43,6 +45,7 @@ const Loan = () => {
               <Th>Loan Purpose</Th>
               <Th>Loan Term</Th>
               <Th>Loan Status</Th>
+              
             </Tr>
           </Thead>
           <Tbody>
@@ -57,6 +60,7 @@ const Loan = () => {
                   <Td>{loan.loanPurpose}</Td>
                   <Td>{loan.loanTerm}</Td>
                   <Td>{loan.status}</Td>
+                  <Td><Button isDisabled={loan.status.toLowerCase()!=='accept'} onClick={() => navigate('/payment', {state: loan.id})}>Pay Loan</Button></Td>
                 </Tr>
               ))}
           </Tbody>

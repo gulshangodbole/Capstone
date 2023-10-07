@@ -14,13 +14,14 @@ import PaymentDetails from '../components/PaymentDetails'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchLoanById } from '../redux/BankApplication/action'
 import { createPayment } from '../redux/PaymentRedux/action'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 
 export default function Payment() {
     const toast = useToast()
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    
 
     const [step, setStep] = useState(1)
     const [progress, setProgress] = useState(33.33)
@@ -38,9 +39,18 @@ export default function Payment() {
     const [loanId, setLoanId] = useState('');
     const [payAmount, setPayAmount] = useState(100);
 
+    const {state} = useLocation();
+    // console.log('state ', state)
+
     const { currentUser } = useSelector((store) => store.AuthReducer);
     const { loans, loan, notFound } = useSelector((store) => store.bankApplicationReducer);
     // console.log('loan: ', loan)
+
+    useEffect(() => {
+        if(state !== null){
+            setLoanId(state);
+        }
+    }, [state])
 
 
     useEffect(() => {

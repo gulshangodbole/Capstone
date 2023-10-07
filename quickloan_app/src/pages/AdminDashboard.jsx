@@ -33,18 +33,18 @@ const AdminDashboard = () => {
     dispatch(getUsersAction);
   }, [dispatch]);
 
-  const handleUpdateStatus = (id) => {
+  const handleUpdateStatus = async(id) => {
     if (!statusSelected) {
       return;
     }
 
-    fetch(`http://localhost:8081/api/loan/${id}/${statusSelected}`, {
+    await fetch(`http://localhost:8081/api/loan/${id}/status?status=${statusSelected}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => console.log(response.json()))
       .then((updatedData) => {
         Swal.fire({
           position: "center",
