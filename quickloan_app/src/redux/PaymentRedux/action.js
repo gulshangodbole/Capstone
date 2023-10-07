@@ -33,7 +33,7 @@ export const createPayment = (paymentData) => {
             const response = await axios.post('http://localhost:8081/api/payment', paymentData);
 
             const createdPayment = response.data;
-
+            console.log(createdPayment);
             // Dispatch success action
             dispatch(createPaymentSuccess(createdPayment));
             return 1;
@@ -44,3 +44,33 @@ export const createPayment = (paymentData) => {
         }
     };
 };
+
+export const fetchPayments = (id) => {
+    return async (dispatch) => {
+      dispatch(createPaymentRequest());
+      await axios
+        .get(`http://localhost:8081/api/payment/loan/${id}`)
+        .then((response) => {
+            console.log(response.data);
+          dispatch(createPaymentSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(createPaymentFailure(error.message));
+        });
+    };
+  };
+
+  export const fetchPaymentsByCust = (id) => {
+    return async (dispatch) => {
+      dispatch(createPaymentRequest());
+      await axios
+        .get(`http://localhost:8081/api/payment/customer/${id}`)
+        .then((response) => {
+            console.log(response.data);
+          dispatch(createPaymentSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(createPaymentFailure(error.message));
+        });
+    };
+  };

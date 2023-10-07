@@ -2,6 +2,8 @@ package com.example.loanapplication.models;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 public class Payment {
     @Id
@@ -11,7 +13,15 @@ public class Payment {
     private int loanId;
     private int amount;
     private int custId;
+    private Date date;
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Payment() {
     }
@@ -51,18 +61,21 @@ public class Payment {
         return custId;
     }
 
-    public void setCustId(int custId) {
-        this.custId = custId;
-    }
-
-
     @Override
     public String toString() {
         return "Payment{" +
                 "paymentId=" + paymentId +
                 ", loanId=" + loanId +
                 ", amount=" + amount +
-                ", customerId=" + custId +
+                ", custId=" + custId +
+                ", date=" + date +
                 '}';
     }
+
+    public void setCustId(int custId) {
+        this.custId = custId;
+    }
+
+
+
 }

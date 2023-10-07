@@ -108,6 +108,7 @@ export default function Payment() {
             "loanId": loanId,
             "amount": payAmount,
             "custId": currentUser.userID,
+            "date": Date.now()
         }
         console.log(paymentData)
 

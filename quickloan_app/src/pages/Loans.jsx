@@ -60,7 +60,8 @@ const Loan = () => {
                   <Td>{loan.loanPurpose}</Td>
                   <Td>{loan.loanTerm}</Td>
                   <Td>{loan.status}</Td>
-                  <Td><Button isDisabled={loan.status.toLowerCase()!=='accept'} onClick={() => navigate('/payment', {state: loan.id})}>Pay Loan</Button></Td>
+                  <Td><Button isDisabled={loan.status.toLowerCase()!=='accepted'} onClick={() => navigate('/payment', {state: loan.id})}>Pay Loan</Button></Td>
+                  <Td><Button onClick={() => navigate('/paymentHistory', {state: loan.id})}>Past Payments</Button></Td>
                 </Tr>
               ))}
           </Tbody>

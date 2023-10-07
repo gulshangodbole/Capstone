@@ -21,6 +21,8 @@ import AdminSupport from "../pages/AdminSupport";
 import Payment from "../pages/Payment";
 import Loan from "../pages/Loans";
 import AdminDashboard from "../pages/AdminDashboard";
+import Payments from "../pages/Payments";
+import LoanPayments from "../pages/LoanPayments";
 
 export const MainRoutes = () => {
   return (
@@ -69,7 +71,22 @@ export const MainRoutes = () => {
           </PrivateRoute>
         }
       />
-
+    <Route
+        path="/paymentHistory"
+        element={
+          <PrivateRoute>
+            <LoanPayments />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/payments"
+        element={
+          <PrivateRoute>
+            <Payments />
+          </PrivateRoute>
+        }
+      />
       <Route path="/admin" element={<Admin />} />
       <Route path="/admin/support" element={<AdminSupport />} />
       <Route path="/support" element={<Support />} />

@@ -13,6 +13,7 @@ import p6 from "../Images/p6.webp"
 import p7 from "../Images/p7.webp"
 import p8 from "../Images/Natwest_Secondary_Horizontal_RGB_NEG.svg";
 import p9 from "../Images/banknotes.png"
+import p10 from "../Images/indian-rupee.png";
 export default function Dashboard() {
   const { id } = useParams()
   const [data, setdata] = useState("")
@@ -59,7 +60,7 @@ export default function Dashboard() {
           <div className='B-section-part'>
             <img src={p3} alt="" />
             <h3>{category}</h3>
-            <Link to={`/loan`}><h3>Your Loan</h3></Link>
+            <Link to={`/loan`}><h3>Your Loans</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p4} alt="" />
@@ -67,9 +68,9 @@ export default function Dashboard() {
             <Link to='/support'> <h3>{name} Customer Care</h3></Link>
           </div>
           <div className='B-section-part'>
-            <img src={p5} alt="" />
+            <img src={p10} alt="" />
             <h3>{category} </h3>
-            <h3>{name} Rejection</h3>
+            <Link to='/payments'><h3>Your Payments</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p9}  alt="" />
