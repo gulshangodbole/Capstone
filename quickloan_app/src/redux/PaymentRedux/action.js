@@ -24,6 +24,26 @@ export const createPaymentFailure = (error) => {
     };
 };
 
+export const fetchPaymentsRequest = () => {
+  return {
+    type: actionTypes.FETCH_PAYMENTS_REQUEST,
+  };
+}
+
+export const fetchPaymentsSuccess = (payments) => {
+  return {
+    type: actionTypes.FETCH_PAYMENTS_SUCCESS,
+    payload: payments
+  }
+}
+
+export const fetchPaymentsFailure = (error) => {
+  return {
+      type: actionTypes.FETCH_PAYMENTS_FAILURE,
+      error: error,
+  };
+};
+
 // Async action creator to create a payment using Axios
 export const createPayment = (paymentData) => {
     return async (dispatch) => {
@@ -47,30 +67,30 @@ export const createPayment = (paymentData) => {
 
 export const fetchPayments = (id) => {
     return async (dispatch) => {
-      dispatch(createPaymentRequest());
+      dispatch(fetchPaymentsRequest());
       await axios
         .get(`http://localhost:8081/api/payment/loan/${id}`)
         .then((response) => {
             console.log(response.data);
-          dispatch(createPaymentSuccess(response.data));
+          dispatch(fetchPaymentsSuccess(response.data));
         })
         .catch((error) => {
-          dispatch(createPaymentFailure(error.message));
+          dispatch(fetchPaymentsFailure(error.message));
         });
     };
   };
 
   export const fetchPaymentsByCust = (id) => {
     return async (dispatch) => {
-      dispatch(createPaymentRequest());
+      dispatch(fetchPaymentsRequest());
       await axios
         .get(`http://localhost:8081/api/payment/customer/${id}`)
         .then((response) => {
             console.log(response.data);
-          dispatch(createPaymentSuccess(response.data));
+          dispatch(fetchPaymentsSuccess(response.data));
         })
         .catch((error) => {
-          dispatch(createPaymentFailure(error.message));
+          dispatch(fetchPaymentsFailure(error.message));
         });
     };
   };

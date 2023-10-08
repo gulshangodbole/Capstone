@@ -79,7 +79,9 @@ import {
     }
   }, [location]);
     useEffect(() => {
-      Aos.init();
+      Aos.init({
+        startEvent: 'load',
+      });
     }, []);
   
     const { activeStep } = useSteps({
@@ -350,11 +352,12 @@ import {
               xl: "600px",
             }}
             borderRadius={"30px"}
-            data-aos="fade-left"
+            data-aos="zoom-in-up"
           >
             <Image
               w="100%"
               borderRadius={"30px"}
+              data-aos="zoom-in-up"
               src={
                 "https://i.pinimg.com/originals/e8/11/05/e811058549f7de3ab1b87d8ce59d94e2.gif"
               }
@@ -398,12 +401,13 @@ import {
               lg: "block",
               xl: "block",
             }}
+            data-aos="zoom-in-up"
             borderRadius={"20px"}
             boxShadow="rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px"
           >
             <Image
               borderRadius={"20px"}
-              data-aos="fade-left"
+              data-aos="zoom-in-up"
               w="100%"
               src={banner}
               alt="Happy family"

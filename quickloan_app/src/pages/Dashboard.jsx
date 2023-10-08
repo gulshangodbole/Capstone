@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import styled from 'styled-components'
 import p1 from "../Images/p1.webp"
-import p2 from "../Images/p2.webp"
+import p2 from "../Images/loan.png"
 import p3 from "../Images/p3.webp"
 import p4 from "../Images/p4.webp"
 import p5 from "../Images/p5.webp"
@@ -55,7 +55,7 @@ export default function Dashboard() {
           <div className='B-section-part'>
             <img src={p2} alt="" />
             <h3>{category}</h3>
-            <Link to='/verification'><h3>{name} Eligibility</h3></Link>
+            <Link to='/verification'><h3>Apply Loan</h3></Link>
           </div>
           <div className='B-section-part'>
             <img src={p3} alt="" />
@@ -75,7 +75,7 @@ export default function Dashboard() {
           <div className='B-section-part'>
             <img src={p9}  alt="" />
             <h3>{category} </h3>
-            <Link to='/payment'><h3>{name} Pay Loan</h3></Link>
+            <Link to='/payment'><h3>Pay Loan</h3></Link>
 
           </div>
           
