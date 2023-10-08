@@ -130,7 +130,7 @@ import {
         </Center>
   
         <Center pt="20px">
-          <Text>Copyright © National Westminster Bank plc 2023. Registered office: 250 Bishopsgate, London, EC2M 4AA.</Text>
+          <Text>Copyright © Natwest 2023</Text>
         </Center>
       </Box>
     );
