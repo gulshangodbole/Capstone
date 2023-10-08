@@ -17,35 +17,21 @@ import LoanId from '../components/LoanId'
 import LoanDetails from '../components/LoanDetails'
 import PaymentDetails from '../components/PaymentDetails'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPayments } from '../redux/PaymentRedux/action'
+import { fetchPaymentsByCust } from '../redux/PaymentRedux/action'
 import { createPayment } from '../redux/PaymentRedux/action'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 
 export default function LoanPayments() {
     const dispatch = useDispatch();
-
-    const [loanId, setLoanId] = useState('');
-
-    const {state} = useLocation();
+    const { currentUser } = useSelector((store) => store.AuthReducer);
     const { payment, isLoading, error } = useSelector((state) => state.paymentReducer);
 
     useEffect(() => {
-        if(state !== null){
-            setLoanId(state);
-        }
-    }, [state])
-
-    useEffect(() => {
-        dispatch(fetchPayments(loanId));
-        console.log(loanId);
+        console.log(currentUser);
+        dispatch(fetchPaymentsByCust(currentUser.userID));
         console.log(payment);
-    }, [dispatch])
-    
-
-
-    
-
+    }, [dispatch, currentUser])
     return (
         <>
             <Box
@@ -64,7 +50,7 @@ export default function LoanPayments() {
         <h2>No Payments</h2>
       ) : (
         <Table variant="striped" colorScheme="purple">
-          <TableCaption fontFamily={"Archivoblack"} fontSize={"35px"} placement="top">Payment Details</TableCaption>
+          <TableCaption fontFamily={"Archivoblack"} fontSize={"35px"} placement="top">Your Payments</TableCaption>
           <Thead>
             <Tr>
               <Th>Payment ID</Th>

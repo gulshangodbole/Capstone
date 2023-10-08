@@ -16,6 +16,7 @@ import { useNavigate, useParams } from "react-router-dom"; // Assuming you are u
 import axios from "axios";
 import Swal from "sweetalert2";
 import { fetchLoans } from '../redux/LoanRedux/action';
+import loanPayment from './LoanPayments'
 
 const Loan = () => {
   const { currentUser } = useSelector((store) => store.AuthReducer);
@@ -60,7 +61,7 @@ const Loan = () => {
                   <Td>{loan.loanPurpose}</Td>
                   <Td>{loan.loanTerm}</Td>
                   <Td>{loan.status}</Td>
-                  <Td><Button isDisabled={loan.status.toLowerCase()!=='accepted'} onClick={() => navigate('/payment', {state: loan.id})}>Pay Loan</Button></Td>
+                  <Td><Button onClick={() => navigate('/payment', {state: loan.id})}>Pay Loan</Button></Td>
                   <Td><Button onClick={() => navigate('/paymentHistory', {state: loan.id})}>Past Payments</Button></Td>
                 </Tr>
               ))}

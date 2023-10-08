@@ -48,10 +48,10 @@ export default function Dashboard() {
         <h2>Quick Links To Handle Your {category}</h2>
         <div className='bottom-section'>
         
-          <div className='B-section-part'>
+          <div className='B-section-part' >
             <img src={p1} alt="" />
-            <h3>{category}<h3>{name} Interest Rate</h3></h3>
-          </div>
+            <h3>{category}<Link to="/?scrollTo=sectionToScrollTo">{name} Interest Rate</Link></h3>
+          </div> 
           <div className='B-section-part'>
             <img src={p2} alt="" />
             <h3>{category}</h3>
@@ -78,16 +78,7 @@ export default function Dashboard() {
             <Link to='/payment'><h3>{name} Pay Loan</h3></Link>
 
           </div>
-          <div className='B-section-part'>
-            <img src={p6} alt="" />
-            <h3>{category}</h3>
-            <h3>{name} Missed</h3>
-          </div>
-          <div className='B-section-part'>
-            <img src={p7} alt="" />
-            <h3>{category} </h3>
-            <Link to='/calculator'><h3>{name} Calculator Online</h3></Link>
-          </div>
+          
         </div>
       </div>
     </DIV>
@@ -172,7 +163,7 @@ const DIV = styled.div`
 
   .bottom-section {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 180px;
     gap: 30px;
   }
@@ -192,6 +183,7 @@ const DIV = styled.div`
     h3:hover{
       text-decoration:underline;
       cursor: pointer;
+      color:red;
     }
   }
   .B-section-part1 {

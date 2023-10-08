@@ -54,7 +54,7 @@ import {
   import "react-alice-carousel/lib/alice-carousel.css";
   import banner from "../Images/loan_banner.png"
   import ImageScroller from "../components/ImageScroller";
-
+  import { useLocation } from 'react-router-dom';
 
   
   const steps = [
@@ -64,6 +64,20 @@ import {
   ];
   
   const Homepage = () => {
+    const location = useLocation();
+  
+  useEffect(() => {
+    const { search } = location;
+    const scrollTo = new URLSearchParams(search).get('scrollTo');
+    
+    if (scrollTo) {
+      const element = document.getElementById(scrollTo);
+      
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
     useEffect(() => {
       Aos.init();
     }, []);
@@ -172,6 +186,7 @@ import {
         </Flex>
 
         {/* part-2 -------------------- */}
+        <div id="sectionToScrollTo">
         <Box m="auto" mt="150px" bgColor={"#5a287d"} p="30px" marginTop={"-10px"}>
           <Heading
             mb="20px"
@@ -202,7 +217,7 @@ import {
           </Flex>
 
         </Box>
-        
+        </div>
 
         {/* part-3 ---------------- */}
         <VStack

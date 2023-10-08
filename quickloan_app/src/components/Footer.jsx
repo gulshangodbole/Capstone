@@ -15,6 +15,18 @@ import {
 
   
   const Footer = () => {
+    const openFacebook = () => {
+      const url = 'https://www.facebook.com/NatWest/'; // Replace with the URL you want to open
+      window.open(url, '_blank'); // '_blank' opens the link in a new tab or window
+    };
+    const openTwitter = () => {
+      const url = 'https://twitter.com/NatWestGroup'; // Replace with the URL you want to open
+      window.open(url, '_blank'); // '_blank' opens the link in a new tab or window
+    };
+    const openLinkedIn = () => {
+      const url = 'https://www.linkedin.com/company/natwest'; // Replace with the URL you want to open
+      window.open(url, '_blank'); // '_blank' opens the link in a new tab or window
+    };
     
     return (
       <Box bg={"#5a287d"} color="white" p="30px" marginTop={"0px"}>
@@ -111,9 +123,9 @@ import {
         
           <HStack fontSize={"30px"} spacing={"30px"}>
           
-            <BsFacebook />
-            <BsTwitter />
-            <GrLinkedinOption />
+            <button onClick={openFacebook}><BsFacebook /></button>
+            <button onClick={openTwitter}><BsTwitter /></button>
+            <button onClick={openLinkedIn}><GrLinkedinOption /></button>
           </HStack>
         </Center>
   
