@@ -1,8 +1,5 @@
 import axios from "axios"
-import {
-    GET_USERS,
-    REQ_GET_USERS
-} from "./actionTypes"
+import {GET_USERS, REQ_GET_USERS} from "./actionTypes"
 
 export const getUsersAction = (dispatch) => {
     dispatch({

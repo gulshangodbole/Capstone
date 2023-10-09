@@ -25,23 +25,23 @@ export const createPaymentFailure = (error) => {
 };
 
 export const fetchPaymentsRequest = () => {
-  return {
-    type: actionTypes.FETCH_PAYMENTS_REQUEST,
-  };
+    return {
+        type: actionTypes.FETCH_PAYMENTS_REQUEST,
+    };
 }
 
 export const fetchPaymentsSuccess = (payments) => {
-  return {
-    type: actionTypes.FETCH_PAYMENTS_SUCCESS,
-    payload: payments
-  }
+    return {
+        type: actionTypes.FETCH_PAYMENTS_SUCCESS,
+        payload: payments
+    }
 }
 
 export const fetchPaymentsFailure = (error) => {
-  return {
-      type: actionTypes.FETCH_PAYMENTS_FAILURE,
-      error: error,
-  };
+    return {
+        type: actionTypes.FETCH_PAYMENTS_FAILURE,
+        error: error,
+    };
 };
 
 // Async action creator to create a payment using Axios
@@ -67,30 +67,30 @@ export const createPayment = (paymentData) => {
 
 export const fetchPayments = (id) => {
     return async (dispatch) => {
-      dispatch(fetchPaymentsRequest());
-      await axios
-        .get(`http://localhost:8081/api/payment/loan/${id}`)
-        .then((response) => {
-            console.log(response.data);
-          dispatch(fetchPaymentsSuccess(response.data));
-        })
-        .catch((error) => {
-          dispatch(fetchPaymentsFailure(error.message));
-        });
+        dispatch(fetchPaymentsRequest());
+        await axios
+            .get(`http://localhost:8081/api/payment/loan/${id}`)
+            .then((response) => {
+                console.log(response.data);
+                dispatch(fetchPaymentsSuccess(response.data));
+            })
+            .catch((error) => {
+                dispatch(fetchPaymentsFailure(error.message));
+            });
     };
-  };
+};
 
-  export const fetchPaymentsByCust = (id) => {
+export const fetchPaymentsByCust = (id) => {
     return async (dispatch) => {
-      dispatch(fetchPaymentsRequest());
-      await axios
-        .get(`http://localhost:8081/api/payment/customer/${id}`)
-        .then((response) => {
-            console.log(response.data);
-          dispatch(fetchPaymentsSuccess(response.data));
-        })
-        .catch((error) => {
-          dispatch(fetchPaymentsFailure(error.message));
-        });
+        dispatch(fetchPaymentsRequest());
+        await axios
+            .get(`http://localhost:8081/api/payment/customer/${id}`)
+            .then((response) => {
+                console.log(response.data);
+                dispatch(fetchPaymentsSuccess(response.data));
+            })
+            .catch((error) => {
+                dispatch(fetchPaymentsFailure(error.message));
+            });
     };
-  };
+};

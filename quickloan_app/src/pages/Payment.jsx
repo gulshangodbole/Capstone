@@ -1,27 +1,19 @@
-import { useState, useEffect } from 'react'
-import {
-    Progress,
-    Box,
-    ButtonGroup,
-    Button,
-    Flex,
-} from '@chakra-ui/react'
-
-import { useToast } from '@chakra-ui/react'
+import {useEffect, useState} from 'react'
+import {Box, Button, ButtonGroup, Flex, Progress, useToast,} from '@chakra-ui/react'
 import LoanId from '../components/LoanId'
 import LoanDetails from '../components/LoanDetails'
 import PaymentDetails from '../components/PaymentDetails'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchLoanById } from '../redux/BankApplication/action'
-import { createPayment } from '../redux/PaymentRedux/action'
-import { useNavigate, useLocation } from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {fetchLoanById} from '../redux/BankApplication/action'
+import {createPayment} from '../redux/PaymentRedux/action'
+import {useLocation, useNavigate} from 'react-router-dom'
 
 
 export default function Payment() {
     const toast = useToast()
     const navigate = useNavigate()
     const dispatch = useDispatch();
-    
+
 
     const [step, setStep] = useState(1)
     const [progress, setProgress] = useState(33.33)
@@ -42,12 +34,12 @@ export default function Payment() {
     const {state} = useLocation();
     // console.log('state ', state)
 
-    const { currentUser } = useSelector((store) => store.AuthReducer);
-    const { loans, loan, notFound } = useSelector((store) => store.bankApplicationReducer);
+    const {currentUser} = useSelector((store) => store.AuthReducer);
+    const {loans, loan, notFound} = useSelector((store) => store.bankApplicationReducer);
     // console.log('loan: ', loan)
 
     useEffect(() => {
-        if(state !== null){
+        if (state !== null) {
             setLoanId(state);
         }
     }, [state])
@@ -77,19 +69,15 @@ export default function Payment() {
                     isClosable: true,
                     position: "bottom"
                 })
-            }
-            else {
+            } else {
                 setStep(step + 1)
                 setProgress(progress + 33.33)
             }
-        }
-
-        else if (step === 2) {
+        } else if (step === 2) {
             setStep(step + 1)
             setProgress(progress + 33.33)
 
-        }
-        else {
+        } else {
             setProgress(100)
         }
     }
@@ -128,7 +116,7 @@ export default function Payment() {
                     navigate("/dashboard")
                 }, 2000)
                 // setFormvalue({ fullname: "", email: "", password: "" })
-                return
+
             } else if (res === -1) {
                 return toast({
                     title: 'Payment Failed',
@@ -138,8 +126,7 @@ export default function Payment() {
                     duration: 4000,
                     isClosable: true,
                 })
-            }
-            else {
+            } else {
                 return toast({
                     title: 'Payment Failed',
                     description: 'Cannot process the transaction',
@@ -167,7 +154,8 @@ export default function Payment() {
                 mt="50px"
                 mb="170px"
                 as="form">
-                <Progress value={progress} mb="5%" mx="5%" colorScheme='purple' borderRadius="1rem" isAnimated></Progress>
+                <Progress value={progress} mb="5%" mx="5%" colorScheme='purple' borderRadius="1rem"
+                          isAnimated></Progress>
                 {step === 1 ?
                     <LoanId
                         loanId={loanId}
@@ -184,7 +172,7 @@ export default function Payment() {
                             errorMessage={errorMessage}
                             setErrorMessage={setErrorMessage}
                         /> :
-                        <PaymentDetails formData={formData} setFormData={setFormData} />}
+                        <PaymentDetails formData={formData} setFormData={setFormData}/>}
                 <ButtonGroup mt="5%" w="100%">
                     <Flex pl="45px" w="100%" justifyContent="space-between">
                         <Flex>
@@ -228,7 +216,9 @@ export default function Payment() {
                                     isCVVValid
 
                                 }
-                                onClick={(e) => { handlePay(e) }}>
+                                onClick={(e) => {
+                                    handlePay(e)
+                                }}>
                                 Pay | Rs. {payAmount}
                             </Button>
                         ) : null}

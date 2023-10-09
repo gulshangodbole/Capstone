@@ -1,23 +1,15 @@
 package com.example.loanapplication.controllers;
 
-import com.example.loanapplication.models.Support;
-import com.example.loanapplication.services.SupportServiceImpl;
+import com.example.loanapplication.entities.User;
+import com.example.loanapplication.exceptions.ResourceNotFoundException;
+import com.example.loanapplication.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-
-import com.example.loanapplication.entities.User;
-import com.example.loanapplication.exceptions.ResourceNotFoundException;
-import com.example.loanapplication.services.UserService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/users")

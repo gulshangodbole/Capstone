@@ -1,23 +1,15 @@
 package com.example.loanapplication.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import com.example.loanapplication.repositories.UserRepository;
-
-
 import com.example.loanapplication.entities.User;
-
 import com.example.loanapplication.exceptions.ResourceNotFoundException;
-//import com.capstone.backend.exceptions.TableEmptyException;
+import com.example.loanapplication.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 
 @Service

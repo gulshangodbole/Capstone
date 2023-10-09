@@ -1,34 +1,24 @@
-import {
-    Heading,
-    SimpleGrid,
-    Flex,
-    FormControl,
-    Input,
-    Select
-} from '@chakra-ui/react';
+import {Flex, FormControl, Heading, Input, Select, SimpleGrid} from '@chakra-ui/react';
 
-const PaymentDetails = ({ formData, setFormData }) => {
+const PaymentDetails = ({formData, setFormData}) => {
 
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         if ((name === 'cvv') || (name === 'cardNumber')) {
             if (name === 'cvv') {
                 const cvv = value.slice(0, 3);
-                setFormData({ ...formData, cvv });
-            }
-            else if (name === 'cardNumber') {
+                setFormData({...formData, cvv});
+            } else if (name === 'cardNumber') {
                 const formattedValue = value.replace(/\D/g, '').substring(0, 16);
                 const formattedWithSpaces = formattedValue.replace(/(\d{4})/g, '$1 ');
-                setFormData({ ...formData, cardNumber: formattedWithSpaces });
+                setFormData({...formData, cardNumber: formattedWithSpaces});
             }
 
+        } else {
+            setFormData({...formData, [name]: value});
         }
 
-        else {
-            setFormData({ ...formData, [name]: value });
-        }
-        
     };
 
     return (
@@ -73,7 +63,7 @@ const PaymentDetails = ({ formData, setFormData }) => {
                             pl={"1.5rem"}
                             fontFamily={"RNHouseSans"}
                             placeholder="Select Expiry Month"
-                            bgColor= "#f4f4f4"
+                            bgColor="#f4f4f4"
                             required
                         >
                             <option value="01">01</option>
@@ -98,7 +88,7 @@ const PaymentDetails = ({ formData, setFormData }) => {
                             fontFamily={"RNHouseSans"}
                             value={formData.expiryYear}
                             onChange={handleInputChange}
-                            bgColor= "#f4f4f4"
+                            bgColor="#f4f4f4"
                             placeholder="Select Expiry Year"
                             required
                         >

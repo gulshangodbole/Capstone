@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { ChakraProvider, useToast } from '@chakra-ui/react'
-import { Box, Center, Stepper, Step, StepIndicator, StepStatus, StepIcon, StepNumber, StepTitle, StepDescription, StepSeparator } from '@chakra-ui/react';
-import { LoanSpecificationsStep } from './LoanSpecificationsStep';
-import { SupportingDocsStep } from './SupportingDocsStep';
-import { EmploymentDetailsStep } from './EmploymentDetailsStep';
-import { PersonalInfoStep } from './PersonalInfoStep';
-import { FinancialInfoStep } from './FinancialInfoStep';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react'
+import {
+    Box,
+    Step,
+    StepDescription,
+    StepIcon,
+    StepIndicator,
+    StepNumber,
+    Stepper,
+    StepSeparator,
+    StepStatus,
+    StepTitle,
+    useToast
+} from '@chakra-ui/react'
+import {LoanSpecificationsStep} from './LoanSpecificationsStep';
+import {SupportingDocsStep} from './SupportingDocsStep';
+import {EmploymentDetailsStep} from './EmploymentDetailsStep';
+import {PersonalInfoStep} from './PersonalInfoStep';
+import {FinancialInfoStep} from './FinancialInfoStep';
+import {useDispatch, useSelector} from 'react-redux';
 import {createLoan} from '../redux/BankApplication/action';
-import { expenseUpdateProfile, getUserDetails } from "../redux/UserRedux/action";
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {expenseUpdateProfile, getUserDetails} from "../redux/UserRedux/action";
+import {useLocation, useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
-import axios from 'axios';
 
 
 export const BankApplicationMain = () => {
@@ -36,8 +46,8 @@ export const BankApplicationMain = () => {
     const initialUserInfo = {
         id: currentUser.userID,
         fullname: currentUser.fullname || "",
-        contact:  currentUser?.contact || '',
-        email:  currentUser?.email || '',
+        contact: currentUser?.contact || '',
+        email: currentUser?.email || '',
         address: currentUser?.address || '',
         employer: currentUser?.employer || '',
         jobTitle: currentUser?.jobtitle || '',
@@ -54,15 +64,15 @@ export const BankApplicationMain = () => {
         loanPurpose: '',
         loanType: '',
         status: 'pending',
-       
+
     };
 
     const steps = [
-        { title: 'First', description: 'Personal Information' },
-        { title: 'Second', description: 'Employment Details' },
-        { title: 'Third', description: 'Financial Information' },
-        { title: 'Fourth', description: 'Supporting Documents' },
-        { title: 'Fifth', description: 'Loan Specifications' },
+        {title: 'First', description: 'Personal Information'},
+        {title: 'Second', description: 'Employment Details'},
+        {title: 'Third', description: 'Financial Information'},
+        {title: 'Fourth', description: 'Supporting Documents'},
+        {title: 'Fifth', description: 'Loan Specifications'},
     ]
     const [activeStep, setActiveStep] = useState(0);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
@@ -78,18 +88,18 @@ export const BankApplicationMain = () => {
 
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserInfo({ ...userInfo, [name]: value });
+        const {name, value} = e.target;
+        setUserInfo({...userInfo, [name]: value});
     };
 
     const handleFileChange = (e) => {
-        const { name, files } = e.target;
+        const {name, files} = e.target;
         const file = files[0];
 
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setUserInfo((prevUserInfo) => ({ ...prevUserInfo, [name]: reader.result }));
+                setUserInfo((prevUserInfo) => ({...prevUserInfo, [name]: reader.result}));
             };
             reader.readAsDataURL(file);
         }
@@ -104,12 +114,12 @@ export const BankApplicationMain = () => {
             loanPurpose: userInfo.loanPurpose,
             loanTerm: userInfo.loanTerm,
             status: 'pending',
-            dueAmount: userInfo.loanAmount, 
-            date: new Date().toISOString(), 
-          };
+            dueAmount: userInfo.loanAmount,
+            date: new Date().toISOString(),
+        };
         console.log("loan", newLoan)
-            console.log("loans", loans)
-            console.log("userInfo", userInfo)
+        console.log("loans", loans)
+        console.log("userInfo", userInfo)
         if (!userInfo.employer || !userInfo.jobTitle || !userInfo.yearsOfEmployment || !userInfo.monthlyIncome || !userInfo.monthlyExpenses || !userInfo.savingsInvestments || !userInfo.assets || !userInfo.loanType || !userInfo.loanAmount || !userInfo.loanTerm || !userInfo.loanPurpose) {
             return toast({
                 title: 'Submission Failed!',
@@ -119,11 +129,10 @@ export const BankApplicationMain = () => {
                 isClosable: true,
                 position: "top"
             })
-        }
-        else {
+        } else {
             dispatch(expenseUpdateProfile(currentUser.userID, userInfo.monthlyExpenses, userInfo.savingsInvestments));
             dispatch(createLoan(newLoan)).then(() => {
-                console.log("UserInformation",userInfo)
+                console.log("UserInformation", userInfo)
                 setUserInfo(initialUserInfo)
                 Swal.fire({
                     position: 'center',
@@ -142,21 +151,22 @@ export const BankApplicationMain = () => {
     return (
 
 
-        <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }} mb={"50px"}>
+        <Box display={{base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex"}} mt="50px"
+             ml={{base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px"}} mb={"50px"}>
 
-            <Box w={{ base: "200px", sm: "200px", md: "300px", lg: "300px", lg: "300px", xl: "300px" }}>
+            <Box w={{base: "200px", sm: "200px", md: "300px", lg: "300px", lg: "300px", xl: "300px"}}>
                 {/* <Box mb="20px" >
                     <img src={bankData.image} alt={bankData.name} />
                 </Box> */}
 
-                <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" colorScheme='green' >
+                <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" colorScheme='green'>
                     {steps.map((step, index) => (
                         <Step key={index} w={"300px"}>
                             <StepIndicator>
                                 <StepStatus
-                                    complete={<StepIcon />}
-                                    incomplete={<StepNumber />}
-                                    active={<StepNumber />}
+                                    complete={<StepIcon/>}
+                                    incomplete={<StepNumber/>}
+                                    active={<StepNumber/>}
                                 />
                             </StepIndicator>
 
@@ -165,42 +175,42 @@ export const BankApplicationMain = () => {
                                 <StepDescription>{activeStep <= index ? "Incomplete" : "Completed"}</StepDescription>
                             </Box>
 
-                            <StepSeparator />
+                            <StepSeparator/>
 
                         </Step>
                     ))}
                 </Stepper>
             </Box>
-            <Box mt={"20px"} ml={{ base: "10px", sm: "10px", md: "20px", lg: "100px", xl: "100px" }}>
+            <Box mt={"20px"} ml={{base: "10px", sm: "10px", md: "20px", lg: "100px", xl: "100px"}}>
 
                 {activeStep === 0 ? (
-                    <PersonalInfoStep
-                        userInfo={userInfo}
-                        handleChange={handleChange}
-                        onNext={handleNextStep}
-                    />
-                ) :
-                    activeStep === 1 ? (
-                        <EmploymentDetailsStep
+                        <PersonalInfoStep
                             userInfo={userInfo}
                             handleChange={handleChange}
-                            onNext={handleNextStep} onPrevious={handlePreviousStep}
+                            onNext={handleNextStep}
                         />
                     ) :
-                        activeStep === 2 ? (
-                            <FinancialInfoStep userInfo={userInfo} 
+                    activeStep === 1 ? (
+                            <EmploymentDetailsStep
+                                userInfo={userInfo}
                                 handleChange={handleChange}
                                 onNext={handleNextStep} onPrevious={handlePreviousStep}
                             />
                         ) :
-                            activeStep === 3 ? (
-                                <SupportingDocsStep
-                                    userInfo={userInfo}
-                                    handleFileChange={handleFileChange}
-                                    handleChange={handleChange}
-                                    onNext={handleNextStep} onPrevious={handlePreviousStep}
+                        activeStep === 2 ? (
+                                <FinancialInfoStep userInfo={userInfo}
+                                                   handleChange={handleChange}
+                                                   onNext={handleNextStep} onPrevious={handlePreviousStep}
                                 />
                             ) :
+                            activeStep === 3 ? (
+                                    <SupportingDocsStep
+                                        userInfo={userInfo}
+                                        handleFileChange={handleFileChange}
+                                        handleChange={handleChange}
+                                        onNext={handleNextStep} onPrevious={handlePreviousStep}
+                                    />
+                                ) :
                                 activeStep === 4 && (
                                     <LoanSpecificationsStep
                                         alert={alert}
@@ -212,7 +222,7 @@ export const BankApplicationMain = () => {
                                 )}
 
             </Box>
-        </Box >
+        </Box>
     )
 }
 

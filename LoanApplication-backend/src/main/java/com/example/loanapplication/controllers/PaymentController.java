@@ -1,7 +1,6 @@
 package com.example.loanapplication.controllers;
 
 
-import com.example.loanapplication.models.Loan;
 import com.example.loanapplication.models.Payment;
 import com.example.loanapplication.services.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,88 +1,84 @@
-import {  Table, TableContainer, Tbody, Td,  Th, Thead, Tr } from '@chakra-ui/react'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, {useState} from 'react'
+import {Link, useParams} from 'react-router-dom'
 
 import styled from 'styled-components'
 import p1 from "../Images/p1.webp"
 import p2 from "../Images/loan.png"
 import p3 from "../Images/p3.webp"
 import p4 from "../Images/p4.webp"
-import p5 from "../Images/p5.webp"
-import p6 from "../Images/p6.webp"
-import p7 from "../Images/p7.webp"
 import p8 from "../Images/Natwest_Secondary_Horizontal_RGB_NEG.svg";
 import p9 from "../Images/banknotes.png"
 import p10 from "../Images/indian-rupee.png";
+
 export default function Dashboard() {
-  const { id } = useParams()
-  const [data, setdata] = useState("")
+    const {id} = useParams()
+    const [data, setdata] = useState("")
 
-  // const fetchdata = () => {
-  //   axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
-  //     .then((res) => {
-  //       console.log(res.data)
-  //       setdata(res.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }
-  
-  // useEffect(() => {
-  //   fetchdata()
-  // }, [id])
+    // const fetchdata = () => {
+    //   axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
+    //     .then((res) => {
+    //       console.log(res.data)
+    //       setdata(res.data)
+    //     })
+    //     .catch((error) => {
+    //       console.log(error)
+    //     })
+    // }
 
-  const { name, image, amount, interest, category, extra } = {
-    name: "NatWest",
-    image: p8,
-    amount: 1,
-    interest: 14,
-    category: id, // Assign the 'id' variable here
-    extra: 1
-  };
+    // useEffect(() => {
+    //   fetchdata()
+    // }, [id])
 
-  return (
-    <DIV>
-      <div className='bottom'>
-        <h2>Quick Links To Handle Your {category}</h2>
-        <div className='bottom-section'>
-        
-          <div className='B-section-part' >
-            <img src={p1} alt="" />
-            <h3>{category}<Link to="/?scrollTo=sectionToScrollTo">{name} Interest Rate</Link></h3>
-          </div> 
-          <div className='B-section-part'>
-            <img src={p2} alt="" />
-            <h3>{category}</h3>
-            <Link to='/verification'><h3>Apply Loan</h3></Link>
-          </div>
-          <div className='B-section-part'>
-            <img src={p3} alt="" />
-            <h3>{category}</h3>
-            <Link to={`/loan`}><h3>Your Loans</h3></Link>
-          </div>
-          <div className='B-section-part'>
-            <img src={p4} alt="" />
-            <h3>{category}</h3>
-            <Link to='/support'> <h3>{name} Customer Care</h3></Link>
-          </div>
-          <div className='B-section-part'>
-            <img src={p10} alt="" />
-            <h3>{category} </h3>
-            <Link to='/payments'><h3>Your Payments</h3></Link>
-          </div>
-          <div className='B-section-part'>
-            <img src={p9}  alt="" />
-            <h3>{category} </h3>
-            <Link to='/payment'><h3>Pay Loan</h3></Link>
+    const {name, image, amount, interest, category, extra} = {
+        name: "NatWest",
+        image: p8,
+        amount: 1,
+        interest: 14,
+        category: id, // Assign the 'id' variable here
+        extra: 1
+    };
 
-          </div>
-          
-        </div>
-      </div>
-    </DIV>
-  )
+    return (
+        <DIV>
+            <div className='bottom'>
+                <h2>Quick Links To Handle Your {category}</h2>
+                <div className='bottom-section'>
+
+                    <div className='B-section-part'>
+                        <img src={p1} alt=""/>
+                        <h3>{category}<Link to="/?scrollTo=sectionToScrollTo">{name} Interest Rate</Link></h3>
+                    </div>
+                    <div className='B-section-part'>
+                        <img src={p2} alt=""/>
+                        <h3>{category}</h3>
+                        <Link to='/verification'><h3>Apply Loan</h3></Link>
+                    </div>
+                    <div className='B-section-part'>
+                        <img src={p3} alt=""/>
+                        <h3>{category}</h3>
+                        <Link to={`/loan`}><h3>Your Loans</h3></Link>
+                    </div>
+                    <div className='B-section-part'>
+                        <img src={p4} alt=""/>
+                        <h3>{category}</h3>
+                        <Link to='/support'><h3>{name} Customer Care</h3></Link>
+                    </div>
+                    <div className='B-section-part'>
+                        <img src={p10} alt=""/>
+                        <h3>{category} </h3>
+                        <Link to='/payments'><h3>Your Payments</h3></Link>
+                    </div>
+                    <div className='B-section-part'>
+                        <img src={p9} alt=""/>
+                        <h3>{category} </h3>
+                        <Link to='/payment'><h3>Pay Loan</h3></Link>
+
+                    </div>
+
+                </div>
+            </div>
+        </DIV>
+    )
 }
 
 const DIV = styled.div`

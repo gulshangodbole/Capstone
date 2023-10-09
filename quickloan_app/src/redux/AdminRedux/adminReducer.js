@@ -1,18 +1,18 @@
-import { GET_USERS, REQ_GET_USERS } from "./actionTypes"
+import {GET_USERS, REQ_GET_USERS} from "./actionTypes"
 
-const initState={
-    users:[],
-    loading:false
+const initState = {
+    users: [],
+    loading: false
 }
-export const adminReducer=(state=initState,{type,payload})=>{
-    switch(type){
-        case REQ_GET_USERS:{
-            return {...state,loading:true}
+export const adminReducer = (state = initState, {type, payload}) => {
+    switch (type) {
+        case REQ_GET_USERS: {
+            return {...state, loading: true}
         }
-        case GET_USERS:{
-            return {...state,users:payload,loading:false}
+        case GET_USERS: {
+            return {...state, users: payload, loading: false}
         }
-        default: 
+        default:
             return state
     }
 }

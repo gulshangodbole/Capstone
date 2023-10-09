@@ -29,7 +29,7 @@ const paymentReducer = (state = initialState, action) => {
                 isLoading: false,
             };
         case actionTypes.FETCH_PAYMENTS_REQUEST:
-            return{
+            return {
                 ...state,
                 isLoading: true,
             }
@@ -41,7 +41,7 @@ const paymentReducer = (state = initialState, action) => {
                 isLoading: false
             }
         case actionTypes.FETCH_PAYMENTS_FAILURE:
-            return{
+            return {
                 ...state,
                 payments: [],
                 error: action.error,

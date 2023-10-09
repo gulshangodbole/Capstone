@@ -1,17 +1,11 @@
-import {
-    Heading,
-    FormControl,
-    FormLabel,
-    Input
-} from '@chakra-ui/react'
+import {FormControl, FormLabel, Heading, Input} from '@chakra-ui/react'
 
 
-const LoanId = ({ loanId, handleLoanIdChange }) => {
-
+const LoanId = ({loanId, handleLoanIdChange}) => {
 
 
     return (
-        <>  
+        <>
             <Heading>{}</Heading>
             <Heading w="100%" textAlign={'center'} fontFamily={"Archivoblack"} fontWeight="normal" mb="2%">
                 Loan Details
@@ -21,13 +15,13 @@ const LoanId = ({ loanId, handleLoanIdChange }) => {
                     Loan ID
                 </FormLabel>
                 <Input id="loan-id"
-                    type="number"
-                    fontFamily={"RNHouseSans"}
-                    required
-                    value={loanId}
-                    onChange={handleLoanIdChange}
+                       type="number"
+                       fontFamily={"RNHouseSans"}
+                       required
+                       value={loanId}
+                       onChange={handleLoanIdChange}
                 />
-                
+
             </FormControl>
 
         </>

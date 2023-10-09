@@ -2,7 +2,6 @@ package com.example.loanapplication.services;
 
 import com.example.loanapplication.entities.User;
 import com.example.loanapplication.exceptions.ResourceNotFoundException;
-import com.example.loanapplication.models.Loan;
 
 import java.util.List;
 import java.util.Map;
