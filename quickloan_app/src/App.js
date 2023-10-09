@@ -10,11 +10,11 @@ import { MainRoutes } from './AllRoutes/MainRoutes';
 function App() {
   return (
     <div className="App">
-
-      <Navbar/>
-      <MainRoutes/>
-      <Footer/>
-
+      <div className="wrapper">
+        <Navbar />
+        <MainRoutes />
+      </div>
+      <Footer />
     </div>
   );
 }
