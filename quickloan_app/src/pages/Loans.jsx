@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -8,17 +8,13 @@ import {
   Th,
   Td,
   TableCaption,
-  Select,
   Box,
   Button,
   Flex
 } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
-import { useNavigate, useParams } from "react-router-dom"; // Assuming you are using React Router
-import axios from "axios";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom"; // Assuming you are using React Router
 import { fetchLoans } from '../redux/LoanRedux/action';
-import loanPayment from './LoanPayments'
 
 const Loan = () => {
   const { currentUser } = useSelector((store) => store.AuthReducer);
@@ -34,7 +30,7 @@ const Loan = () => {
     <Box mb={8}>
       {loading ? (
         <p>Loading...</p>
-      ) : loans.length == 0 ? (
+      ) : loans.length === 0 ? (
         <h2>No Loans</h2>
       ) : (
         <Table variant="striped" colorScheme="purple">

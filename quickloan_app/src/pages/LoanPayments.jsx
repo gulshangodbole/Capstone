@@ -39,7 +39,7 @@ export default function LoanPayments() {
                 as="form">
                 {isLoading ? (
                     <p>Loading...</p>
-                ) : payments == null || payments.length == 0 ? (
+                ) : payments === null || payments.length === 0 ? (
                     <h2>No Payments</h2>
                 ) : (
                     <Table variant="striped" colorScheme="purple">

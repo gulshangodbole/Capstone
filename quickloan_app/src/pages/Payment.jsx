@@ -12,10 +12,10 @@ import { useToast } from '@chakra-ui/react'
 import LoanId from '../components/LoanId'
 import LoanDetails from '../components/LoanDetails'
 import PaymentDetails from '../components/PaymentDetails'
-import {useDispatch, useSelector} from 'react-redux'
-import {fetchLoanById} from '../redux/BankApplication/action'
-import {createPayment} from '../redux/PaymentRedux/action'
-import {useLocation, useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchLoanById } from '../redux/BankApplication/action'
+import { createPayment } from '../redux/PaymentRedux/action'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 export default function Payment() {
@@ -43,8 +43,8 @@ export default function Payment() {
     const { state } = useLocation();
     // console.log('state ', state)
 
-    const {currentUser} = useSelector((store) => store.AuthReducer);
-    const {loans, loan, notFound} = useSelector((store) => store.bankApplicationReducer);
+    const { currentUser } = useSelector((store) => store.AuthReducer);
+    const { loans, loan, notFound } = useSelector((store) => store.bankApplicationReducer);
     // console.log('loan: ', loan)
 
     useEffect(() => {
@@ -171,11 +171,11 @@ export default function Payment() {
                 maxWidth={800}
                 p={6}
                 mx="auto"
-                mt="50px"
+                mt="20px"
                 mb="170px"
                 as="form">
                 <Progress value={progress} mb="5%" mx="5%" colorScheme='purple' borderRadius="1rem"
-                          isAnimated></Progress>
+                    isAnimated></Progress>
                 {step === 1 ?
                     <LoanId
                         loanId={loanId}
@@ -192,55 +192,55 @@ export default function Payment() {
                             errorMessage={errorMessage}
                             setErrorMessage={setErrorMessage}
                         /> :
-                        <PaymentDetails formData={formData} setFormData={setFormData}/>}
+                        <PaymentDetails formData={formData} setFormData={setFormData} />}
                 <ButtonGroup mt="5%" w="100%">
-                    <Flex w="95%" >                        
-                            <Spacer />
+                    <Flex w="95%" >
+                        <Spacer />
+                        <Button
+                            onClick={(e) => {
+                                handleBackButton(e)
+                            }}
+                            fontFamily={"RNHouseSans"}
+                            isDisabled={step === 1}
+                            colorScheme="purple"
+                            variant="solid"
+                            w="7rem"
+                            mr="2%">
+                            Back
+                        </Button>
+                        {step === 3 ? (
+
                             <Button
-                                onClick={(e) => {
-                                    handleBackButton(e)
-                                }}
                                 fontFamily={"RNHouseSans"}
-                                isDisabled={step === 1}
-                                colorScheme="purple"
+                                colorScheme="green"
                                 variant="solid"
-                                w="7rem"
-                                mr="2%">
-                                Back
+                                isDisabled={
+                                    !formData.cardNumber ||
+                                    !formData.cardName ||
+                                    !formData.expiry ||
+                                    !formData.cvv ||
+                                    isCardNumberValid ||
+                                    isExpiryValid ||
+                                    isCVVValid
+                                }
+                                onClick={(e) => { handlePay(e) }}>
+                                Pay | Rs. {payAmount}
                             </Button>
-                            {step === 3 ? (
+                        ) : (
+                            <Button
+                                fontFamily={"RNHouseSans"}
+                                w="7rem"
+                                isDisabled={errorMessage || step === 3}
+                                onClick={(e) => {
+                                    handleNextButton(e)
+                                }}
+                                colorScheme="purple"
+                                variant="outline">
+                                Next
+                            </Button>
+                        )}
 
-                                <Button
-                                    fontFamily={"RNHouseSans"}
-                                    colorScheme="green"
-                                    variant="solid"
-                                    isDisabled={
-                                        !formData.cardNumber ||
-                                        !formData.cardName ||
-                                        !formData.expiry ||
-                                        !formData.cvv ||
-                                        isCardNumberValid ||
-                                        isExpiryValid ||
-                                        isCVVValid
-                                    }
-                                    onClick={(e) => { handlePay(e) }}>
-                                    Pay | Rs. {payAmount}
-                                </Button>
-                            ) : (
-                                <Button
-                                    fontFamily={"RNHouseSans"}
-                                    w="7rem"
-                                    isDisabled={errorMessage || step === 3}
-                                    onClick={(e) => {
-                                        handleNextButton(e)
-                                    }}
-                                    colorScheme="purple"
-                                    variant="outline">
-                                    Next
-                                </Button>
-                            )}
 
-                        
 
                     </Flex>
                 </ButtonGroup>

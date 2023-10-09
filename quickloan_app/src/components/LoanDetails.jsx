@@ -13,10 +13,10 @@ import {
 
 
 function StatsCard(props) {
-    const {title, stat} = props
+    const { title, stat } = props
     return (
         <Stat
-            px={{base: 4, md: 8}}
+            px={{ base: 4, md: 8 }}
             py={'5'}
             shadow={'md'}
             border={'none'}
@@ -34,15 +34,15 @@ function StatsCard(props) {
 
 
 const LoanDetails = ({
-                         loanId,
-                         loanAmount,
-                         loanTerm,
-                         dueAmount,
-                         payAmount,
-                         setPayAmount,
-                         errorMessage,
-                         setErrorMessage
-                     }) => {
+    loanId,
+    loanAmount,
+    loanTerm,
+    dueAmount,
+    payAmount,
+    setPayAmount,
+    errorMessage,
+    setErrorMessage
+}) => {
 
 
     const handleAmountChange = (e) => {
@@ -65,43 +65,58 @@ const LoanDetails = ({
                 Loan Details
             </Heading>
 
-            <Stat px={{base: 4, md: 8}}
-                  py={'5'}
-                  shadow={'md'}
-                  border={'none'}
-                  bgColor={"#CBC3E3"}
-                  rounded={'lg'}>
+            <Stat px={{ base: 4, md: 8 }}
+                py={'5'}
+                shadow={'md'}
+                border={'none'}
+                bgColor={"#CBC3E3"}
+                rounded={'lg'}>
                 <StatLabel color={"#710193"} fontFamily={"Archivobold"} fontSize={'lg'} fontWeight={'medium'}
-                           isTruncated>Loan ID</StatLabel>
+                    isTruncated>Loan ID</StatLabel>
                 <StatNumber color={"#311432"} fontFamily={"RNHouseSans"} fontSize={'4xl'} letterSpacing={"7px"}
-                            fontWeight={'medium'}>{loanId}</StatNumber>
+                    fontWeight={'medium'}>{loanId}</StatNumber>
             </Stat>
 
-            <SimpleGrid mt="2%" columns={{base: 1, md: 3}} spacing={{base: 5, lg: 8}}>
-                <StatsCard title={'Loan Amount'} stat={loanAmount}/>
-                <StatsCard title={'Loan Term'} stat={loanTerm}/>
-                <StatsCard title={'Due Amount'} stat={dueAmount}/>
+            <SimpleGrid mt="2%" columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
+                <StatsCard title={'Loan Amount'} stat={loanAmount} />
+                <StatsCard title={'Loan Term'} stat={loanTerm} />
+                <StatsCard title={'Due Amount'} stat={dueAmount} />
             </SimpleGrid>
 
 
             <FormControl isRequired isInvalid={!!errorMessage} as={GridItem} colSpan={[6, 3]}>
                 <FormLabel htmlFor="pay-amount"
-                           fontFamily={"Archivobold"}
-                           fontSize={"lg"}
-                           mt="10%"
-                           mb="2%"
-                           pl="3rem"
+                    fontFamily={"Archivobold"}
+                    fontSize={"lg"}
+                    mt="5%"
+                    mb="2%"
+                    pl="3rem"
                 >
                     Amount to pay
                 </FormLabel>
                 <Input id="loan-id"
-                       type="number"
-                       fontFamily={"RNHouseSans"}
-                       required
-                       value={payAmount}
-                       onChange={(e) => handleAmountChange(e)}
+                    type="number"
+                    fontFamily={"RNHouseSans"}
+                    required
+                    value={payAmount}
+                    onChange={(e) => handleAmountChange(e)}
                 />
-                <FormErrorMessage pl="3rem">{errorMessage}</FormErrorMessage>
+                <FormErrorMessage
+                    pl={{
+                        base: "15px",
+                        sm: "35px",
+                        md: "40px",
+                        lg: "40px",
+                        xl: '40px',
+                    }}
+                    fontSize={{
+                        base: "12px",
+                        sm: "18px",
+                        md: "18px",
+                        lg: "18px",
+                        xl: '18px',
+                    }}
+                    >{errorMessage}</FormErrorMessage>
             </FormControl>
 
 

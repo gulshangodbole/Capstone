@@ -1,23 +1,65 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Heading,
     Flex,
     FormLabel,
     FormControl,
     Input,
-    Text
+    Text,
+    Image
 } from '@chakra-ui/react';
+import visa from '../Images/visa.png';
+import amex from '../Images/amex.png';
+import unionpay from '../Images/unionpay.png';
+import jcb from '../Images/jcb.png';
+import discover from '../Images/discover.png';
+import dinersClub from '../Images/diners-club.png';
+import mastercard from '../Images/mastercard.png';
+import rupay from '../Images/rupay.png';
+import defaultCard from '../Images/card-default.png';
 
-const PaymentDetails = ({formData, setFormData}) => {
+import valid from 'card-validator';
+
+
+const PaymentDetails = ({ formData, setFormData }) => {
 
     const [isNumberInvalid, setIsNumberInvalid] = useState(false);
     const [isExpiryInvalid, setIsExpiryInvalid] = useState(false);
+    const [imageSrc, setImageSrc] = useState(defaultCard);
 
+    const cardTypeToImage = (cardType) => {
+        if (cardType === 'visa') {
+            return visa;
+        }
+        if (cardType === 'mastercard') {
+            return mastercard;
+        }
+        if (cardType === 'american-express') {
+            return amex;
+        }
+        if (cardType === 'diners-club') {
+            return dinersClub;
+        }
+        if (cardType === 'discover') {
+            return discover;
+        }
+        if (cardType === 'jcb') {
+            return jcb;
+        }
+        if (cardType === 'unionpay') {
+            return unionpay;
+        }
+        if (cardType === 'maestro') {
+            return rupay;
+        }
+        return defaultCard;
+
+    }
 
 
     const handleInputChange = (e) => {
-        console.log(e.target.name)
-        console.log(e.target.value)
+        // console.log(e.target.name)
+        // console.log(e.target.value)
         let { name, value } = e.target;
         if ((name === 'cvv') || (name === 'cardNumber') || (name === 'expiry')) {
             if (name === 'cvv') {
@@ -25,13 +67,6 @@ const PaymentDetails = ({formData, setFormData}) => {
                 setFormData({ ...formData, cvv: formattedCvv });
             }
             else if (name === 'cardNumber') {
-
-                console.log('inside if statement')
-                console.log('value ', value)
-                console.log('value length', value.length)
-                console.log('char at 4 ', value.charAt(0))
-                console.log('char at 3 ', value.charAt(3))
-
 
                 const formattedValue = value.replace(/\D/g, '').substring(0, 16);
 
@@ -43,6 +78,29 @@ const PaymentDetails = ({formData, setFormData}) => {
                     }
                     formattedWithSpaces += formattedValue[i];
                 }
+
+                const cardValid = valid.number(formattedWithSpaces);
+                // console.log(cardValid);
+                if (cardValid.card === null) {
+                    setImageSrc(defaultCard)
+                }
+
+                else if (cardValid.card !== null) {
+                    setImageSrc(cardTypeToImage(cardValid.card.type))
+                }
+
+                console.log(cardValid)
+                if (
+                    formattedWithSpaces.length === 19 &&
+                    cardValid.isPotentiallyValid === false &&
+                    cardValid.isValid === false
+                ) {
+
+                    setIsNumberInvalid(true);
+                    return;
+                }
+
+                setIsNumberInvalid(false);
                 setFormData({ ...formData, cardNumber: formattedWithSpaces });
 
             }
@@ -60,7 +118,7 @@ const PaymentDetails = ({formData, setFormData}) => {
                         setIsExpiryInvalid(true)
                         return;
                     }
-                    if(month === '00'){
+                    if (month === '00') {
                         setIsExpiryInvalid(true);
                         return;
                     }
@@ -79,7 +137,7 @@ const PaymentDetails = ({formData, setFormData}) => {
                         setIsExpiryInvalid(true);
                         return;
                     }
-                    if(year.length === 4 && parseInt(year)<2023 ){
+                    if (year.length === 4 && parseInt(year) < 2023) {
                         setIsExpiryInvalid(true);
                         return;
                     }
@@ -94,7 +152,7 @@ const PaymentDetails = ({formData, setFormData}) => {
         else {
             setFormData({ ...formData, [name]: value });
         }
-        console.log(formData)
+        // console.log(formData)
     };
 
     return (
@@ -107,20 +165,59 @@ const PaymentDetails = ({formData, setFormData}) => {
                 <FormLabel htmlFor="cardNumber" fontWeight={'bold'} fontFamily={"RNHouseSans"} ml="5%" mt="2%">
                     Card Number
                 </FormLabel>
-                <Input
-                    type="text"
-                    id="cardNumber"
-                    name="cardNumber"
-                    fontFamily={"RNHouseSans"}
-                    value={formData.cardNumber}
-                    onChange={handleInputChange}
-                    placeholder="XXXX XXXX XXXX XXXX"
-                    required
-                />
+                <Flex>
+                    <Input
+                        type="text"
+                        id="cardNumber"
+                        name="cardNumber"
+                        ml={{
+                            base: "15px",
+                            sm: "35px",
+                            md: "35px",
+                            lg: "35px",
+                            xl: '35px',
+                        }}
+                        fontFamily={"RNHouseSans"}
+                        value={formData.cardNumber}
+                        onChange={handleInputChange}
+                        placeholder="XXXX XXXX XXXX XXXX"
+                        required
+                    />
+                    <Image
+                        boxSize={'71px'}
+                        src={imageSrc}
+                        mr={{
+                            base: "20px",
+                            sm: "40px",
+                            md: "40px",
+                            lg: "40px",
+                            xl: '40px',
+                        }}
+                        mt={'-12px'} />
+                </Flex>
+                {isNumberInvalid &&
+                    (
+                        <Flex>
+                            <Text
+                                color={"red"}
+                                pl={"3em"}
+                                fontSize={{
+                                    base: "10px",
+                                    sm: "12px",
+                                    md: "15px",
+                                    lg: "15px",
+                                    xl: "15px",
+                                }}
+                            >
+                                Enter valid Card Number
+                            </Text>
+                        </Flex>
+                    )
+                }
             </FormControl>
-            <FormControl mt={"2%"}>
+            <FormControl>
                 <FormLabel htmlFor="cardName" fontWeight={'bold'} fontFamily={"RNHouseSans"} ml="5%" mt="4%">
-                    Card Name
+                    Name on Card
                 </FormLabel>
                 <Input
                     type="text"
@@ -129,17 +226,27 @@ const PaymentDetails = ({formData, setFormData}) => {
                     fontFamily={"RNHouseSans"}
                     value={formData.cardName}
                     onChange={handleInputChange}
-                    placeholder="Enter Card Name"
+                    placeholder="Enter Name on Card"
                     required
                 />
             </FormControl>
-            <Flex mt={"2%"} px={"18px"}>
-                <FormControl>
-                    <FormLabel htmlFor="expiry" fontWeight={'bold'} fontFamily={"RNHouseSans"} ml="5%" mt="10%">
+
+            <Flex mt={"2%"}
+                px={{
+                    base: "4px",
+                    sm: "15px",
+                    md: "15px",
+                    lg: "18px",
+                    xl: "18px",
+                }}>
+                <FormControl flex={2} mt="5%">
+                    <FormLabel htmlFor="expiry" fontWeight={'bold'} fontFamily={"RNHouseSans"} ml="4%" >
                         Expiry
                     </FormLabel>
                     <Input
                         type={"text"}
+                        ml={"-2%"}
+                        mb={"15px"}
                         id="expiry"
                         name="expiry"
                         value={formData.expiry}
@@ -148,16 +255,28 @@ const PaymentDetails = ({formData, setFormData}) => {
                         placeholder="MM/YYYY"
                         required
                     />
-                    
-                    {isExpiryInvalid && 
-                        (<Text color={"red"} fontSize={"sm"} ml={'-8em'}>
-                        *Enter valid Expiry Date
-                        </Text>)
+
+                    {isExpiryInvalid &&
+                        (<Flex>
+                            <Text
+                                color={"red"}
+                                pl={"1.5em"}
+                                fontSize={{
+                                    base: "10px",
+                                    sm: "12px",
+                                    md: "15px",
+                                    lg: "15px",
+                                    xl: "15px",
+                                }}
+                            >
+                                Enter valid month and year
+                            </Text>
+                        </Flex>)
                     }
-                        
+
                 </FormControl>
-                <FormControl>
-                    <FormLabel htmlFor="cvv" fontWeight={'bold'} fontFamily={"RNHouseSans"} ml="5%" mt="10%">
+                <FormControl flex={1} mt="5%">
+                    <FormLabel htmlFor="cvv" fontWeight={'bold'} fontFamily={"RNHouseSans"} ml="5%">
                         CVV
                     </FormLabel>
                     <Input
