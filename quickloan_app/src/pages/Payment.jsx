@@ -1,5 +1,14 @@
-import {useEffect, useState} from 'react'
-import {Box, Button, ButtonGroup, Flex, Progress, useToast,} from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
+import {
+    Progress,
+    Box,
+    ButtonGroup,
+    Button,
+    Flex,
+    Spacer
+} from '@chakra-ui/react'
+
+import { useToast } from '@chakra-ui/react'
 import LoanId from '../components/LoanId'
 import LoanDetails from '../components/LoanDetails'
 import PaymentDetails from '../components/PaymentDetails'
@@ -23,15 +32,15 @@ export default function Payment() {
     const [formData, setFormData] = useState({
         cardNumber: '',
         cardName: '',
-        expiryMonth: '',
-        expiryYear: '',
+        // format: MM/YYYY
+        expiry: '',
         cvv: '',
     });
 
     const [loanId, setLoanId] = useState('');
     const [payAmount, setPayAmount] = useState(100);
 
-    const {state} = useLocation();
+    const { state } = useLocation();
     // console.log('state ', state)
 
     const {currentUser} = useSelector((store) => store.AuthReducer);
@@ -59,7 +68,6 @@ export default function Payment() {
     const handleNextButton = (e) => {
         e.preventDefault()
         if (step === 1) {
-            console.log(step)
             if (loan === null || loan.custId !== currentUser.userID) {
                 toast({
                     title: 'Enter correct Loan ID',
@@ -69,7 +77,18 @@ export default function Payment() {
                     isClosable: true,
                     position: "bottom"
                 })
-            } else {
+            }
+            else if (loan.dueAmount === 0) {
+                toast({
+                    title: 'Payment Complete',
+                    description: "All the dues of this loan is paid",
+                    status: 'info',
+                    duration: 3000,
+                    isClosable: true,
+                    position: "bottom"
+                })
+            }
+            else {
                 setStep(step + 1)
                 setProgress(progress + 33.33)
             }
@@ -140,7 +159,8 @@ export default function Payment() {
     }
 
     const isCVVValid = formData.cvv.length !== 3;
-    const isCardNumberValid = formData.cardNumber.length !== 20;
+    const isCardNumberValid = formData.cardNumber.length !== 19;
+    const isExpiryValid = formData.expiry.length !== 7
 
     return (
         <>
@@ -148,7 +168,7 @@ export default function Payment() {
                 borderWidth="1px"
                 rounded="lg"
                 shadow="1px 2px 3px rgba(0,0,0,0.3)"
-                maxWidth={1000}
+                maxWidth={800}
                 p={6}
                 mx="auto"
                 mt="50px"
@@ -174,8 +194,8 @@ export default function Payment() {
                         /> :
                         <PaymentDetails formData={formData} setFormData={setFormData}/>}
                 <ButtonGroup mt="5%" w="100%">
-                    <Flex pl="45px" w="100%" justifyContent="space-between">
-                        <Flex>
+                    <Flex w="95%" >                        
+                            <Spacer />
                             <Button
                                 onClick={(e) => {
                                     handleBackButton(e)
@@ -185,43 +205,43 @@ export default function Payment() {
                                 colorScheme="purple"
                                 variant="solid"
                                 w="7rem"
-                                mr="5%">
+                                mr="2%">
                                 Back
                             </Button>
-                            <Button
-                                fontFamily={"RNHouseSans"}
-                                w="7rem"
-                                isDisabled={errorMessage || step === 3}
-                                onClick={(e) => {
-                                    handleNextButton(e)
-                                }}
-                                colorScheme="purple"
-                                variant="outline">
-                                Next
-                            </Button>
-                        </Flex>
-                        {step === 3 ? (
+                            {step === 3 ? (
 
-                            <Button
-                                fontFamily={"RNHouseSans"}
-                                colorScheme="green"
-                                variant="solid"
-                                isDisabled={
-                                    !formData.cardNumber ||
-                                    !formData.cardName ||
-                                    !formData.expiryMonth ||
-                                    !formData.expiryYear ||
-                                    !formData.cvv ||
-                                    isCardNumberValid ||
-                                    isCVVValid
+                                <Button
+                                    fontFamily={"RNHouseSans"}
+                                    colorScheme="green"
+                                    variant="solid"
+                                    isDisabled={
+                                        !formData.cardNumber ||
+                                        !formData.cardName ||
+                                        !formData.expiry ||
+                                        !formData.cvv ||
+                                        isCardNumberValid ||
+                                        isExpiryValid ||
+                                        isCVVValid
+                                    }
+                                    onClick={(e) => { handlePay(e) }}>
+                                    Pay | Rs. {payAmount}
+                                </Button>
+                            ) : (
+                                <Button
+                                    fontFamily={"RNHouseSans"}
+                                    w="7rem"
+                                    isDisabled={errorMessage || step === 3}
+                                    onClick={(e) => {
+                                        handleNextButton(e)
+                                    }}
+                                    colorScheme="purple"
+                                    variant="outline">
+                                    Next
+                                </Button>
+                            )}
 
-                                }
-                                onClick={(e) => {
-                                    handlePay(e)
-                                }}>
-                                Pay | Rs. {payAmount}
-                            </Button>
-                        ) : null}
+                        
+
                     </Flex>
                 </ButtonGroup>
             </Box>
