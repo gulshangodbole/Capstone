@@ -22,105 +22,114 @@ import AdminDashboard from "../pages/AdminDashboard";
 import Payments from "../pages/Payments";
 import LoanPayments from "../pages/LoanPayments";
 
+import React, { useState,useEffect} from 'react';
 export const MainRoutes = () => {
+    
     return (
+        <>
         <Routes>
             <Route path="/" element={<Homepage/>}/>
-            <Route
-                path="/dashboard"
-                element={
-                    <PrivateRoute>
-                        <Dashboard/>
-                    </PrivateRoute>
-                }
-            />
-            <Route
-                path="/admin/dashboard"
-                element={
-                    <AdminDashboard/>
-                }
-            />
-            <Route
-                path="/loan"
-                element={
-                    <PrivateRoute>
-                        <Loan/>
-                    </PrivateRoute>
-                }
-            />
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<SignUp/>}/>
 
-            <Route path="/banks" element={<Bank/>}/>
-            <Route
-                path="/edit"
-                element={
-                    <PrivateRoute>
-                        {" "}
-                        <EditProfile/>
-                    </PrivateRoute>
-                }
-            />
-            <Route
-                path="/verification"
-                element={
-                    <PrivateRoute>
-                        <Application/>
-                    </PrivateRoute>
-                }
-            />
-            <Route
-                path="/paymentHistory"
-                element={
-                    <PrivateRoute>
-                        <LoanPayments/>
-                    </PrivateRoute>
-                }
-            />
-            <Route
-                path="/payments"
-                element={
-                    <PrivateRoute>
-                        <Payments/>
-                    </PrivateRoute>
-                }
-            />
-            <Route path="/admin" element={<Admin/>}/>
-            <Route path="/admin/support" element={<AdminSupport/>}/>
-            <Route path="/support" element={<Support/>}/>
-            <Route path="/calculator" element={<Calculator/>}/>
-
-            {/* <Route path="/bank/:bankname/:id" element={<Bank/>} /> */}
-
-            <Route path="/process" element={<Process/>}/>
-
-            <Route
-                path="/profile"
-                element={
-                    <PrivateRoute>
-                        <Profile/>
-                    </PrivateRoute>
-                }
-            />
-
-            <Route
-                path="/bankApplication"
-                element={
-                    <PrivateRoute>
-                        <BankApplication/>
-                    </PrivateRoute>
-                }
-            />
-
-            <Route
-                path="/payment"
-                element={
-                    <PrivateRoute>
-                        <Payment/>
-                    </PrivateRoute>
-                }
-            />
 
         </Routes>
+        <Routes>
+          <Route
+              path="/dashboard"
+              element={
+                  <PrivateRoute>
+                      <Dashboard/>
+                  </PrivateRoute>
+              }
+          />
+          <Route
+              path="/admin/dashboard"
+              element={
+                  <AdminDashboard/>
+              }
+          />
+          <Route
+              path="/loan"
+              element={
+                  <PrivateRoute>
+                      <Loan/>
+                  </PrivateRoute>
+              }
+          />
+          <Route path="/banks" element={<Bank/>}/>
+          <Route
+              path="/edit"
+              element={
+                  <PrivateRoute>
+                      {" "}
+                      <EditProfile/>
+                  </PrivateRoute>
+              }
+          />
+          <Route
+              path="/verification"
+              element={
+                  <PrivateRoute>
+                      <Application/>
+                  </PrivateRoute>
+              }
+          />
+          <Route
+              path="/paymentHistory"
+              element={
+                  <PrivateRoute>
+                      <LoanPayments/>
+                  </PrivateRoute>
+              }
+          />
+          <Route
+              path="/payments"
+              element={
+                  <PrivateRoute>
+                      <Payments/>
+                  </PrivateRoute>
+              }
+          />
+          <Route path="/admin" element={<Admin/>}/>
+          <Route path="/admin/support" element={<AdminSupport/>}/>
+          <Route path="/support" element={<Support/>}/>
+          <Route path="/calculator" element={<Calculator/>}/>
+
+          {/* <Route path="/bank/:bankname/:id" element={<Bank/>} /> */}
+
+          <Route path="/process" element={<Process/>}/>
+
+          <Route
+              path="/profile"
+              element={
+                  <PrivateRoute>
+                      <Profile/>
+                  </PrivateRoute>
+              }
+          />
+
+          <Route
+              path="/bankApplication"
+              element={
+                  <PrivateRoute>
+                      <BankApplication/>
+                  </PrivateRoute>
+              }
+          />
+
+          <Route
+              path="/payment"
+              element={
+                  <PrivateRoute>
+                      <Payment/>
+                  </PrivateRoute>
+              }
+          />
+          </Routes>
+            
+
+        
+        </>
     );
 };
