@@ -27,7 +27,7 @@ const AdminDashboard = () => {
             return;
         }
 
-        await fetch(`http://localhost:8081/api/loan/${id}/status?status=${statusSelected}`, {
+        await fetch(`http://localhost:8082/api/loan/${id}/status?status=${statusSelected}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

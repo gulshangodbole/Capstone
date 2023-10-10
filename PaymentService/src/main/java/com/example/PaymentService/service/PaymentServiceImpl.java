@@ -4,6 +4,8 @@ import com.example.PaymentService.entity.Loan;
 import com.example.PaymentService.entity.Payment;
 import com.example.PaymentService.exceptions.PaymentCreationException;
 import com.example.PaymentService.repository.PaymentRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.http.HttpHeaders;
 
-import java.net.http.HttpHeaders;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.List;
 
@@ -53,24 +57,26 @@ public class PaymentServiceImpl implements IPaymentService{
     @Override
     @Transactional
     public Payment createPayment(Payment payment) {
-        try{
+        try {
             String url = "http://localhost:8082/api/loan/" + payment.getLoanId();
-            ResponseEntity<Loan> responseEntity = restTemplate.getForEntity(url, Loan.class);
+            ResponseEntity<Loan[]> responseEntity = restTemplate.getForEntity(url, Loan[].class);
 
             if (responseEntity.getStatusCode() != HttpStatus.OK) {
                 throw new RuntimeException("Failed to get the due amount of the loan");
             }
 
-            Loan loan = responseEntity.getBody();
-            int dueAmount = loan.getDueAmount();
-            if (loan != null) {
+            Loan[] loans = responseEntity.getBody();
+            System.out.println("loans "+loans[0].getDueAmount());
+            if (loans != null && loans.length > 0) {
+                Loan loan = loans[0];
+                int dueAmount = loan.getDueAmount();
                 int newDueAmount = dueAmount - payment.getAmount();
-                HttpEntity<Integer> requestEntity = new HttpEntity<>(newDueAmount);
+                String putUrl = url + "/dueAmount?dueAmount=" + newDueAmount;
+                ResponseEntity<Void> responseEntity1 = restTemplate.exchange(putUrl, HttpMethod.PUT, null, Void.class);
 
-                ResponseEntity<Void> responseEntity1 = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Void.class);
                 return paymentRepository.save(payment);
             } else {
-                throw new EntityNotFoundException("Loan request with ID " + payment.getLoanId() + " not found");
+                throw new EntityNotFoundException("No loan requests found for ID " + payment.getLoanId());
             }
         } catch (Exception e) {
             // Handle exceptions or rethrow them as needed

@@ -67,6 +67,7 @@ export default function Payment() {
 
     const handleNextButton = (e) => {
         e.preventDefault()
+        console.log(loan)
         if (step === 1) {
             if (loan === null || loan.custId !== currentUser.userID) {
                 toast({
