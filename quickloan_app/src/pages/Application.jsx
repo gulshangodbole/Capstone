@@ -120,6 +120,7 @@ export default function Application() {
                                     value={income}
                                     type="number"
                                     onChange={handleChange}
+                                    placeholder="Enter your Income"
                                     required
                                 />
                             </div>
