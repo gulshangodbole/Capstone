@@ -9,7 +9,26 @@ import {
     UPDATE_LOAN_STATUS_SUCCESS,
 } from "./actionTypes"
 
-const BASE_URL = 'http://localhost:8081/api/loan';
+const loanServiceName = 'loan-service';
+
+// Function to resolve the service endpoint dynamically
+const resolveLoanServiceEndpoint = async () => {
+  try {
+    // Make an HTTP request to Eureka to fetch service information
+    const eurekaResponse = await axios.get('http://localhost:8761/eureka/apps/' + loanServiceName);
+    const instance = eurekaResponse.data.application.instance[0]; 
+    console.log("instance", instance)
+    if (instance) {
+      const { hostName, port } = instance;
+      return `http://${hostName}:${port.$}/api/loan`;
+    } else {
+      throw new Error(`No instances found for ${loanServiceName}`);
+    }
+  } catch (error) {
+    console.error('Error resolving user-service endpoint:', error);
+    throw error;
+  }
+};
 
 export const fetchAllLoansSuccess = (loans) => ({
     type: FETCH_ALL_LOANS_SUCCESS,
@@ -47,60 +66,70 @@ export const notFoundError = () => ({
 
 export const fetchAllLoans = () => async (dispatch) => {
     try {
-        const response = await axios.get(BASE_URL);
-        const data = response.data;
-        dispatch(fetchAllLoansSuccess(data));
+      const loanServiceEndpoint = await resolveLoanServiceEndpoint();
+      const response = await axios.get(loanServiceEndpoint);
+      const data = response.data;
+      dispatch(fetchAllLoansSuccess(data));
     } catch (error) {
-        dispatch(notFoundError());
+      dispatch(notFoundError());
     }
-};
-
-export const fetchLoanByCustId = (custId) => async (dispatch) => {
+  };
+  
+  export const fetchLoanByCustId = (custId) => async (dispatch) => {
     try {
-        const response = await axios.get(`${BASE_URL}/${custId}`);
-        const data = response.data;
-        dispatch(fetchLoanByCustIdSuccess(data));
+      const loanServiceEndpoint = await resolveLoanServiceEndpoint();
+      const response = await axios.get(`${loanServiceEndpoint}/${custId}`);
+      const data = response.data;
+      dispatch(fetchLoanByCustIdSuccess(data));
     } catch (error) {
-        dispatch(notFoundError());
+      dispatch(notFoundError());
     }
-};
-
-export const fetchLoanByStatus = (status) => async (dispatch) => {
+  };
+  
+  export const fetchLoanByStatus = (status) => async (dispatch) => {
     try {
-        const response = await axios.get(`${BASE_URL}/status/${status}`);
-        const data = response.data;
-        dispatch(fetchLoanByStatusSuccess(data));
+      const loanServiceEndpoint = await resolveLoanServiceEndpoint();
+      const response = await axios.get(`${loanServiceEndpoint}/status/${status}`);
+      const data = response.data;
+      dispatch(fetchLoanByStatusSuccess(data));
     } catch (error) {
-        dispatch(notFoundError());
+      dispatch(notFoundError());
     }
-};
-
-export const fetchLoanById = (custId, loanID) => async (dispatch) => {
+  };
+  
+  export const fetchLoanById = (custId, loanID) => async (dispatch) => {
     try {
-        const response = await axios.get(`${BASE_URL}/${custId}/loan/${loanID}`);
-        const data = response.data;
-        dispatch(fetchLoanByIdSuccess(data));
+      const loanServiceEndpoint = await resolveLoanServiceEndpoint();
+      const response = await axios.get(
+        `${loanServiceEndpoint}/${custId}/loan/${loanID}`
+      );
+      const data = response.data;
+      dispatch(fetchLoanByIdSuccess(data));
     } catch (error) {
-        dispatch(notFoundError());
+      dispatch(notFoundError());
     }
-};
-
-export const createLoan = (loan) => async (dispatch) => {
+  };
+  
+  export const createLoan = (loan) => async (dispatch) => {
     try {
-        const response = await axios.post(BASE_URL, loan);
-        const createdLoan = response.data;
-        dispatch(createLoanSuccess(createdLoan));
+      const loanServiceEndpoint = await resolveLoanServiceEndpoint();
+      const response = await axios.post(loanServiceEndpoint, loan);
+      const createdLoan = response.data;
+      dispatch(createLoanSuccess(createdLoan));
     } catch (error) {
-        dispatch(notFoundError());
+      dispatch(notFoundError());
     }
-};
-
-export const updateLoanStatus = (custId, status) => async (dispatch) => {
+  };
+  
+  export const updateLoanStatus = (custId, status) => async (dispatch) => {
     try {
-        const response = await axios.put(`${BASE_URL}/${custId}/status/${status}`);
-        const updatedLoan = response.data;
-        dispatch(updateLoanStatusSuccess(updatedLoan));
+      const loanServiceEndpoint = await resolveLoanServiceEndpoint();
+      const response = await axios.put(
+        `${loanServiceEndpoint}/${custId}/status/${status}`
+      );
+      const updatedLoan = response.data;
+      dispatch(updateLoanStatusSuccess(updatedLoan));
     } catch (error) {
-        dispatch(notFoundError());
+      dispatch(notFoundError());
     }
-};
+  };
