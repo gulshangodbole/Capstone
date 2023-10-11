@@ -1,4 +1,3 @@
-import React, {useEffect, useState} from "react";
 import {
     Box,
     Button,
@@ -13,10 +12,11 @@ import {
     Thead,
     Tr,
 } from "@chakra-ui/react";
-import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import {getUsersAction} from "../redux/AdminRedux/action";
-import {fetchLoans} from "../redux/LoanRedux/action";
+import { getUsersAction } from "../redux/AdminRedux/action";
+import { fetchLoans } from "../redux/LoanRedux/action";
 
 export const Admin = () => {
     const dispatch = useDispatch();
