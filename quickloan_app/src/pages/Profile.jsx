@@ -33,10 +33,10 @@ export const Profile = () => {
         <div style={{
             display: window.innerWidth > 650 ? "flex" : "grid",
             justifyContent: "start",
-            paddingTop: "32px",
+            paddingTop: "60px",
             backgroundColor: "#E5D1FA",
             alignContent: "center",
-            paddingBottom: "53px"
+            paddingBottom: "60px"
         }}>
             <div style={{
                 display: "flex",
@@ -53,7 +53,7 @@ export const Profile = () => {
             <DIV>
                 {/* style={{marginLeft:"10%",paddingBottom:"10px"}} */}
                 <h3><label>Name : </label> {data.fullname}</h3>
-                <h5><label>Date of Birth : </label> {data.dob}</h5>
+                <h5><label>Date of Birth : </label> {data.dob && new Date(data.dob).toLocaleDateString("en-GB")}</h5>
                 <h5><label>Phone : </label> {data.contact}</h5>
                 <h5><label>Email : </label> {data.email}</h5>
                 <h5><label>Gender : </label> {data.gender}</h5>
