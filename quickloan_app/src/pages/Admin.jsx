@@ -115,7 +115,7 @@ export const Admin = () => {
                                 <Tr>
                                     <Th>ID</Th>
                                     <Th>Name</Th>
-                                    <Th>Conatct</Th>
+                                    <Th>Contact</Th>
                                     <Th>Email</Th>
                                     <Th>Income</Th>
                                     <Th>Credit Score</Th>
