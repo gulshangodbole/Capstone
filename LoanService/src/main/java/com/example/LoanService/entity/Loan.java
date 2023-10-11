@@ -20,6 +20,9 @@ public class Loan {
     private int dueAmount;
     private Date date;
 
+    public Loan() {
+    }
+
     public Loan(int id, int custId, int loanAmount, int loanTerm, String loanPurpose, String loanType, String status, int dueAmount) {
         this.id = id;
         this.custId = custId;

@@ -123,7 +123,9 @@ export const Admin = () => {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {users.map((el) => (
+                                {users
+                                .filter((el) => el.email !== "admin@gmail.com")
+                                .map((el) => (
                                     <Tr key={el.userID}>
                                         <Td>{el.userID}</Td>
                                         <Td>{el.fullname}</Td>

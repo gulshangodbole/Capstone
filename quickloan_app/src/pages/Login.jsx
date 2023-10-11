@@ -40,7 +40,7 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (logindata.email === "admin123@gmail.com" && logindata.password === "admin") {
+        if (logindata.email === "admin@gmail.com") {
             navigate('/admin')
         } else if (!logindata.email || !logindata.password) {
             toast({
