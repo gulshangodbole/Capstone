@@ -40,9 +40,7 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (logindata.email === "admin@gmail.com") {
-            navigate('/admin')
-        } else if (!logindata.email || !logindata.password) {
+        if (!logindata.email || !logindata.password) {
             toast({
                 title: "Failed!!",
                 description: "Please fill all the fields.",
@@ -83,7 +81,10 @@ function Login() {
 
     useEffect(() => {
         if (isAuth) {
-            navigate(location.state?.from ? location.state.from : "/dashboard");
+            if(logindata.email === "admin@gmail.com")
+                navigate(location.state?.from ? location.state.from : "/admin");
+            else
+                navigate(location.state?.from ? location.state.from : "/dashboard");
         }
     }, [isAuth, location.state, navigate]);
     const [submissiondisbled, setSubmissiondisbled] = useState(false);
