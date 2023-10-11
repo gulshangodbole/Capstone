@@ -91,7 +91,7 @@ const PaymentDetails = ({ formData, setFormData }) => {
 
                 console.log(cardValid)
                 if (
-                    formattedWithSpaces.length === 20 &&
+                    formattedWithSpaces.length === 19 &&
                     cardValid.isPotentiallyValid === false &&
                     cardValid.isValid === false
                 ) {

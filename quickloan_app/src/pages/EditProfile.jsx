@@ -5,14 +5,17 @@ import Swal from "sweetalert2";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {getUserDetails, updateProfile} from "../redux/UserRedux/action";
-
+import bcrypt from 'bcryptjs'
+import {
+    Text,
+    Flex,
+} from '@chakra-ui/react'
 
 export default function EditProfile() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const currentUser = useSelector((store) => store.AuthReducer.currentUser);
-
 
     const initalFormData = {
         fullname: currentUser.fullname || "",
@@ -42,7 +45,6 @@ export default function EditProfile() {
             [name]: type === "tel" ? +value : type === "number" ? Number(value) : value,
         }));
     };
-
 
     const handleSubmitFormData = async (e) => {
         if (!formData.password) {
@@ -96,7 +98,9 @@ export default function EditProfile() {
         password
     } = formData;
     console.log(formData);
-    console.log(email);
+    console.log("length",formData.contact.toString().length);
+    const isContactInValid = formData.contact.toString().length !== 10;
+    const isempyearsInValid = formData.empYears < 0 || formData.empYears > 60;
     return (
         <div style={{
             display: 'flex',
@@ -165,7 +169,7 @@ export default function EditProfile() {
                                 <div className={styles["form-group"]}>
                                     <label>Mobile Number</label>
                                     <input
-                                        type="tel"
+                                        type="text"
                                         name="contact"
                                         value={contact}
                                         onChange={handleChange}
@@ -173,6 +177,23 @@ export default function EditProfile() {
                                         required
                                     />
                                 </div>
+                                {isContactInValid && (
+                        <Flex>
+                            <Text
+                                color={"red"}
+                                pl={"3em"}
+                                fontSize={{
+                                    base: "10px",
+                                    sm: "12px",
+                                    md: "15px",
+                                    lg: "15px",
+                                    xl: "15px",
+                                }}
+                            >
+                                Contact must be 10 digits
+                            </Text>
+                        </Flex>
+                    )}
 
                                 <div className={styles["form-group"]}>
                                     <label>Address</label>
@@ -210,6 +231,23 @@ export default function EditProfile() {
                                         placeholder="Enter your Years of Employment"
                                         required
                                     />
+                                     {isempyearsInValid && (
+                        <Flex>
+                            <Text
+                                color={"red"}
+                                pl={"3em"}
+                                fontSize={{
+                                    base: "10px",
+                                    sm: "12px",
+                                    md: "15px",
+                                    lg: "15px",
+                                    xl: "15px",
+                                }}
+                            >
+                                Enter a number between 0 and 60
+                            </Text>
+                        </Flex>
+                    )}
                                 </div>
 
                                 {/* <div className={styles["form-group"]}>
@@ -272,7 +310,7 @@ export default function EditProfile() {
                                     />
                                 </div>
 
-                                <div className={styles["form-group"]}>
+                                {/* <div className={styles["form-group"]}>
                                     <label>Password</label>
                                     <input
                                         type="password"
@@ -282,10 +320,10 @@ export default function EditProfile() {
                                         placeholder="Change password"
                                         required
                                     />
-                                </div>
+                                </div> */}
 
                                 <div className={styles["button-container"]}>
-                                    <button type="button" onClick={handleSubmit}>
+                                    <button type="button" onClick={handleSubmit} disabled={isContactInValid || isempyearsInValid} >
                                         Submit
                                     </button>
                                 </div>

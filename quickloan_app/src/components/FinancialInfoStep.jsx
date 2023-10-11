@@ -1,7 +1,10 @@
 import React from 'react';
-import {Box, Button, FormControl, FormLabel, HStack, Input, Text} from '@chakra-ui/react';
+import {Box, Button, FormControl, FormLabel, HStack, Input, Text, Flex} from '@chakra-ui/react';
 
 export const FinancialInfoStep = ({userInfo, handleChange, onNext, onPrevious}) => {
+    
+    const isExpenseInValid = userInfo.monthlyExpenses < 0;
+    const isInvestmentInValid = userInfo.savingsInvestments < 0;
     return (
 
         <Box w={{base: "250px", sm: "200px", md: "500px", lg: "600px", xl: "700px"}}>
@@ -13,18 +16,47 @@ export const FinancialInfoStep = ({userInfo, handleChange, onNext, onPrevious}) 
                 <FormLabel>Monthly Expenses</FormLabel>
                 <Input type='number' placeholder='Monthly Expenses' name={"monthlyExpenses"}
                        value={userInfo.monthlyExpenses} onChange={handleChange}/>
+                       {isExpenseInValid && (
+                        <Flex>
+                            <Text
+                                color={"red"}
+                                pl={"3em"}
+                                fontSize={{
+                                    base: "10px",
+                                    sm: "12px",
+                                    md: "15px",
+                                    lg: "15px",
+                                    xl: "15px",
+                                }}
+                            >
+                                Enter positive amount
+                            </Text>
+                        </Flex>
+                    )}
             </FormControl>
 
             <FormControl isRequired m={"20px"}>
                 <FormLabel>Savings/Investments</FormLabel>
                 <Input type='number' placeholder='Savings/Investments' name={"savingsInvestments"}
                        value={userInfo.savingsInvestments} onChange={handleChange}/>
+                       {isInvestmentInValid && (
+                        <Flex>
+                            <Text
+                                color={"red"}
+                                pl={"3em"}
+                                fontSize={{
+                                    base: "10px",
+                                    sm: "12px",
+                                    md: "15px",
+                                    lg: "15px",
+                                    xl: "15px",
+                                }}
+                            >
+                                Enter positive amount
+                            </Text>
+                        </Flex>
+                    )}
             </FormControl>
-
-            {/* <FormControl isRequired m={"20px"}>
-                <FormLabel>Outstanding Loans/Credit Card Debt</FormLabel>
-                <Input type='text' placeholder='Outstanding Loans/Credit Card Debt' name={"outstandingLoansDebt"} value={userInfo.outstandingLoansDebt} onChange={handleChange} />
-            </FormControl> */}
 
             <FormControl isRequired m={"20px"}>
                 <FormLabel>Assets(if applicable)</FormLabel>
@@ -36,7 +68,7 @@ export const FinancialInfoStep = ({userInfo, handleChange, onNext, onPrevious}) 
 
             <HStack display={"flex"} justifyContent={"space-around"}>
                 <Button variant={'outline'} onClick={onPrevious} colorScheme='purple'>Prev</Button>
-                <Button variant={'outline'} onClick={onNext} colorScheme='purple'>Next</Button>
+                <Button variant={'outline'} onClick={onNext} colorScheme='purple' isDisabled={isExpenseInValid || isInvestmentInValid}>Next</Button>
             </HStack>
         </Box>
 

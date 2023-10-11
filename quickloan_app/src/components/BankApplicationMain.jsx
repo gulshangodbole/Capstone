@@ -19,7 +19,7 @@ import {PersonalInfoStep} from './PersonalInfoStep';
 import {FinancialInfoStep} from './FinancialInfoStep';
 import {useDispatch, useSelector} from 'react-redux';
 import {createLoan} from '../redux/BankApplication/action';
-import {expenseUpdateProfile, getUserDetails} from "../redux/UserRedux/action";
+import {expenseUpdateProfile, getUserDetails, updateProfile} from "../redux/UserRedux/action";
 import {useLocation, useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -40,12 +40,13 @@ export const BankApplicationMain = () => {
     useEffect(() => {
         //dispatch(getLoanData(currentUser.userID))
         dispatch(getUserDetails(currentUser.userID))
+        setUserInfo(initialUserInfo)
     }, [dispatch, currentUser.userID])
 
 
     const initialUserInfo = {
         id: currentUser.userID,
-        fullname: currentUser.fullname || "",
+        fullname: currentUser.fullname || '',
         contact: currentUser?.contact || '',
         email: currentUser?.email || '',
         address: currentUser?.address || '',
@@ -53,8 +54,8 @@ export const BankApplicationMain = () => {
         jobTitle: currentUser?.jobtitle || '',
         yearsOfEmployment: currentUser?.empYears || '',
         monthlyIncome: currentUser?.income || '',
-        monthlyExpenses: '',
-        savingsInvestments: '',
+        monthlyExpenses: currentUser?.expense || '',
+        savingsInvestments: currentUser?.savings || '',
         assets: currentUser?.assets || '',
         identificationProof: '',
         incomeProof: '',
@@ -117,6 +118,23 @@ export const BankApplicationMain = () => {
             dueAmount: userInfo.loanAmount,
             date: new Date().toISOString(),
         };
+        const newUserInfo ={
+        userID: currentUser.userID,
+        fullname: userInfo.fullname || '',
+        contact: userInfo.contact || '',
+        email: userInfo.email || '',
+        address: userInfo.address || '',
+        empYears: userInfo.empYears || '',
+        income: userInfo.income || '',
+        expense: userInfo.expense || '',
+        savings: userInfo.savings || '',
+        assets: userInfo.assets || '',
+        password: currentUser?.password || '',
+        gender: currentUser?.gender || '',
+        dob: currentUser?.dob || '',
+        employment: currentUser?.employment || '',
+        creditscore: currentUser?.creditscore || ''
+        }
         console.log("loan", newLoan)
         console.log("loans", loans)
         console.log("userInfo", userInfo)
@@ -131,6 +149,7 @@ export const BankApplicationMain = () => {
             })
         } else {
             dispatch(expenseUpdateProfile(currentUser.userID, userInfo.monthlyExpenses, userInfo.savingsInvestments));
+            dispatch(updateProfile(currentUser.userID,newUserInfo))
             dispatch(createLoan(newLoan)).then(() => {
                 console.log("UserInformation", userInfo)
                 setUserInfo(initialUserInfo)
@@ -139,7 +158,7 @@ export const BankApplicationMain = () => {
                     icon: 'success',
                     title: 'Your loan application has been submitted successfully.',
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 3000,
                 })
                 navigate("/dashboard")
 
