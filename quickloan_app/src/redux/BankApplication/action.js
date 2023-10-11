@@ -9,7 +9,7 @@ import {
     UPDATE_LOAN_STATUS_SUCCESS,
 } from "./actionTypes"
 
-const loanServiceName = 'loan-service';
+const loanServiceName = 'gateway';
 
 // Function to resolve the service endpoint dynamically
 const resolveLoanServiceEndpoint = async () => {

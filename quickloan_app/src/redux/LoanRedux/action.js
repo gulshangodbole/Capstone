@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {FETCH_LOANS_FAILURE, FETCH_LOANS_REQUEST, FETCH_LOANS_SUCCESS,} from './actiontypes';
 
-const loanServiceName = 'loan-service';
+const loanServiceName = 'gateway';
 
 // Function to resolve the service endpoint dynamically
 const resolveLoanServiceEndpoint = async () => {

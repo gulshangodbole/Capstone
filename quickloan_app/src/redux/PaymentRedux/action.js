@@ -1,7 +1,7 @@
 import * as actionTypes from './actiontypes';
 import axios from 'axios';
 
-const paymentServiceName = 'payment-service';
+const paymentServiceName = 'gateway';
 
 // Function to resolve the service endpoint dynamically
 const resolvePaymentServiceEndpoint = async () => {

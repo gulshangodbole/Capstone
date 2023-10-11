@@ -10,7 +10,7 @@ import {
     UPDATE_PROFILE_SUCCESS,
 } from './actiontypes';
 
-const userServiceName = 'user-service';
+const userServiceName = 'gateway';
 
 // Function to resolve the service endpoint dynamically
 const resolveUserServiceEndpoint = async () => {

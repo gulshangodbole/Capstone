@@ -12,7 +12,7 @@ import {
 } from "./actiontypes"
 import axios from 'axios';
 
-const supportServiceName = 'support-service';
+const supportServiceName = 'gateway';
 
 // Function to resolve the service endpoint dynamically
 const resolveSupportServiceEndpoint = async () => {

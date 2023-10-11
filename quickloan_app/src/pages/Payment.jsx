@@ -48,15 +48,19 @@ export default function Payment() {
     // console.log('loan: ', loan)
 
     useEffect(() => {
+        console.log("state", state)
         if (state !== null) {
             setLoanId(state);
         }
-    }, [state])
+    }, [state, setLoanId, dispatch])
 
 
     useEffect(() => {
         //dispatch(getLoanData(currentUser.userID))
-        dispatch(fetchLoanById(currentUser.userID, loanId))
+        console.log("loan id". loanId)
+        if(loanId!=null){
+            dispatch(fetchLoanById(currentUser.userID, loanId))
+        }
     }, [dispatch, loanId, currentUser.userID])
 
 

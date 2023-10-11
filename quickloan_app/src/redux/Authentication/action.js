@@ -8,7 +8,7 @@ import {
     SIGNUP_SUCCESS,
 } from './actionType';
 
-const userServiceName = 'user-service';
+const userServiceName = 'gateway';
 
 // Function to resolve the service endpoint dynamically
 const resolveUserServiceEndpoint = async () => {

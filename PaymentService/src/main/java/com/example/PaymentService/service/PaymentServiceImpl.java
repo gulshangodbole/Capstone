@@ -58,20 +58,19 @@ public class PaymentServiceImpl implements IPaymentService{
     @Transactional
     public Payment createPayment(Payment payment) {
         try {
-            String url = "http://localhost:8082/api/loan/" + payment.getLoanId();
-            ResponseEntity<Loan[]> responseEntity = restTemplate.getForEntity(url, Loan[].class);
+            String url = "http://localhost:8082/api/loan/" + payment.getCustId() + "/loan/" + payment.getLoanId();
+            ResponseEntity<Loan> responseEntity = restTemplate.getForEntity(url, Loan.class);
 
             if (responseEntity.getStatusCode() != HttpStatus.OK) {
                 throw new RuntimeException("Failed to get the due amount of the loan");
             }
-
-            Loan[] loans = responseEntity.getBody();
-            System.out.println("loans "+loans[0].getDueAmount());
-            if (loans != null && loans.length > 0) {
-                Loan loan = loans[0];
+            System.out.println("response entity"+responseEntity.getBody());
+            Loan loan = responseEntity.getBody();
+            System.out.println("loans "+loan);
+            if (loan != null ) {
                 int dueAmount = loan.getDueAmount();
                 int newDueAmount = dueAmount - payment.getAmount();
-                String putUrl = url + "/dueAmount?dueAmount=" + newDueAmount;
+                String putUrl = "http://localhost:8082/api/loan/" + payment.getLoanId() + "/dueAmount?dueAmount=" + newDueAmount;
                 ResponseEntity<Void> responseEntity1 = restTemplate.exchange(putUrl, HttpMethod.PUT, null, Void.class);
 
                 return paymentRepository.save(payment);

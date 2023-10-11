@@ -1,7 +1,7 @@
 import axios from "axios"
 import {GET_USERS, REQ_GET_USERS} from "./actionTypes"
 
-const userServiceName = 'user-service';
+const userServiceName = 'gateway';
 
 // Function to resolve the service endpoint dynamically
 const resolveUserServiceEndpoint = async () => {
