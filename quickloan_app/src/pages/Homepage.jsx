@@ -53,7 +53,6 @@ import {MdOutlineEmail} from "react-icons/md";
 import {Link, useLocation} from "react-router-dom";
 import "react-alice-carousel/lib/alice-carousel.css";
 import banner from "../Images/loan_banner.png"
-import ImageScroller from "../components/ImageScroller";
 
 
 const steps = [
@@ -368,7 +367,6 @@ const Homepage = () => {
             </Flex>
 
             {/* Part-3------ */}
-            <ImageScroller/>
             <Box m="auto" mt="150px" bgColor={"#f2e6fa"} p="30px" marginTop={"10px"}>
                 <Heading
                     mb="70px"

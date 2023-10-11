@@ -190,22 +190,7 @@ export function SignUp() {
                                                 }))}/>
                                         </FormControl>
                                     </Box>
-                                    {/* <Box>
-                    <FormControl id="lastname" >
-                      <FormLabel>Enter lastname</FormLabel>
-                      <Input
-                        borderRight={"none"}
-                        borderTop={"none"}
-                        focusBorderColor='none'
-                        placeholder={'Enter your lastname'}
-                        // bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-                        _placeholder={{ opacity: 1, color: '#a0a0a0' }}
-                        _focus={{
-                          bg: 'whiteAlpha.300',
-                          borderColor: "#FFB300"
-                        }} type="text" value={formvalue.lastname} onChange={(e) => setFormvalue((prev) => ({ ...prev, lastname: e.target.value }))} />
-                    </FormControl>
-                  </Box> */}
+                                    
                                     <FormControl id="email">
                                         <FormLabel>Email address</FormLabel>
                                         <Input

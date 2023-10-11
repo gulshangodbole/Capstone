@@ -14,34 +14,19 @@ export default function Dashboard() {
     const {id} = useParams()
     const [data, setdata] = useState("")
 
-    // const fetchdata = () => {
-    //   axios.get(`https://sour-snowy-purpose.glitch.me/banks/${id}`)
-    //     .then((res) => {
-    //       console.log(res.data)
-    //       setdata(res.data)
-    //     })
-    //     .catch((error) => {
-    //       console.log(error)
-    //     })
-    // }
-
-    // useEffect(() => {
-    //   fetchdata()
-    // }, [id])
-
     const {name, image, amount, interest, category, extra} = {
         name: "NatWest",
         image: p8,
         amount: 1,
         interest: 14,
-        category: id, // Assign the 'id' variable here
+        category: id, 
         extra: 1
     };
 
     return (
         <DIV>
             <div className='bottom'>
-                <h2>Quick Links To Handle Your {category}</h2>
+                <h2>Quick Links To Handle Your Loans</h2>
                 <div className='bottom-section'>
 
                     <div className='B-section-part'>

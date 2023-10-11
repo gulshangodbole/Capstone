@@ -13,7 +13,7 @@ import {
   Flex
 } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom"; // Assuming you are using React Router
+import { useNavigate } from "react-router-dom"; 
 import { fetchLoans } from '../redux/LoanRedux/action';
 
 const Loan = () => {

@@ -13,11 +13,6 @@ export default function EditProfile() {
 
     const currentUser = useSelector((store) => store.AuthReducer.currentUser);
 
-    // const data2 = useSelector((store) => store.AuthReducer.currentUser);
-    // const { id } = useSelector((store) => {
-    //   console.log("store:", store);
-    //   return { id: store.AuthReducer.currentUser.id };
-    // });
 
     const initalFormData = {
         fullname: currentUser.fullname || "",
@@ -48,13 +43,6 @@ export default function EditProfile() {
         }));
     };
 
-    // const handleNext = () => {
-    //   setCurrentPart(currentPart + 1);
-    // };
-
-    // const handlePrev = () => {
-    //   setCurrentPart(currentPart - 1);
-    // };
 
     const handleSubmitFormData = async (e) => {
         if (!formData.password) {
@@ -86,15 +74,6 @@ export default function EditProfile() {
         handleSubmitFormData();
     };
 
-//   const [data, setData] = useState({
-//     fullname: '',
-//     email: '',
-//     gender: '',
-//     dob: '',
-//     contact: '',
-//     address: '',
-//     employment: '',
-//   });
 
     useEffect(() => {
         // Fetch user details when the component mounts

@@ -12,7 +12,6 @@ import {BankApplication} from "../pages/BankApplication";
 import Bank from "../pages/Bank";
 import {Admin} from "../pages/Admin";
 import {Profile} from "../pages/Profile";
-import Process from "../pages/Process";
 import EditProfile from "../pages/EditProfile";
 import Dashboard from "../pages/Dashboard";
 import AdminSupport from "../pages/AdminSupport";
@@ -91,8 +90,6 @@ export const MainRoutes = () => {
             <Route path="/calculator" element={<Calculator/>}/>
 
             {/* <Route path="/bank/:bankname/:id" element={<Bank/>} /> */}
-
-            <Route path="/process" element={<Process/>}/>
 
             <Route
                 path="/profile"

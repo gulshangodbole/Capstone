@@ -69,28 +69,6 @@ export const Profile = () => {
                 </div>
             </DIV>
             <div style={{marginLeft: "10%"}}>
-                {/* {loans.length>0?(
-                
-               <div >
-                <Text fontSize={"15px"} fontWeight={"bold"}>Active Loans</Text>
-                {loans.map((el)=>(
-                <Box pr={"10px"} mb={"20px"} >
-                  <Box>  <img src={el.bankImg?el.bankImg:"https://personalloan.paisabazaar.com/components/images/bank-new-logos/2.gif"} alt="" /></Box>
-                  <Box style={{display:"flex",justifyContent:"space-around",width:"250px"}}>
-                 <Text fontSize={"15px"} fontWeight={"bold"}>Status:{el.status}</Text>
-                 <Text fontSize={"15px"} fontWeight={"bold"}>Loan: Rs{el.loanAmount}</Text>
-                 
-                  </Box>
-                </Box>
-
-
-                ))}
-               </div>
-               ):( */}
-                {/* <div>
-               <Link to={"/edit"}> <Button>Edit Profile!</Button></Link>
-                </div> */}
-                {/* )} */}
 
             </div>
 

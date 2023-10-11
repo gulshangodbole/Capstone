@@ -245,8 +245,6 @@ export default function Payment() {
                             </Button>
                         )}
 
-
-
                     </Flex>
                 </ButtonGroup>
             </Box>
