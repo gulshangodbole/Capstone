@@ -33,9 +33,10 @@ export const Profile = () => {
         <div style={{
             display: window.innerWidth > 650 ? "flex" : "grid",
             justifyContent: "start",
-            paddingTop: "20px",
+            paddingTop: "32px",
             backgroundColor: "#E5D1FA",
-            alignContent: "center"
+            alignContent: "center",
+            paddingBottom: "53px"
         }}>
             <div style={{
                 display: "flex",
