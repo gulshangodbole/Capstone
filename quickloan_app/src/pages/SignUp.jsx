@@ -101,7 +101,7 @@ export function SignUp() {
             } else if (res === -1) {
                 return toast({
                     title: 'Failed',
-                    description: 'User Registered Failed',
+                    description: 'User Already Exists',
                     status: 'error',
                     position: 'top',
                     duration: 4000,
