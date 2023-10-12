@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import bcrypt from 'bcryptjs'
+import {FaEnvelope, FaMobile, FaUser} from 'react-icons/fa';
 import {
     Box,
     Button,
@@ -9,6 +10,7 @@ import {
     FormLabel,
     Heading,
     Input,
+    Icon,
     InputGroup,
     InputRightElement,
     Link,
@@ -156,7 +158,7 @@ export function SignUp() {
                         <Stack borderRadius={"none"} className="animate__animated animate__pulse"
                                w={{base: "90%", sm: "90%", md: "80%", lg: "50%", xl: "40%", "2xl": "40%"}}>
                             <Stack align={'center'}>
-                                <Heading color={"black"} fontSize={'4xl'} textAlign={'center'}>
+                                <Heading color={"purple.300"} fontSize={'4xl'} textAlign={'center'}>
                                     SIGN UP
                                 </Heading>
 
@@ -164,7 +166,8 @@ export function SignUp() {
                             <Box
 
                                 rounded={'lg'}
-                                bg={useColorModeValue('white', 'gray.700')}
+                                //bg={useColorModeValue('white', 'gray.700')}
+                                bg="gray.100"
                                 boxShadow={'lg'}
                                 p={8}>
                                 <Stack spacing={4}>
@@ -173,6 +176,7 @@ export function SignUp() {
                                         <FormControl id="fullname">
                                             <FormLabel>Enter
                                                 Full Name</FormLabel>
+                                                <Flex align="center">
                                             <Input
                                                 borderRight={"none"}
                                                 borderTop={"none"}
@@ -188,11 +192,14 @@ export function SignUp() {
                                                     ...prev,
                                                     fullname: e.target.value
                                                 }))}/>
+                                                <Icon as={FaUser} boxSize={6} ml={4}/>
+                                                </Flex>
                                         </FormControl>
                                     </Box>
                                     
                                     <FormControl id="email">
                                         <FormLabel>Email address</FormLabel>
+                                        <Flex align="center">
                                         <Input
                                             borderRight={"none"}
                                             borderTop={"none"}
@@ -208,6 +215,8 @@ export function SignUp() {
                                                 ...prev,
                                                 email: e.target.value
                                             }))}/>
+                                            <Icon as={FaEnvelope} boxSize={6} ml={4}/>
+                                            </Flex>
                                     </FormControl>
                                     <FormControl id="password">
                                         <FormLabel>Password</FormLabel>
@@ -241,17 +250,15 @@ export function SignUp() {
                                         <Button
                                             type="submit"
                                             isDisabled={submissiondisbled}
-                                            style={{background: "linear-gradient(to top left, #171616 100%, #363431 51%)"}}
+                                            //style={{background: "linear-gradient(to top left, #171616 100%, #363431 51%)"}}
                                             // bgGradient='linear(to-r, #171616, #363431)'
                                             loadingText="Submitting"
                                             size="lg"
-                                            bg={'blue.400'}
-                                            color={'white'}
+                                            bg='purple.600'
+                                            //color={'white'}
+                                            colorScheme="purple"
                                             _hover={{
-                                                // bg: 'blue.500',
-                                                bgGradient: 'linear(to-r,  #363431,#171616)',
-                                                border: "1px solid #FFB300 ",
-                                                color: "#FFB300"
+                                                bg: 'purple.700'
                                             }}>
                                             SIGN UP
                                         </Button>

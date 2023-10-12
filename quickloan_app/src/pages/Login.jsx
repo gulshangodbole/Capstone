@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import bcrypt from 'bcryptjs';
-// import blackbgEar from "../Assets/black.jpg";
+import {FaEnvelope, FaMobile, FaUser} from 'react-icons/fa';
 // import "animate.css";
 import {
     Box,
@@ -11,6 +11,7 @@ import {
     FormLabel,
     Heading,
     Input,
+    Icon,
     InputGroup,
     InputRightElement,
     Link,
@@ -132,19 +133,21 @@ function Login() {
                             }}
                         >
                             <Stack align={"center"}>
-                                <Heading color={"black"} fontSize={"4xl"} textAlign={"center"}>
+                                <Heading color={"purple.300"} fontSize={"4xl"} textAlign={"center"}>
                                     LOGIN
                                 </Heading>
                             </Stack>
                             <Box
                                 rounded={"lg"}
-                                bg={useColorModeValue("white", "gray.700")}
+                                //bg={useColorModeValue("white", "gray.700")}
+                                bg="gray.100"
                                 boxShadow={"lg"}
                                 p={8}
                             >
                                 <Stack spacing={4}>
                                     <FormControl id="email">
                                         <FormLabel>Email address</FormLabel>
+                                        <Flex align="center">
                                         <Input
                                             borderRight={"none"}
                                             borderTop={"none"}
@@ -164,6 +167,8 @@ function Login() {
                                                 }))
                                             }
                                         />
+                                        <Icon as={FaEnvelope} boxSize={6} ml={4}/>
+                                        </Flex>
                                     </FormControl>
                                     <FormControl id="password">
                                         <FormLabel>Password</FormLabel>
@@ -203,18 +208,17 @@ function Login() {
                                         <Button
                                             type="submit"
                                             isDisabled={submissiondisbled}
-                                            style={{
-                                                background:
-                                                    "linear-gradient(to top left, #171616 100%, #363431 51%)",
-                                            }}
+                                            // style={{
+                                            //     background:
+                                            //         "linear-gradient(to top left, #171616 100%, #363431 51%)",
+                                            // }}
                                             loadingText="Submitting"
+                                            colorScheme="purple"
                                             size="lg"
-                                            bg={"blue.400"}
-                                            color={"white"}
+                                            bg="purple.600"
+                                            //color={"white"}
                                             _hover={{
-                                                bgGradient: "linear(to-r,  #363431,#171616)",
-                                                border: "1px solid #FFB300 ",
-                                                color: "#FFB300",
+                                                bg: 'purple.700'
                                             }}
                                         >
                                             LOGIN

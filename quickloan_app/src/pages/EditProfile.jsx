@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {getUserDetails, updateProfile} from "../redux/UserRedux/action";
-import bcrypt from 'bcryptjs'
 import {
     Text,
     Flex,
