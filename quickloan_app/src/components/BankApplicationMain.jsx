@@ -124,7 +124,7 @@ export const BankApplicationMain = () => {
         contact: userInfo.contact || '',
         email: userInfo.email || '',
         address: userInfo.address || '',
-        empYears: userInfo.empYears || '',
+        empYears: userInfo.yearsOfEmployment || '',
         income: userInfo.income || '',
         expense: userInfo.expense || '',
         savings: userInfo.savings || '',

@@ -123,7 +123,7 @@ export default function Bank() {
                                 <Td></Td>
                                 <Td></Td>
                                 <Td>
-                                    <li>To know more about Product features</li>
+                                    {/* <li>To know more about Product features</li> */}
                                 </Td>
                             </Tr>
                         </Tbody>

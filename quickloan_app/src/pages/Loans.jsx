@@ -57,7 +57,7 @@ const Loan = () => {
                   <Td>{loan.dueAmount}</Td>
                   <Td>{loan.date.split("T")[0]}</Td>
                   <Td>{loan.loanPurpose}</Td>
-                  <Td>{loan.loanTerm}</Td>
+                  <Td>{loan.loanTerm} months</Td>
                   <Td>{loan.status}</Td>
                   {loan.dueAmount === 0 ?
                     (<Td>

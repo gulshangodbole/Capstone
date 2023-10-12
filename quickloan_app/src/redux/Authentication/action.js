@@ -49,7 +49,7 @@ export const signup = (formData) => async (dispatch) => {
     console.log(userServiceEndpoint)
     if (emailExists) {
         dispatch({type: SIGNUP_FAILURE, payload: 'User already exists with this email.'});
-        return -1; // Indicate signup failure
+        return -2; // Indicate signup failure
     }
 
     dispatch({type: SIGNUP_REQUEST});

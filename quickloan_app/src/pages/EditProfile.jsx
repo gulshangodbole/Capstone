@@ -110,10 +110,10 @@ export default function EditProfile() {
             bgGradient: "radial(at center,  #993399, #3f1d67)"
         }}>
             <div className={styles.container}>
-                <div className={styles["form-section"]}>
+                <div className={styles["form-section"]} style={{width:"600px"}}>
                     {/* <div className={styles.vl}></div> */}
-                    <div className={styles["form-content"]}>
-                        <div>
+                    <div className={styles["form-content"]} >
+                        <div >
                             <form>
                                 <div className={styles["form-group"]}>
                                     <label>Your Name</label>
@@ -327,7 +327,6 @@ export default function EditProfile() {
                                     </button>
                                 </div>
                             </form>
-                            <img src={offer} alt=""/>
                         </div>
                     </div>
                 </div>

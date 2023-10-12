@@ -109,10 +109,20 @@ export function SignUp() {
                     duration: 4000,
                     isClosable: true,
                 })
-            } else {
+            } else if (res === -2){
                 return toast({
                     title: 'Failed',
                     description: 'User Already Exists',
+                    status: 'error',
+                    position: 'top',
+                    duration: 4000,
+                    isClosable: true,
+                })
+            }
+            else {
+                return toast({
+                    title: 'Failed',
+                    description: 'User Registered Failed',
                     status: 'error',
                     position: 'top',
                     duration: 4000,
